@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 
 const Home: React.FC = () => {
 
@@ -11,7 +11,7 @@ const Home: React.FC = () => {
   return (
     <>
       <div>Ciao sono la home</div>
-      <Header />
+      <Header week={32} />
     </>
   )
 };
