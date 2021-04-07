@@ -1,0 +1,23 @@
+.days {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+div.circleThing {
+    width: 19px;
+    height: 18px;
+    margin: auto;
+    border: 3px solid #000;
+    border-radius: 18px;
+    border-right-color: #fff;
+    animation: loading-spin infinite 1s linear;
+}
+
+@keyframes loading-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
