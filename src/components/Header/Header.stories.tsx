@@ -13,5 +13,5 @@ const Template: Story<HeaderProps> = (args) => {
 export const Main = Template.bind({});
 
 Main.args = {
-  week: 2,
+  week: 2
 };
