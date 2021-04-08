@@ -1,9 +1,8 @@
 import dayjs from 'dayjs';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import Header from '../components/Header/Header';
+import { getTasksByWeek } from '../firebase/firebase';
 import './Home.css'
 
 interface Task {
@@ -24,10 +23,15 @@ const Home: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([])
 
   useEffect(() => {
-    setLoading(true);
-    firebase.firestore().collection('tasks').where("year", "==", 2021).where("week", "==", week).get()
-      .then(tasks => setTasks(tasks.docs.map(task => task.data() as Task)))
-      .finally(() => setLoading(false));
+     const getTasks = async () => {
+      setLoading(true);
+       try {
+        setTasks(await getTasksByWeek(week) as Task[]);
+       } finally {
+        setLoading(false);
+       }
+     }
+     getTasks();
   }, [week])
 
   const previousWeek = () => setWeek(week - 1);
