@@ -1,4 +1,4 @@
-.button {
+.Button {
   padding: 5px 20px;
   cursor: pointer;
   background-color: #810000;
@@ -9,10 +9,10 @@
   user-select: none;
 }
 
-.button:hover {
+.Button:hover {
   background-color: #ce1212;
 }
 
-.button:active {
+.Button:active {
   background-color: #a81a1a;
 }

@@ -8,7 +8,7 @@ export interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = (props) => {
   return (
-    <div className="button" onClick={props.onClick}>{props.title}</div>
+    <div className="Button" onClick={props.onClick}>{props.title}</div>
   )
 };
 

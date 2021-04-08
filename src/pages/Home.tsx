@@ -3,7 +3,7 @@ import weekOfYear from 'dayjs/plugin/weekOfYear';
 import { useEffect, useState } from 'react';
 import Header from '../components/organisms/Header/Header';
 import DaysTable from '../components/organisms/DaysTable/DaysTable';
-import { Task } from '../sharedInterfaces';
+import { TaskInterface } from '../sharedInterfaces';
 import { getTasksByWeek } from '../firebase/firebase';
 import Modal from '../components/atoms/Modal/Modal';
 
@@ -12,14 +12,14 @@ dayjs.extend(weekOfYear);
 const Home: React.FC = () => {
   const [week, setWeek] = useState<number>(dayjs().week());
   const [loading, setLoading] = useState<boolean>(false);
-  const [tasks, setTasks] = useState<Task[]>([])
+  const [tasks, setTasks] = useState<TaskInterface[]>([])
   const [addModalVisible, setAddModalVisible] = useState<boolean>(false)
 
   useEffect(() => {
      const getTasks = async () => {
       setLoading(true);
        try {
-        setTasks(await getTasksByWeek(week) as Task[]);
+        setTasks(await getTasksByWeek(week) as TaskInterface[]);
        } finally {
         setLoading(false);
        }
