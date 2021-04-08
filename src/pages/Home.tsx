@@ -1,12 +1,10 @@
 import dayjs from 'dayjs';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import { useEffect, useState } from 'react';
-import Header from '../components/atoms/Header/Header';
+import Header from '../components/organisms/Header/Header';
 import DaysTable from '../components/organisms/DaysTable/DaysTable';
 import { Task } from '../sharedInterfaces';
 import { getTasksByWeek } from '../firebase/firebase';
-import './Home.css'
-
 
 dayjs.extend(weekOfYear);
 

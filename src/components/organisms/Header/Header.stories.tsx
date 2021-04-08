@@ -2,7 +2,7 @@ import { Story } from '@storybook/react';
 import Header, { HeaderProps } from './Header';
 
 export default {
-  title: 'Example/Header',
+  title: 'ORGANISMS/Header',
   component: Header,
 };
 
