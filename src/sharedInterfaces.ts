@@ -5,4 +5,5 @@ export interface Task {
   done: boolean;
   week: number;
   year: number;
+  length: number;
 }

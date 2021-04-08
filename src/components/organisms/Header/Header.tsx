@@ -6,6 +6,7 @@ export interface HeaderProps {
   previousWeek: () => void;
   nextWeek: () => void;
   resetWeek: () => void;
+  addTask: () => void;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
@@ -17,7 +18,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         <Button primary={true} title="Reset" onClick={props.resetWeek} />
       </div>
       <span>Settimana {props.week || ''}</span>
-      <Button primary={true} title="Aggiungi" onClick={() => console.log('ciao')} />
+      <Button primary={true} title="Aggiungi" onClick={props.addTask} />
     </div>
   )
 };

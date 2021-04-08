@@ -5,6 +5,7 @@ import Header from '../components/organisms/Header/Header';
 import DaysTable from '../components/organisms/DaysTable/DaysTable';
 import { Task } from '../sharedInterfaces';
 import { getTasksByWeek } from '../firebase/firebase';
+import Modal from '../components/atoms/Modal/Modal';
 
 dayjs.extend(weekOfYear);
 
@@ -12,6 +13,7 @@ const Home: React.FC = () => {
   const [week, setWeek] = useState<number>(dayjs().week());
   const [loading, setLoading] = useState<boolean>(false);
   const [tasks, setTasks] = useState<Task[]>([])
+  const [addModalVisible, setAddModalVisible] = useState<boolean>(false)
 
   useEffect(() => {
      const getTasks = async () => {
@@ -27,13 +29,17 @@ const Home: React.FC = () => {
 
   const previousWeek = () => setWeek(week > 1 ? week - 1 : week);
   const nextWeek = () => setWeek(week < 52 ? week + 1 : week);
-  const resetWeek = () => setWeek(dayjs().week())
+  const resetWeek = () => setWeek(dayjs().week());
+  const addTask = () => setAddModalVisible(true);
+  const closeModal = () => setAddModalVisible(false);
 
   return (
     <>
-      <Header week={week} previousWeek={previousWeek} nextWeek={nextWeek} resetWeek={resetWeek} />
+      <Header week={week} previousWeek={previousWeek} nextWeek={nextWeek} resetWeek={resetWeek} addTask={addTask}/>
 
       <DaysTable week={week} tasks={tasks} loading={loading}/>
+      
+      <Modal isVisible={addModalVisible} closeModal={closeModal}>Proviamo</Modal>
     </>
   )
 };
