@@ -6,3 +6,7 @@
   background-color: #1b1717;
   color: #eeebdd;
 }
+
+.buttons {
+  display: flex;
+}
