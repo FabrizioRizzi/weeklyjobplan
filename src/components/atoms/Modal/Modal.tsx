@@ -2,6 +2,7 @@ import './Modal.css';
 
 export interface ModalProps {
   isVisible: boolean;
+  title: string;
   closeModal: () => void;
 };
 
@@ -10,13 +11,14 @@ const Modal: React.FC<ModalProps> = (props) => {
     <>
       {props.isVisible &&
         <>
-          <div className="TransparentLayer"></div>
+          <div className="TransparentLayer" onClick={props.closeModal}></div>
           <div className="Modal">
-            <div onClick={props.closeModal}>
-              Chiudi
+            <div className="ModalTitle">
+              <div>{props.title}</div>
+              <div className="CloseModal" onClick={props.closeModal}>Close</div>
             </div>
             {props.children}
-            </div>
+          </div>
         </>
       }
     </>

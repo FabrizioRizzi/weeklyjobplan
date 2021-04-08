@@ -1,9 +1,9 @@
 export interface TaskInterface {
   name: string;
-  description: string;
+  description?: string;
   dayIndex: number;
   done: boolean;
   week: number;
   year: number;
-  length: number;
+  length?: number;
 }

@@ -5,7 +5,7 @@ import Header from '../components/organisms/Header/Header';
 import DaysTable from '../components/organisms/DaysTable/DaysTable';
 import { TaskInterface } from '../sharedInterfaces';
 import { getTasksByWeek } from '../firebase/firebase';
-import Modal from '../components/atoms/Modal/Modal';
+import AddTaskModal from '../components/organisms/AddTaskModal/AddTaskModal';
 
 dayjs.extend(weekOfYear);
 
@@ -39,7 +39,7 @@ const Home: React.FC = () => {
 
       <DaysTable week={week} tasks={tasks} loading={loading}/>
       
-      <Modal isVisible={addModalVisible} closeModal={closeModal}>Proviamo</Modal>
+      <AddTaskModal isVisible={addModalVisible} closeModal={closeModal}>Proviamo</AddTaskModal>
     </>
   )
 };
