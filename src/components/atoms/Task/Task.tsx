@@ -6,10 +6,14 @@ export interface TaskProps {
   length?: number;
 };
 
+const faiQualcosa = (event: any) => {
+  console.log(event.target.value)
+}
+
 const Task: React.FC<TaskProps> = (props) => {
   return (
     <div className="Task">
-      <input type="checkbox" checked={props.done} />
+      <input className="Checkbox" type="checkbox" checked={props.done} onChange={faiQualcosa}/>
       <div>
         {props.name}
       </div>
