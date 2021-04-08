@@ -2,11 +2,12 @@ import './TextInput.css';
 
 export interface TextInputProps {
   value?: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const TextInput: React.FC<TextInputProps> = (props) => {
   return (
-    <input className="TextInput" type="text" placeholder="ciao"/>
+    <input className="TextInput" type="text" onChange={props.onChange} />
   )
 };
 

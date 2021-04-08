@@ -17,14 +17,6 @@ export const getTasksByWeek = async (week: number) => {
   return tasks.docs.map(task => task.data());
 };
 
-export const addTask = async (task?: TaskInterface) => {
-  return firebase.firestore().collection('tasks').add({
-    name: 'Prova',
-    description: 'Prova',
-    dayIndex: 4,
-    done: false,
-    week: 15,
-    year: 2021,
-    length: 60
-  })
+export const addTask = async (task: TaskInterface) => {
+  return firebase.firestore().collection('tasks').add(task)
 }

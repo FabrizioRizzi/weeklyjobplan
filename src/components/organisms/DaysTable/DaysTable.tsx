@@ -21,7 +21,7 @@ const DaysTable: React.FC<DaysTableProps> = (props) => {
           return (
             <div key={index}>
               <h3 className="DayTitle">{dayjs().week(props.week).day(index).format('dddd DD MMMM')}</h3>
-              {!props.loading && props.tasks.filter(task => task.dayIndex === index).map(task => <Task key={index} name={task.name} done={task.done} />)}
+              {!props.loading && props.tasks.filter(task => task.dayIndex === index).map(task => <Task key={task.id} name={task.name} done={task.done} />)}
             </div>
           )
         })}
