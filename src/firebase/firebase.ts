@@ -12,11 +12,14 @@ export const firebaseConfig = {
   measurementId: "G-G8F7SWFRTH"
 };
 
-export const getTasksByWeek = async (week: number) => {
-  const tasks = await firebase.firestore().collection('tasks').where("year", "==", 2021).where("week", "==", week).get();
-  return tasks.docs.map(task => task.data());
+export const getTasksByWeek = (week: number) => {
+  return firebase.firestore().collection('tasks').where("year", "==", 2021).where("week", "==", week);
 };
 
 export const addTask = async (task: TaskInterface) => {
   return firebase.firestore().collection('tasks').add(task)
+}
+
+export const updateDoneTask = async (id: string, done: boolean) => {
+  return firebase.firestore().collection('tasks').doc(id).update({done})
 }

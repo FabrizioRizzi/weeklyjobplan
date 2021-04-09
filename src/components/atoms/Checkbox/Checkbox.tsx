@@ -2,12 +2,16 @@ import './Checkbox.css';
 
 export interface CheckboxProps {
   checked?: boolean;
-  onChange: () => {};
+  onChange: (checked: boolean) => void;
 };
 
 const Checkbox: React.FC<CheckboxProps> = (props) => {
+  const check = () => {
+    props.onChange(!props.checked);
+  }
+
   return (
-    <input className="Checkbox" type="checkbox" checked={props.checked} onChange={props.onChange}/>
+    <div className={props.checked ? "CheckboxChecked" : "Checkbox"} onClick={check}>Prova</div>
   )
 };
 

@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Header from '../components/organisms/Header/Header';
 import DaysTable from '../components/organisms/DaysTable/DaysTable';
 import { TaskInterface } from '../sharedInterfaces';
@@ -15,30 +15,41 @@ const Home: React.FC = () => {
   const [tasks, setTasks] = useState<TaskInterface[]>([])
   const [addModalVisible, setAddModalVisible] = useState<boolean>(false)
 
+  let firebaseSubscription = useRef(() => { })
+
   useEffect(() => {
-     const getTasks = async () => {
-      setLoading(true);
-       try {
-        setTasks(await getTasksByWeek(week) as TaskInterface[]);
-       } finally {
-        setLoading(false);
-       }
-     }
-     getTasks();
+    setLoading(true);
+    firebaseSubscription.current = getTasksByWeek(week).onSnapshot((querySnapshot) => {
+      const tasks = querySnapshot.docs.map(task => ({ id: task.id, ...task.data() })) as TaskInterface[];
+      setTasks(tasks);
+      setLoading(false);
+    })
   }, [week])
 
-  const previousWeek = () => setWeek(week > 1 ? week - 1 : week);
-  const nextWeek = () => setWeek(week < 52 ? week + 1 : week);
-  const resetWeek = () => setWeek(dayjs().week());
+  const previousWeek = () => {
+    firebaseSubscription.current();
+    setWeek(week > 1 ? week - 1 : week);
+  }
+  
+  const nextWeek = () => {
+    firebaseSubscription.current();
+    setWeek(week < 52 ? week + 1 : week);
+  }
+
+  const resetWeek = () => {
+    firebaseSubscription.current();
+    setWeek(dayjs().week());
+  }
+  
   const addTask = () => setAddModalVisible(true);
   const closeModal = () => setAddModalVisible(false);
 
   return (
     <>
-      <Header week={week} previousWeek={previousWeek} nextWeek={nextWeek} resetWeek={resetWeek} addTask={addTask}/>
+      <Header week={week} previousWeek={previousWeek} nextWeek={nextWeek} resetWeek={resetWeek} addTask={addTask} />
 
-      <DaysTable week={week} tasks={tasks} loading={loading}/>
-      
+      <DaysTable week={week} tasks={tasks} loading={loading} />
+
       <AddTaskModal isVisible={addModalVisible} closeModal={closeModal}>Proviamo</AddTaskModal>
     </>
   )
