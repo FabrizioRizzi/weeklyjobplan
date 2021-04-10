@@ -17,4 +17,23 @@
   z-index: 1001;
   min-width: 200px;
   min-height: 200px;
+  border-radius: 5px;
+}
+
+.ModalTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #1b1717;
+  color: #eeebdd;
+  border-radius: 5px 5px 0 0;
+}
+
+.CloseModal {
+  cursor: pointer;
+}
+
+.ModalBody {
+  padding: 10px;
 }

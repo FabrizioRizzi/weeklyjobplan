@@ -1,3 +1,4 @@
+import { X } from 'react-feather';
 import './Modal.css';
 
 export interface ModalProps {
@@ -15,9 +16,13 @@ const Modal: React.FC<ModalProps> = (props) => {
           <div className="Modal">
             <div className="ModalTitle">
               <div>{props.title}</div>
-              <div className="CloseModal" onClick={props.closeModal}>Close</div>
+              <div className="CloseModal" onClick={props.closeModal}>
+                <X />
+              </div>
             </div>
-            {props.children}
+            <div className="ModalBody">
+              {props.children}
+            </div>
           </div>
         </>
       }
