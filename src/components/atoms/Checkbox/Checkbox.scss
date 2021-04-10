@@ -1,3 +1,22 @@
-.CheckboxChecked {
-  background-color: aqua;
+@import '../../../colors';
+
+.Checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid $light_grey;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.Checkbox:hover {
+  border: 2px solid $main_dark;
+}
+
+.Checked {
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  margin: 2px;
+  border-radius: 3px;
+  background-color: $light_grey;
 }

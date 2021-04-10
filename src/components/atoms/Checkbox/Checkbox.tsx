@@ -11,7 +11,9 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
   }
 
   return (
-    <div className={props.checked ? "CheckboxChecked" : "Checkbox"} onClick={check}>Prova</div>
+    <div className="Checkbox" onClick={check}>
+      {props.checked && <div className="Checked"></div>}
+    </div>
   )
 };
 
