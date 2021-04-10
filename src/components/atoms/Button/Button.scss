@@ -1,10 +1,12 @@
+@import '../../../colors';
+
 .Button {
   width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #810000;
-  color: #eeebdd;
+  background-color: $primary;
+  color: $main_light;
   border-radius: 20px;
   padding: 5px 20px;
   margin: 5px;
@@ -13,9 +15,9 @@
 }
 
 .Button:hover {
-  background-color: #ce1212;
+  background-color: lighten($primary, 10%);
 }
 
 .Button:active {
-  background-color: #a81a1a;
+  background-color: lighten($primary, 15%);
 }

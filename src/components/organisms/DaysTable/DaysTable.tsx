@@ -3,7 +3,7 @@ import 'dayjs/locale/it';
 import { TaskInterface } from '../../../sharedInterfaces';
 import Task from '../../atoms/Task/Task';
 import Loader from '../../atoms/Loader/Loader';
-import './DaysTable.css';
+import './DaysTable.scss';
 
 dayjs.locale('it');
 

@@ -1,11 +1,13 @@
+@import '../../../_colors.scss';
+
 .Header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
   text-align: center;
   padding: 10px;
-  background-color: #1b1717;
-  color: #eeebdd;
+  background-color: $main_dark;
+  color: $main_light;
 }
 
 .Buttons {

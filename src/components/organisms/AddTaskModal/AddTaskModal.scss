@@ -1,4 +1,6 @@
-.AddTaskModalContainer {
+.Fields {
   display: grid;
   grid-template-columns: 1fr 2fr;
+  align-items: baseline;
+  row-gap: 5px;
 }

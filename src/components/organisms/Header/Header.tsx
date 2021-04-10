@@ -1,6 +1,6 @@
 import Button from '../../atoms/Button/Button';
 import { ChevronRight, ChevronLeft, Plus, Target } from 'react-feather';
-import './Header.css';
+import './Header.scss';
 
 export interface HeaderProps {
   week: number;

@@ -1,6 +1,6 @@
 import { updateDoneTask } from '../../../firebase/firebase';
 import Checkbox from '../Checkbox/Checkbox';
-import './Task.css';
+import './Task.scss';
 
 export interface TaskProps {
   id: string;

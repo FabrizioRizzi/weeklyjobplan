@@ -1,5 +1,5 @@
 import { X } from 'react-feather';
-import './Modal.css';
+import './Modal.scss';
 
 export interface ModalProps {
   isVisible: boolean;

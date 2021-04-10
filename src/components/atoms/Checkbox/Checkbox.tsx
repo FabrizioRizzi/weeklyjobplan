@@ -1,4 +1,4 @@
-import './Checkbox.css';
+import './Checkbox.scss';
 
 export interface CheckboxProps {
   checked?: boolean;

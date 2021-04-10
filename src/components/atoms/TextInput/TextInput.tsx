@@ -1,4 +1,4 @@
-import './TextInput.css';
+import './TextInput.scss';
 
 export interface TextInputProps {
   value?: string;

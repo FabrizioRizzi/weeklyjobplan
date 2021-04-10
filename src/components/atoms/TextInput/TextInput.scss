@@ -1,0 +1,12 @@
+@import '../../../colors';
+
+.TextInput {
+  padding: 5px;
+  border: 2px solid $light_grey;
+  border-radius: 10px;
+  outline: none;
+}
+
+.TextInput:focus {
+  border: 2px solid $main_dark;
+}

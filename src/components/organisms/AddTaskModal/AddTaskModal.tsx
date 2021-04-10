@@ -4,7 +4,7 @@ import { addTask } from '../../../firebase/firebase';
 import { TaskInterface } from '../../../sharedInterfaces';
 import Modal from '../../atoms/Modal/Modal';
 import TextInput from '../../atoms/TextInput/TextInput'
-import './AddTaskModal.css';
+import './AddTaskModal.scss';
 
 export interface AddTaskModalProps {
   isVisible: boolean;
@@ -24,8 +24,12 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
     setName(event.target.value);
   }
 
+  const changeDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDescription(event.target.value);
+  }
+
   const handleSubmit = (event: React.FormEvent) => {
-    addTask({name, description, dayIndex, done, week, year, length});
+    addTask({ name, description, dayIndex, done, week, year, length });
     console.log(name)
     event.preventDefault();
   }
@@ -34,8 +38,15 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
     <Modal isVisible={props.isVisible} closeModal={props.closeModal} title="Aggiungi Task">
       <form onSubmit={handleSubmit}>
         <div className="AddTaskModalContainer">
-          <div>Name</div>
-          <TextInput value="name" onChange={changeName} />
+          <div className="Fields">
+
+            <div>Name</div>
+            <TextInput value="name" onChange={changeName} />
+            
+            <div>Description</div>
+            <TextInput value="description" onChange={changeDescription} />
+            
+          </div>
         </div>
       </form>
     </Modal>
