@@ -13,6 +13,5 @@ const Template: Story<ButtonProps> = (args) => {
 export const Main = Template.bind({});
 
 Main.args = {
-  primary: true,
-  title: "Prova"
+  primary: true
 };

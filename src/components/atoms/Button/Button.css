@@ -1,11 +1,14 @@
 .Button {
-  padding: 5px 20px;
-  cursor: pointer;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #810000;
   color: #eeebdd;
   border-radius: 20px;
-  display: flex;
-  align-items: center;
+  padding: 5px 20px;
+  margin: 5px;
+  cursor: pointer;
   user-select: none;
 }
 

@@ -1,12 +1,17 @@
-.header {
-  display: flex;
-  justify-content: space-between;
+.Header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
+  text-align: center;
   padding: 10px;
   background-color: #1b1717;
   color: #eeebdd;
 }
 
-.buttons {
+.Buttons {
   display: flex;
+}
+
+.Buttons.Right {
+  justify-content: flex-end;
 }

@@ -1,4 +1,5 @@
 import Button from '../../atoms/Button/Button';
+import { ChevronRight, ChevronLeft, Plus, Target } from 'react-feather';
 import './Header.css';
 
 export interface HeaderProps {
@@ -11,14 +12,29 @@ export interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = (props) => {
   return (
-    <div className="header">
-      <div className="buttons">
-        <Button primary={true} title="Prima" onClick={props.previousWeek} />
-        <Button primary={true} title="Dopo" onClick={props.nextWeek} />
-        <Button primary={true} title="Reset" onClick={props.resetWeek} />
+    <div className="Header">
+
+      <div className="Buttons Left">
+        <Button primary={true} onClick={props.previousWeek}>
+          <ChevronLeft />
+        </Button>
+        <Button primary={true} onClick={props.nextWeek}>
+          <ChevronRight />
+        </Button>
+        <Button primary={true} onClick={props.resetWeek}>
+          <Target />
+        </Button>
       </div>
-      <span>Settimana {props.week || ''}</span>
-      <Button primary={true} title="Aggiungi" onClick={props.addTask} />
+
+      <div className="Title">
+        <h3>Settimana {props.week || ''}</h3>
+      </div>
+
+      <div className="Buttons Right">
+        <Button primary={true} onClick={props.addTask}>
+          <Plus />
+        </Button>
+      </div>
     </div>
   )
 };
