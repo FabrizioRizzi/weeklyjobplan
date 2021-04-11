@@ -1,13 +1,11 @@
 
 import { useState } from 'react';
 import { addTask } from '../../../firebase/firebase';
-import { TaskInterface } from '../../../sharedInterfaces';
 import Checkbox from '../../atoms/Checkbox/Checkbox';
 import Modal from '../../atoms/Modal/Modal';
 import TextInput from '../../atoms/TextInput/TextInput';
 import TextArea from '../../atoms/TextArea/TextArea';
 import './AddTaskModal.scss';
-import Dropdown from '../../atoms/Dropdown/Dropdown';
 
 export interface AddTaskModalProps {
   isVisible: boolean;
@@ -48,6 +46,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
   }
 
   const handleSubmit = (event: React.FormEvent) => {
+    setYear(2021);
     addTask({ name, description, dayIndex, done, week, year, length });
     console.log(name)
     event.preventDefault();
