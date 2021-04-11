@@ -1,0 +1,16 @@
+@import '../../../colors';
+
+.Task {
+  display: flex;
+  align-items: center;
+}
+
+.Crossed {
+  text-decoration: line-through;
+}
+
+.Length {
+  border: 2px solid $main_dark;
+  border-radius: 50%;
+  padding: 2px;
+}

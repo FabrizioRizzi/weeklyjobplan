@@ -1,5 +1,5 @@
 import { updateDoneTask } from '../../../firebase/firebase';
-import Checkbox from '../Checkbox/Checkbox';
+import Checkbox from '../../atoms/Checkbox/Checkbox';
 import './Task.scss';
 
 export interface TaskProps {
@@ -18,12 +18,10 @@ const Task: React.FC<TaskProps> = (props) => {
   return (
     <div className="Task">
       <Checkbox checked={props.done} onChange={check} />
-      <div>
+      <div className={props.done ? "Crossed" : ""}>
         {props.name}
       </div>
-      <div>
-        {props.length}
-      </div>
+        {props.length && <div className="Length">{props.length}</div>}
     </div>
   )
 };

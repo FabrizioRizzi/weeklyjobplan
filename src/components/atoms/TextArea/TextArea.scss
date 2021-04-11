@@ -1,0 +1,12 @@
+@import '../../../colors';
+
+.TextArea {
+  padding: 5px;
+  border: 2px solid $light_grey;
+  border-radius: 10px;
+  outline: none;
+}
+
+.TextArea:focus {
+  border: 2px solid $main_dark;
+}

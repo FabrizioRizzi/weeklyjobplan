@@ -2,8 +2,10 @@
 import { useState } from 'react';
 import { addTask } from '../../../firebase/firebase';
 import { TaskInterface } from '../../../sharedInterfaces';
+import Checkbox from '../../atoms/Checkbox/Checkbox';
 import Modal from '../../atoms/Modal/Modal';
-import TextInput from '../../atoms/TextInput/TextInput'
+import TextInput from '../../atoms/TextInput/TextInput';
+import TextArea from '../../atoms/TextArea/TextArea';
 import './AddTaskModal.scss';
 
 export interface AddTaskModalProps {
@@ -24,8 +26,12 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
     setName(event.target.value);
   }
 
-  const changeDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(event.target.value);
+  }
+
+  const changeDone = (event: boolean) => {
+    setDone(event);
   }
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -44,7 +50,10 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
             <TextInput value="name" onChange={changeName} />
             
             <div>Description</div>
-            <TextInput value="description" onChange={changeDescription} />
+            <TextArea value="description" onChange={changeDescription} />
+
+            <div>Done</div>
+            <Checkbox checked={done} onChange={changeDone} />
             
           </div>
         </div>

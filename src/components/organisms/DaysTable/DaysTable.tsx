@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/it';
 import { TaskInterface } from '../../../sharedInterfaces';
-import Task from '../../atoms/Task/Task';
+import Task from '../Task/Task';
 import Loader from '../../atoms/Loader/Loader';
 import './DaysTable.scss';
 
@@ -21,7 +21,10 @@ const DaysTable: React.FC<DaysTableProps> = (props) => {
           return (
             <div key={index}>
               <h3 className="DayTitle">{dayjs().week(props.week).day(index).format('dddd DD MMMM')}</h3>
-              {!props.loading && props.tasks.filter(task => task.dayIndex === index).map(task => <Task key={task.id} id={task.id!} name={task.name} done={task.done} />)}
+              {!props.loading && props.tasks
+                .filter(task => task.dayIndex === index)
+                .map(task => <Task key={task.id} id={task.id!} name={task.name} done={task.done} length={task.length} />)
+              }
             </div>
           )
         })}
