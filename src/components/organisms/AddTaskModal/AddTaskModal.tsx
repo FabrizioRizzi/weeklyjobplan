@@ -7,6 +7,7 @@ import Modal from '../../atoms/Modal/Modal';
 import TextInput from '../../atoms/TextInput/TextInput';
 import TextArea from '../../atoms/TextArea/TextArea';
 import './AddTaskModal.scss';
+import Dropdown from '../../atoms/Dropdown/Dropdown';
 
 export interface AddTaskModalProps {
   isVisible: boolean;
@@ -18,9 +19,9 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
   const [description, setDescription] = useState<string>('')
   const [dayIndex, setDayIndex] = useState<number>(5)
   const [done, setDone] = useState<boolean>(false)
-  const [week, setWeek] = useState<number>(15)
+  const [week, setWeek] = useState<number>(16)
   const [year, setYear] = useState<number>(2021)
-  const [length, setLength] = useState<number>(0)
+  const [length, setLength] = useState<number>(60)
 
   const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -32,6 +33,18 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
 
   const changeDone = (event: boolean) => {
     setDone(event);
+  }
+
+  const changeDay = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDayIndex(Number(event.target.value));
+  }
+
+  const changeWeek = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setWeek(Number(event.target.value));
+  }
+
+  const changeLength = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLength(Number(event.target.value));
   }
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -47,14 +60,25 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
           <div className="Fields">
 
             <div>Name</div>
-            <TextInput value="name" onChange={changeName} />
-            
+            <TextInput onChange={changeName} />
+
             <div>Description</div>
-            <TextArea value="description" onChange={changeDescription} />
+            <TextArea onChange={changeDescription} />
 
             <div>Done</div>
             <Checkbox checked={done} onChange={changeDone} />
-            
+
+            <div>Day</div>
+            {/* <Dropdown options={['Lunedì', 'Martedì']} onChange={changeDay}/> */}
+            <TextInput onChange={changeDay} />
+
+            <div>Week</div>
+            <TextInput onChange={changeWeek} />
+
+            <div>Length</div>
+            <TextInput onChange={changeLength} />
+
+            <button type="submit">Submit</button>
           </div>
         </div>
       </form>
