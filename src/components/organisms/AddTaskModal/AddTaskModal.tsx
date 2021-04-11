@@ -6,6 +6,7 @@ import Modal from '../../atoms/Modal/Modal';
 import TextInput from '../../atoms/TextInput/TextInput';
 import TextArea from '../../atoms/TextArea/TextArea';
 import './AddTaskModal.scss';
+import Button from '../../atoms/Button/Button';
 
 export interface AddTaskModalProps {
   isVisible: boolean;
@@ -45,17 +46,17 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
     setLength(Number(event.target.value));
   }
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async () => {
     setYear(2021);
-    addTask({ name, description, dayIndex, done, week, year, length });
-    console.log(name)
-    event.preventDefault();
+    await addTask({ name, description, dayIndex, done, week, year, length });
+    props.closeModal();
   }
 
   return (
     <Modal isVisible={props.isVisible} closeModal={props.closeModal} title="Aggiungi Task">
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="AddTaskModalContainer">
+
           <div className="Fields">
 
             <div>Name</div>
@@ -76,9 +77,10 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
 
             <div>Length</div>
             <TextInput onChange={changeLength} />
-
-            <button type="submit">Submit</button>
           </div>
+
+          <Button primary={true} onClick={handleSubmit}>Submit</Button>
+
         </div>
       </form>
     </Modal>
