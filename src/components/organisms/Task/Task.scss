@@ -1,8 +1,11 @@
 @import '../../../colors';
 
 .Task {
-  display: flex;
+  display: grid;
+  grid-template-columns: 40px auto 40px;
   align-items: center;
+  height: 40px;
+  border-bottom: 1px solid lighten($light_grey, 20%);
 }
 
 .Crossed {
@@ -10,7 +13,12 @@
 }
 
 .Length {
-  border: 2px solid $main_dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid $light_grey;
+  color: $main_dark;
   border-radius: 50%;
-  padding: 2px;
+  width: 30px;
+  height: 30px;
 }
