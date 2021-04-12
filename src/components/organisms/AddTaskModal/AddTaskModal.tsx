@@ -20,7 +20,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
   const [done, setDone] = useState<boolean>(false)
   const [week, setWeek] = useState<number>(16)
   const [year, setYear] = useState<number>(2021)
-  const [length, setLength] = useState<number>(60)
+  const [length, setLength] = useState<number>()
 
   const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -48,7 +48,17 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
 
   const handleSubmit = async () => {
     setYear(2021);
-    await addTask({ name, description, dayIndex, done, week, year, length });
+    const request = {
+      name, 
+      dayIndex,
+      done,
+      week,
+      year,
+      ...(description ? {description} : {}),
+      ...(length ? {length} : {}),
+
+    }
+    await addTask(request);
     props.closeModal();
   }
 

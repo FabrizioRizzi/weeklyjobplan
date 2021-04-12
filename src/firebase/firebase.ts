@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import { TaskInterface } from '../sharedInterfaces';
+import { CreateTaskRequest } from '../sharedInterfaces';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC2LG6kfZn8-2b6yfG2Q4DUBdqXSVxXbRU",
@@ -16,7 +16,7 @@ export const getTasksByWeek = (week: number) => {
   return firebase.firestore().collection('tasks').where("year", "==", 2021).where("week", "==", week);
 };
 
-export const addTask = async (task: TaskInterface) => {
+export const addTask = async (task: CreateTaskRequest) => {
   return firebase.firestore().collection('tasks').add(task)
 }
 
