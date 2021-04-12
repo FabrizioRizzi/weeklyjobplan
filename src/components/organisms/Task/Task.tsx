@@ -1,28 +1,33 @@
 import { updateDoneTask } from '../../../firebase/firebase';
+import { TaskInterface } from '../../../sharedInterfaces';
 import Checkbox from '../../atoms/Checkbox/Checkbox';
 import './Task.scss';
 
 export interface TaskProps {
-  id: string;
-  name: string;
-  done: boolean;
-  length?: number;
+  task: TaskInterface;
+  updateSelectedTask: (task: TaskInterface) => void;
 };
 
 const Task: React.FC<TaskProps> = (props) => {
 
   const check = (checked: boolean) => {
-    updateDoneTask(props.id, checked)
+    updateDoneTask(props.task.id, checked)
+  }
+
+  const updateTask = () => {
+    props.updateSelectedTask(props.task);
   }
 
   return (
-    <div className="Task">
-      <Checkbox checked={props.done} onChange={check} />
-      <div className={props.done ? "Crossed" : ""}>
-        {props.name}
+    <>
+      <div className="Task">
+        <Checkbox checked={props.task.done} onChange={check} />
+        <div className={props.task.done ? "TaskName Crossed" : "TaskName"} onClick={updateTask}>
+          {props.task.name}
+        </div>
+        {props.task.length && <div className="Length">{props.task.length}</div>}
       </div>
-        {props.length && <div className="Length">{props.length}</div>}
-    </div>
+    </>
   )
 };
 

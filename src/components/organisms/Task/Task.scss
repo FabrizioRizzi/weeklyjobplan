@@ -7,6 +7,10 @@
   border-bottom: 1px solid lighten($light_grey, 20%);
 }
 
+.TaskName {
+  cursor: pointer;
+}
+
 .Crossed {
   text-decoration: line-through;
 }

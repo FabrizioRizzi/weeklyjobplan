@@ -7,7 +7,7 @@ export interface TextAreaProps {
 
 const TextInput: React.FC<TextAreaProps> = (props) => {
   return (
-    <textarea className="TextArea" rows={5} onChange={props.onChange} />
+    <textarea className="TextArea" rows={5} onChange={props.onChange} value={props.value} />
   )
 };
 
