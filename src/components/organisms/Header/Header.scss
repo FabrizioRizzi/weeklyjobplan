@@ -2,12 +2,18 @@
 
 .Header {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   align-items: center;
   text-align: center;
   padding: 10px;
   background-color: $main_dark;
   color: $main_light;
+}
+
+@media (min-width: 1000px) {
+  .Header {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .Buttons {

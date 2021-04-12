@@ -1,8 +1,14 @@
 .Days {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 250px);
+  grid-template-columns: 1fr;
   column-gap: 10px;
   padding: 0 10px;
+}
+
+@media (min-width: 1000px) {
+  .Days {
+    grid-template-columns: repeat(auto-fill, 19%);
+  }
 }
 
 .DayTitle {
