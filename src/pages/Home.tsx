@@ -12,8 +12,8 @@ dayjs.extend(weekOfYear);
 const Home: React.FC = () => {
   const [week, setWeek] = useState<number>(dayjs().week());
   const [loading, setLoading] = useState<boolean>(false);
-  const [tasks, setTasks] = useState<TaskInterface[]>([])
-  const [addModalVisible, setAddModalVisible] = useState<boolean>(false)
+  const [tasks, setTasks] = useState<TaskInterface[]>([]);
+  const [addModalVisible, setAddModalVisible] = useState<boolean>(false);
 
   let firebaseSubscription = useRef(() => { })
 
@@ -50,7 +50,7 @@ const Home: React.FC = () => {
 
       <DaysTable week={week} tasks={tasks} loading={loading} />
 
-      <AddTaskModal isVisible={addModalVisible} closeModal={closeModal}>Proviamo</AddTaskModal>
+      <AddTaskModal isVisible={addModalVisible} closeModal={closeModal} />
     </>
   )
 };
