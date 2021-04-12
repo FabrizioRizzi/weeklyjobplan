@@ -1,6 +1,7 @@
 import Button from '../../atoms/Button/Button';
-import { ChevronRight, ChevronLeft, Plus, Target } from 'react-feather';
+import { ChevronRight, ChevronLeft, Plus, Target, LogOut } from 'react-feather';
 import './Header.scss';
+import { auth } from '../../../firebase/firebase';
 
 export interface HeaderProps {
   week: number;
@@ -8,6 +9,10 @@ export interface HeaderProps {
   nextWeek: () => void;
   resetWeek: () => void;
   addTask: () => void;
+}
+
+const logout = () => {
+  auth.signOut();
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
@@ -31,6 +36,9 @@ const Header: React.FC<HeaderProps> = (props) => {
       </div>
 
       <div className="Buttons Right">
+        <Button primary={true} onClick={logout}>
+          <LogOut />
+        </Button>
         <Button primary={true} onClick={props.addTask}>
           <Plus />
         </Button>
