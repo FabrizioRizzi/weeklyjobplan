@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { updateTask } from '../../../firebase/firebase';
 import Modal from '../../atoms/Modal/Modal';
@@ -20,8 +19,8 @@ const UpdateTaskModal: React.FC<AddTaskModalProps> = (props) => {
   const [done, setDone] = useState<boolean>(props.task.done);
   const [week, setWeek] = useState<number>(props.task.week);
   const [year, setYear] = useState<number>(props.task.year);
-  const [description, setDescription] = useState<string | undefined>(props.task.description);
-  const [length, setLength] = useState<number | undefined>(props.task.length);
+  const [description, setDescription] = useState<string>(props.task.description || '');
+  const [length, setLength] = useState<number>(props.task.length || 0);
 
   useEffect(() => {
     setName(props.task.name);
@@ -29,8 +28,8 @@ const UpdateTaskModal: React.FC<AddTaskModalProps> = (props) => {
     setDone(props.task.done);
     setWeek(props.task.week);
     setYear(props.task.year);
-    setDescription(props.task.description);
-    setLength(props.task.length);
+    setDescription(props.task.description || '');
+    setLength(props.task.length || 0);
   }, [props.task]);
   
   const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
