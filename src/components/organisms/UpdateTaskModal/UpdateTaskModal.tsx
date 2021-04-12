@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { updateTask } from '../../../firebase/firebase';
+import { deleteTask, updateTask } from '../../../firebase/firebase';
 import Modal from '../../atoms/Modal/Modal';
 import TextInput from '../../atoms/TextInput/TextInput';
 import TextArea from '../../atoms/TextArea/TextArea';
@@ -68,6 +68,10 @@ const UpdateTaskModal: React.FC<AddTaskModalProps> = (props) => {
     props.closeModal();
   }
 
+  const deleteSelectedTask = () => {
+    deleteTask(props.task.id);
+  }
+
   return (
     <Modal isVisible={props.isVisible} closeModal={props.closeModal} title="Aggiungi Task">
       <form>
@@ -93,6 +97,8 @@ const UpdateTaskModal: React.FC<AddTaskModalProps> = (props) => {
           </div>
 
           <Button primary={true} onClick={handleSubmit}>Submit</Button>
+
+          <Button primary={true} onClick={deleteSelectedTask}>Delete</Button>
 
         </div>
       </form>

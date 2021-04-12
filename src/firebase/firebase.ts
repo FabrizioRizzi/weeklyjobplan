@@ -24,13 +24,17 @@ export const getTasksByWeek = (week: number) => {
 };
 
 export const addTask = async (task: CreateTaskRequest) => {
-  return firebase.firestore().collection('tasks').add(task)
+  return firebase.firestore().collection('tasks').add(task);
 }
 
 export const updateTask = async (id: string, task: CreateTaskRequest) => {
-  return firebase.firestore().collection('tasks').doc(id).update(task)
+  return firebase.firestore().collection('tasks').doc(id).update(task);
 }
 
 export const updateDoneTask = async (id: string, done: boolean) => {
-  return firebase.firestore().collection('tasks').doc(id).update({done})
+  return firebase.firestore().collection('tasks').doc(id).update({done});
+}
+
+export const deleteTask = async (id: string) => {
+  return firebase.firestore().collection('tasks').doc(id).delete();
 }
