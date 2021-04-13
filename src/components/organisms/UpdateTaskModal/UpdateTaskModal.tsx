@@ -5,7 +5,7 @@ import TextInput from '../../atoms/TextInput/TextInput';
 import TextArea from '../../atoms/TextArea/TextArea';
 import './UpdateTaskModal.scss';
 import Button from '../../atoms/Button/Button';
-import { TaskInterface} from '../../../sharedInterfaces';
+import { TaskInterface } from '../../../sharedInterfaces';
 
 export interface AddTaskModalProps {
   isVisible: boolean;
@@ -31,7 +31,7 @@ const UpdateTaskModal: React.FC<AddTaskModalProps> = (props) => {
     setDescription(props.task.description || '');
     setLength(props.task.length || 0);
   }, [props.task]);
-  
+
   const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   }
@@ -55,7 +55,7 @@ const UpdateTaskModal: React.FC<AddTaskModalProps> = (props) => {
   const handleSubmit = async () => {
     setYear(2021);
     const request = {
-      name, 
+      name,
       dayIndex,
       done,
       week,
@@ -74,28 +74,29 @@ const UpdateTaskModal: React.FC<AddTaskModalProps> = (props) => {
   return (
     <Modal isVisible={props.isVisible} closeModal={props.closeModal} title="Aggiungi Task" width={400}>
       <form>
-          <div className="UpdateTaskModal__Fields">
+        <div className="UpdateTaskModal__Fields">
 
-            <div>Name</div>
-            <TextInput onChange={changeName} value={name} />
+          <div>Name</div>
+          <TextInput onChange={changeName} value={name} />
 
-            <div>Description</div>
-            <TextArea onChange={changeDescription} value={description} />
+          <div>Description</div>
+          <TextArea onChange={changeDescription} value={description} />
 
-            <div>Day</div>
-            {/* <Dropdown options={['Lunedì', 'Martedì']} onChange={changeDay}/> */}
-            <TextInput onChange={changeDay} value={dayIndex} />
+          <div>Day</div>
+          {/* <Dropdown options={['Lunedì', 'Martedì']} onChange={changeDay}/> */}
+          <TextInput onChange={changeDay} value={dayIndex} type="number" />
 
-            <div>Week</div>
-            <TextInput onChange={changeWeek} value={week}  />
+          <div>Week</div>
+          <TextInput onChange={changeWeek} value={week} type="number" />
 
-            <div>Length</div>
-            <TextInput onChange={changeLength} value={length} />
-          </div>
+          <div>Length</div>
+          <TextInput onChange={changeLength} value={length} type="number" />
+        </div>
 
-          <Button primary={true} onClick={handleSubmit}>Submit</Button>
-
-          <Button primary={true} onClick={deleteSelectedTask}>Delete</Button>
+        <div className="UpdateTaskModal__Buttons">
+          <Button primary={false} onClick={deleteSelectedTask}>Cancella</Button>
+          <Button primary={true} onClick={handleSubmit}>Aggiorna</Button>
+        </div>
       </form>
     </Modal>
   )

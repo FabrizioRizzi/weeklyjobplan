@@ -73,16 +73,18 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
 
           <div>Day</div>
           {/* <Dropdown options={['Lunedì', 'Martedì']} onChange={changeDay}/> */}
-          <TextInput onChange={changeDay} value={dayIndex} />
+          <TextInput onChange={changeDay} value={dayIndex} type="number" />
 
           <div>Week</div>
-          <TextInput onChange={changeWeek} value={week} />
+          <TextInput onChange={changeWeek} value={week} type="number" />
 
           <div>Length</div>
-          <TextInput onChange={changeLength} value={length} />
+          <TextInput onChange={changeLength} value={length} type="number" />
         </div>
 
-        <Button primary={true} onClick={handleSubmit}>Submit</Button>
+        <div className="AddTaskModal__Submit">
+          <Button primary={true} onClick={handleSubmit}>Aggiungi</Button>
+        </div>
       </form>
     </Modal>
 

@@ -1,23 +1,41 @@
-@import '../../../colors';
+@import "../../../colors";
 
 .Button__Button {
   width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $primary;
-  color: $main_light;
   border-radius: 1.3rem;
   padding: 0.4rem 1.3rem;
   margin: 0.4rem;
   cursor: pointer;
   user-select: none;
-}
 
-.Button__Button:hover {
-  background-color: lighten($primary, 10%);
-}
+  &--primary {
+    @extend .Button__Button;
+    background-color: $primary;
+    color: $main_light;
 
-.Button__Button:active {
-  background-color: lighten($primary, 15%);
+    &:hover {
+      background-color: lighten($primary, 10%);
+    }
+
+    &:active {
+      background-color: lighten($primary, 15%);
+    }
+  }
+
+  &--secondary {
+    @extend .Button__Button;
+    background-color: lighten($light_grey, 25%);
+    color: $primary;
+
+    &:hover {
+      background-color: lighten($light_grey, 20%);
+    }
+
+    &:active {
+      background-color: lighten($light_grey, 15%);
+    }
+  }
 }
