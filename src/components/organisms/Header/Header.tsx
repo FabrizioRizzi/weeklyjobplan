@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         <h2>Settimana {props.week || ''}</h2>
       </div>
 
-      <div className="Header__Buttons Header__Buttons--Right">
+      <div className="Header__Buttons Header__Buttons--right">
         <Button primary={true} onClick={logout}>
           <LogOut />
         </Button>
