@@ -60,9 +60,8 @@ const UpdateTaskModal: React.FC<AddTaskModalProps> = (props) => {
       done,
       week,
       year,
-      ...(description ? {description} : {}),
-      ...(length ? {length} : {}),
-
+      description,
+      length
     }
     await updateTask(props.task.id, request);
     props.closeModal();

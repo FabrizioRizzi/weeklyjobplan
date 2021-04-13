@@ -25,7 +25,7 @@ const Task: React.FC<TaskProps> = (props) => {
         <div className={props.task.done ? "TaskName Crossed" : "TaskName"} onClick={updateTask}>
           {props.task.name}
         </div>
-        {props.task.length && <div className="Length">{props.task.length}</div>}
+        {props.task.length !== 0 && <div className="Length">{props.task.length}</div>}
       </div>
     </>
   )

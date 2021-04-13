@@ -22,7 +22,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
   const [week, setWeek] = useState<number>(dayjs().week())
   const [year, setYear] = useState<number>(2021)
   const [description, setDescription] = useState<string>('')
-  const [length, setLength] = useState<number>()
+  const [length, setLength] = useState<number>(0)
   const done = false;
 
   const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,9 +53,8 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
       done,
       week,
       year,
-      ...(description ? {description} : {}),
-      ...(length ? {length} : {}),
-
+      description,
+      length
     }
     await addTask(request);
     props.closeModal();
@@ -69,10 +68,10 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
           <div className="Fields">
 
             <div>Name</div>
-            <TextInput onChange={changeName} />
+            <TextInput onChange={changeName} value={name} />
 
             <div>Description</div>
-            <TextArea onChange={changeDescription} />
+            <TextArea onChange={changeDescription} value={description} />
 
             <div>Day</div>
             {/* <Dropdown options={['Lunedì', 'Martedì']} onChange={changeDay}/> */}
@@ -82,7 +81,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
             <TextInput onChange={changeWeek} value={week} />
 
             <div>Length</div>
-            <TextInput onChange={changeLength} />
+            <TextInput onChange={changeLength} value={length} />
           </div>
 
           <Button primary={true} onClick={handleSubmit}>Submit</Button>
