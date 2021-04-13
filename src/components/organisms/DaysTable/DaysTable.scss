@@ -1,16 +1,17 @@
-.Days {
+.DaysTable__Days {
   display: grid;
   grid-template-columns: 1fr;
-  column-gap: 10px;
-  padding: 0 10px;
+  column-gap: 0.8rem;
+  padding: 0 0.8rem;
 }
 
-@media (min-width: 1000px) {
-  .Days {
+@media (min-width: 70rem) {
+  .DaysTable__Days {
     grid-template-columns: repeat(auto-fill, 19%);
   }
 }
 
-.DayTitle {
-text-transform: capitalize;
+.DaysTable__DayTitle {
+  text-transform: capitalize;
+  margin: 1rem 0.5rem;
 }

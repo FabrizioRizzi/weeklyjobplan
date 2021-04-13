@@ -28,11 +28,11 @@ const DaysTable: React.FC<DaysTableProps> = (props) => {
 
   return (
     <>
-      <div className="Days">
+      <div className="DaysTable__Days">
         {[1, 2, 3, 4, 5].map(index => {
           return (
             <div key={index}>
-              <h3 className="DayTitle">{dayjs().week(props.week).day(index).format('dddd DD MMMM')}</h3>
+              <h2 className="DaysTable__DayTitle">{dayjs().week(props.week).day(index).format('dddd DD MMMM')}</h2>
               {!props.loading && props.tasks
                 .filter(task => task.dayIndex === index)
                 .map(task => <Task key={task.id} task={task} updateSelectedTask={updateSelectedTask} />)
