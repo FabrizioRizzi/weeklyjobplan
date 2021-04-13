@@ -1,11 +1,11 @@
 @import '../../../colors';
 
-.Loader {
-  width: 18px;
-  height: 18px;
+.Loader__Loader {
+  width: 1.3rem;
+  height: 1.3rem;
   margin: auto;
   border: 3px solid $main_dark;
-  border-radius: 18px;
+  border-radius: 1.3rem;
   border-right-color: $main_light;
   animation: loader-spin infinite 1s linear;
 }
