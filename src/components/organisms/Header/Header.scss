@@ -1,25 +1,25 @@
 @import '../../../_colors.scss';
 
-.Header {
+.Header__Header {
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
   text-align: center;
-  padding: 10px;
+  padding: 0.6rem;
   background-color: $main_dark;
   color: $main_light;
 }
 
-@media (min-width: 1000px) {
-  .Header {
+@media (min-width: 60rem) {
+  .Header__Header {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.Buttons {
+.Header__Buttons {
   display: flex;
 }
 
-.Buttons.Right {
+.Header__Buttons--Right {
   justify-content: flex-end;
 }

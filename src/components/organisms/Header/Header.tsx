@@ -17,9 +17,9 @@ const logout = () => {
 
 const Header: React.FC<HeaderProps> = (props) => {
   return (
-    <div className="Header">
+    <div className="Header__Header">
 
-      <div className="Buttons Left">
+      <div className="Header__Buttons Header__Buttons--Left">
         <Button primary={true} onClick={props.previousWeek}>
           <ChevronLeft />
         </Button>
@@ -32,10 +32,10 @@ const Header: React.FC<HeaderProps> = (props) => {
       </div>
 
       <div className="Title">
-        <h3>Settimana {props.week || ''}</h3>
+        <h2>Settimana {props.week || ''}</h2>
       </div>
 
-      <div className="Buttons Right">
+      <div className="Header__Buttons Header__Buttons--Right">
         <Button primary={true} onClick={logout}>
           <LogOut />
         </Button>
