@@ -1,0 +1,26 @@
+@import '../_colors.scss';
+
+.Login__Title {
+  margin: 1.3rem;
+  text-align: center;
+  color: $primary;
+}
+
+.Login__Login {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 20rem;
+  margin: 1.3rem auto;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.Login__TwoColumns {
+  grid-column: 1 / 3;
+  margin: auto;
+}
+
+.Login__Error {
+  color: lighten($primary, 20%);
+  font-size: 0.8rem;
+}

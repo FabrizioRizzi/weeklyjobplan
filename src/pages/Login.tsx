@@ -4,6 +4,7 @@ import TextInput from "../components/atoms/TextInput/TextInput";
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { useHistory } from "react-router-dom";
+import './Login.scss'
 
 const Login: React.FC = () => {
 
@@ -22,17 +23,24 @@ const Login: React.FC = () => {
 
   const login = () => {
     firebase.auth().signInWithEmailAndPassword(username.trim(), password.trim())
-        .then(() => history.replace('/'))
-        .catch(err => setError('* ' + err.message))
+      .then(() => history.replace('/'))
+      .catch(err => setError('* ' + err.message))
   }
 
   return (
-    <div className="Login">
-      <TextInput onChange={changeUsername}/>
-      <TextInput onChange={changePassword}/>
-      <Button primary={true} onClick={login}>Login</Button>
-      <div>{error}</div>
-    </div>
+    <>
+      <h1 className="Login__Title">Weekly Job Plan</h1>
+      <div className="Login__Login">
+        <label>Email</label>
+        <TextInput type="email" onChange={changeUsername} />
+        <label>Password</label>
+        <TextInput type="password" onChange={changePassword} />
+        <div className="Login__TwoColumns">
+          <Button primary={true} onClick={login}>Login</Button>
+        </div>
+        <div className="Login__TwoColumns Login__Error">{error}</div>
+      </div>
+    </>
   );
 }
 
