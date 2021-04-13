@@ -1,23 +1,23 @@
 @import '../../../colors';
 
-.Button {
+.Button__Button {
   width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: $primary;
   color: $main_light;
-  border-radius: 20px;
-  padding: 5px 20px;
-  margin: 5px;
+  border-radius: 1.3rem;
+  padding: 0.4rem 1.3rem;
+  margin: 0.4rem;
   cursor: pointer;
   user-select: none;
 }
 
-.Button:hover {
+.Button__Button:hover {
   background-color: lighten($primary, 10%);
 }
 
-.Button:active {
+.Button__Button:active {
   background-color: lighten($primary, 15%);
 }
