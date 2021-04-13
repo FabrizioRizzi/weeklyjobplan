@@ -48,7 +48,7 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
   const handleSubmit = async () => {
     setYear(2021);
     const request = {
-      name, 
+      name,
       dayIndex,
       done,
       week,
@@ -61,32 +61,28 @@ const AddTaskModal: React.FC<AddTaskModalProps> = (props) => {
   }
 
   return (
-    <Modal isVisible={props.isVisible} closeModal={props.closeModal} title="Aggiungi Task">
+    <Modal isVisible={props.isVisible} closeModal={props.closeModal} title="Aggiungi Task" width={400}>
       <form>
-        <div className="AddTaskModalContainer">
+        <div className="AddTaskModal__Fields">
 
-          <div className="Fields">
+          <div>Name</div>
+          <TextInput onChange={changeName} value={name} />
 
-            <div>Name</div>
-            <TextInput onChange={changeName} value={name} />
+          <div>Description</div>
+          <TextArea onChange={changeDescription} value={description} />
 
-            <div>Description</div>
-            <TextArea onChange={changeDescription} value={description} />
+          <div>Day</div>
+          {/* <Dropdown options={['Lunedì', 'Martedì']} onChange={changeDay}/> */}
+          <TextInput onChange={changeDay} value={dayIndex} />
 
-            <div>Day</div>
-            {/* <Dropdown options={['Lunedì', 'Martedì']} onChange={changeDay}/> */}
-            <TextInput onChange={changeDay} value={dayIndex} />
+          <div>Week</div>
+          <TextInput onChange={changeWeek} value={week} />
 
-            <div>Week</div>
-            <TextInput onChange={changeWeek} value={week} />
-
-            <div>Length</div>
-            <TextInput onChange={changeLength} value={length} />
-          </div>
-
-          <Button primary={true} onClick={handleSubmit}>Submit</Button>
-
+          <div>Length</div>
+          <TextInput onChange={changeLength} value={length} />
         </div>
+
+        <Button primary={true} onClick={handleSubmit}>Submit</Button>
       </form>
     </Modal>
 

@@ -1,6 +1,6 @@
 @import '../../../colors';
 
-.TransparentLayer {
+.Modal__TransparentLayer {
   position: absolute;
   background-color: $main_dark;
   opacity: 0.5;
@@ -11,33 +11,31 @@
   z-index: 1000;
 }
 
-.Modal {
+.Modal__Modal {
   position: absolute;
   background-color: $main_light;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1001;
-  min-width: 300px;
-  min-height: 200px;
-  border-radius: 5px;
+  border-radius: 0.4rem;
   border: 1px solid $main_light;
 }
 
-.ModalTitle {
+.Modal__ModalTitle {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 0.7rem;
   background-color: $main_dark;
   color: $main_light;
-  border-radius: 5px 5px 0 0;
+  border-radius: 0.4rem 0.4rem 0 0;
 }
 
-.CloseModal {
+.Modal__CloseModal {
   cursor: pointer;
 }
 
-.ModalBody {
-  padding: 10px;
+.Modal__ModalBody {
+  padding: 0.7rem;
 }

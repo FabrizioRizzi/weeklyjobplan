@@ -72,11 +72,9 @@ const UpdateTaskModal: React.FC<AddTaskModalProps> = (props) => {
   }
 
   return (
-    <Modal isVisible={props.isVisible} closeModal={props.closeModal} title="Aggiungi Task">
+    <Modal isVisible={props.isVisible} closeModal={props.closeModal} title="Aggiungi Task" width={400}>
       <form>
-        <div className="AddTaskModalContainer">
-
-          <div className="Fields">
+          <div className="UpdateTaskModal__Fields">
 
             <div>Name</div>
             <TextInput onChange={changeName} value={name} />
@@ -98,8 +96,6 @@ const UpdateTaskModal: React.FC<AddTaskModalProps> = (props) => {
           <Button primary={true} onClick={handleSubmit}>Submit</Button>
 
           <Button primary={true} onClick={deleteSelectedTask}>Delete</Button>
-
-        </div>
       </form>
     </Modal>
   )
