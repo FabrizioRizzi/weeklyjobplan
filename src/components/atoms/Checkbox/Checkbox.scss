@@ -1,20 +1,20 @@
 @import '../../../colors';
 
-.Checkbox {
-  width: 20px;
-  height: 20px;
+.Checkbox__Checkbox {
+  width: 1.2rem;
+  height: 1.2rem;
   border: 2px solid $light_grey;
-  margin: 5px;
+  margin: 0.4rem;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 0.4rem;
   background-color: $white;
 }
 
-.Checkbox:hover {
+.Checkbox__Checkbox:hover {
   border: 2px solid $main_dark;
 }
 
-.Checked {
+.Checkbox__Checked {
   width: calc(100% - 4px);
   height: calc(100% - 4px);
   margin: 2px;
