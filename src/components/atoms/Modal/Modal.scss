@@ -1,0 +1,41 @@
+@import "_variables";
+
+.Modal__TransparentLayer {
+  position: absolute;
+  background-color: $main_dark;
+  opacity: 0.5;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.Modal__Modal {
+  position: absolute;
+  background-color: $main_light;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  border-radius: 0.4rem;
+  border: 1px solid $main_light;
+}
+
+.Modal__ModalTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem;
+  background-color: $main_dark;
+  color: $main_light;
+  border-radius: 0.4rem 0.4rem 0 0;
+}
+
+.Modal__CloseModal {
+  cursor: pointer;
+}
+
+.Modal__ModalBody {
+  padding: 0.7rem;
+}

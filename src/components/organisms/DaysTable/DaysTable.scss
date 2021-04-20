@@ -1,0 +1,25 @@
+.DaysTable__Days {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 1.2rem;
+  padding: 0 0.8rem;
+}
+
+@media (min-width: 70rem) {
+  .DaysTable__Days {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.DaysTable__DayTitle {
+  text-transform: capitalize;
+  margin: 1rem 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.DaysTable__AddButton {
+  margin: 0.8rem auto;
+  display: flex;
+  justify-content: center;
+}

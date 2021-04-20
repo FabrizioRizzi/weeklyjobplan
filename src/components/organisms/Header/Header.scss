@@ -1,0 +1,25 @@
+@import "_variables";
+
+.Header__Header {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  text-align: center;
+  padding: 0.6rem;
+  background-color: $main_dark;
+  color: $main_light;
+}
+
+@media (min-width: 70rem) {
+  .Header__Header {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.Header__Buttons {
+  display: flex;
+}
+
+.Header__Buttons--right {
+  justify-content: flex-end;
+}
