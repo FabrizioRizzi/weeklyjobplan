@@ -1,21 +1,27 @@
 @import "_variables";
 
 .ToPlan__ToPlan {
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
   height: 30px;
+  transition: height 0.5s;
 }
 
 .ToPlan__ToPlanOpen {
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  height: 200px;
-  background-color: aquamarine;
+  left: 0;
+  right: 0;
+  height: 350px;
+  transition: height 0.5s;
 }
 
 .ToPlan__Title {
   position: relative;
   height: 30px;
+  width: fit-content;
   left: 10px;
   display: flex;
   align-items: center;
@@ -23,5 +29,11 @@
   color: $main_light;
   padding: 0 20px;
   border-radius: 5px 5px 0 0;
-  position: relative;
+  cursor: pointer;
+}
+
+.ToPlan__Content {
+  border-top: 2px solid $main_dark;
+  background-color: $main_light;
+  height: inherit;
 }

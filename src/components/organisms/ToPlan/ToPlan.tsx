@@ -37,13 +37,15 @@ const ToPlan: React.FC = () => {
     <>
       <div className={toPlanVisible ? 'ToPlan__ToPlanOpen' : 'ToPlan__ToPlan'}>
         <div className="ToPlan__Title" onClick={toggleToPlan}>To Plan</div>
-        {loading
-          ? <Loading />
-          : (
-            <div>
-              {tasksToPlan?.map((task) => <div>{task.name}</div>)}
-            </div>
-          )}
+        <div className="ToPlan__Content">
+          {loading
+            ? <Loading />
+            : (
+              <div>
+                {tasksToPlan?.map((task) => <div key={task.id}>{task.name}</div>)}
+              </div>
+            )}
+        </div>
       </div>
     </>
   );

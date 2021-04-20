@@ -1,7 +1,7 @@
 @import "_variables";
 
 .Modal__TransparentLayer {
-  position: absolute;
+  position: fixed;
   background-color: $main_dark;
   opacity: 0.5;
   bottom: 0;

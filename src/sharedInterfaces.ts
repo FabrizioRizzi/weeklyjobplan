@@ -13,6 +13,7 @@ export interface TaskInterface extends CreateTaskRequest{
 }
 
 export interface TaskToPlan {
+  id: string;
   name: string;
   description: string;
   priority: 0 | 1 | 2;
