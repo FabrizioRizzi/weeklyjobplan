@@ -42,7 +42,12 @@ const ToPlan: React.FC = () => {
             ? <Loading />
             : (
               <div>
-                {tasksToPlan?.map((task) => <div key={task.id}>{task.name}</div>)}
+                {tasksToPlan?.map((task) => (
+                  <div key={task.id} className="ToPlan__Item">
+                    <div>{task.name}</div>
+                    <div>{task.priority}</div>
+                  </div>
+                ))}
               </div>
             )}
         </div>
