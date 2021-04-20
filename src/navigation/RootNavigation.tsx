@@ -4,7 +4,6 @@ import Home from 'pages/Home';
 import Login from 'pages/Login';
 import Loading from 'components/atoms/Loading/Loading';
 import React, { useEffect, useState } from 'react';
-import Plan from 'pages/Plan';
 
 export interface PrivateRouteProps {
   component: React.FC;
@@ -42,7 +41,6 @@ const RootNavigation = () => {
       : (
         <BrowserRouter>
           <PrivateRoute component={Home} user={user} path="/" />
-          <PrivateRoute component={Plan} user={user} path="/Plan" />
         </BrowserRouter>
       ));
 };
