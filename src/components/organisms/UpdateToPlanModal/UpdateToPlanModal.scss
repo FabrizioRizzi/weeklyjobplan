@@ -1,0 +1,18 @@
+.UpdateToPlanModal__Fields {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  row-gap: 0.7rem;
+}
+
+.UpdateToPlanModal__Buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.UpdateToPlanModal__Add {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}

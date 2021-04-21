@@ -36,33 +36,12 @@
   border-top: 2px solid $main_dark;
   background-color: $main_light;
   height: inherit;
+  overflow: auto; 
+  padding: 0.5rem;
 }
 
 .ToPlan__ItemContainer {
   display: grid;
   grid-template-columns: repeat(auto-fill, 20rem);
-}
-
-.ToPlan__Item {
-  display: grid;
-  align-items: center;
-  overflow-wrap: anywhere;
-  grid-template-columns: 1fr 1.5rem 1.5rem;
-}
-
-.ToPlan__Description {
-  position: relative;
-  color: $light_grey;
-}
-
-.ToPlan__Description[data-description]:hover:after {
-  content: attr(data-description);
-  position: absolute;
-  top: 100%;
-  background-color: $main_light;
-  border: 1px solid $main_dark;
-  border-radius: 0.3rem;
-  padding: 0.3rem;
-  z-index: 1;
-  color: $main_dark;
+  gap: 0.5rem;
 }

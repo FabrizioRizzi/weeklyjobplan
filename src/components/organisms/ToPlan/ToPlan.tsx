@@ -1,37 +1,59 @@
 import { useEffect, useState } from 'react';
-import { List } from 'react-feather';
+import { Plus } from 'react-feather';
 import { getTasksToPlan } from 'firebaseUtils/firebase';
-import { TaskToPlan } from 'sharedInterfaces';
+import { CreateTaskToPlanRequest, TaskToPlanInterface } from 'sharedInterfaces';
 import Loading from 'components/atoms/Loading/Loading';
+import Button from 'components/atoms/Button/Button';
+import UpdateToPlanModal from 'components/organisms/UpdateToPlanModal/UpdateToPlanModal';
 import './ToPlan.scss';
+import TaskToPlan from '../TaskToPlan/TaskToPlan';
 
 const ToPlan: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [tasksToPlan, setTasksToPlan] = useState<TaskToPlan[]>([]);
+  const [tasksToPlan, setTasksToPlan] = useState<TaskToPlanInterface[]>([]);
   const [toPlanVisible, setToPlanVisible] = useState<boolean>(false);
+  const [toPlanModalVisible, setToPlanModalVisible] = useState<boolean>(false);
+  const [selTaskToPlan, setSelTaskToPlan] = useState<TaskToPlanInterface | CreateTaskToPlanRequest>(
+    {
+      name: '',
+      description: '',
+      priority: 0 as 0 | 1 | 2,
+    },
+  );
 
   useEffect(() => {
     setLoading(true);
     const firebaseSubscription = getTasksToPlan().onSnapshot((querySnap) => {
-      const tasks = querySnap.docs.map((task) => ({ id: task.id, ...task.data() })) as TaskToPlan[];
+      const tasks = querySnap.docs.map((task) => (
+        { id: task.id, ...task.data() }
+      )) as TaskToPlanInterface[];
       setTasksToPlan(tasks);
       setLoading(false);
     });
     return () => firebaseSubscription();
   }, []);
 
-  /*
-  const toPlanOpen = () => {
+  const toggleToPlan = () => {
+    setToPlanVisible(!toPlanVisible);
+  };
+
+  const updateSelectedTaskToPlan = (task: TaskToPlanInterface) => {
+    setSelTaskToPlan(task);
     setToPlanModalVisible(true);
   };
 
-  const toPlanClose = () => {
-    setToPlanModalVisible(false);
+  const addTaskToPlan = () => {
+    const emptyTask = {
+      name: '',
+      description: '',
+      priority: 0 as 0 | 1 | 2,
+    };
+    setSelTaskToPlan(emptyTask);
+    setToPlanModalVisible(true);
   };
-  */
 
-  const toggleToPlan = () => {
-    setToPlanVisible(!toPlanVisible);
+  const closeUpdateModal = () => {
+    setToPlanModalVisible(false);
   };
 
   return (
@@ -39,25 +61,28 @@ const ToPlan: React.FC = () => {
       <div className={toPlanVisible ? 'ToPlan__ToPlanOpen' : 'ToPlan__ToPlan'}>
         <div className="ToPlan__Title" onClick={toggleToPlan}>To Plan</div>
         <div className="ToPlan__Content">
+          <Button primary onClick={addTaskToPlan}><Plus /></Button>
           {loading
             ? <Loading />
             : (
               <div className="ToPlan__ItemContainer">
                 {tasksToPlan?.map((taskToPlan) => (
-                  <div key={taskToPlan.id} className="ToPlan__Item">
-                    <div>{taskToPlan.name}</div>
-                    <div>{taskToPlan.priority}</div>
-                    {taskToPlan.description && (
-                    <div className="ToPlan__Description" data-description={taskToPlan.description}>
-                      <List />
-                    </div>
-                    )}
-                  </div>
+                  <TaskToPlan
+                    key={taskToPlan.id}
+                    taskToPlan={taskToPlan}
+                    updateSelectedTaskToPlan={updateSelectedTaskToPlan}
+                  />
                 ))}
               </div>
             )}
         </div>
       </div>
+
+      <UpdateToPlanModal
+        taskToPlan={selTaskToPlan}
+        isVisible={toPlanModalVisible}
+        closeModal={closeUpdateModal}
+      />
     </>
   );
 };

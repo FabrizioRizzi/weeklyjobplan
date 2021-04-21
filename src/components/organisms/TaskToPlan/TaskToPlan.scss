@@ -1,0 +1,25 @@
+@import "_variables";
+
+.TaskToPlan__Item {
+  display: grid;
+  grid-template-columns: 1fr 1.5rem;
+  grid-template-rows: 25px 50px;
+  border: 2px solid $main_dark;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  background-color: $white;
+  cursor: pointer;
+}
+
+.TaskToPlan__Title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  align-self: center;
+}
+
+.TaskToPlan__Description {
+  color: $light_grey;
+  grid-column: span 2;
+  overflow: auto;
+}

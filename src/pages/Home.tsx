@@ -17,8 +17,9 @@ const Home: React.FC = () => {
   useEffect(() => {
     setLoading(true);
     const fbaseSubscription = getTasksByWeek(week).onSnapshot((querySnapshot) => {
-      // eslint-disable-next-line max-len
-      const parsedTasks = querySnapshot.docs.map((task) => ({ id: task.id, ...task.data() })) as TaskInterface[];
+      const parsedTasks = querySnapshot.docs.map((task) => (
+        { id: task.id, ...task.data() }
+      )) as TaskInterface[];
       setTasks(parsedTasks);
       setLoading(false);
     });
