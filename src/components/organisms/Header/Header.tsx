@@ -35,8 +35,7 @@ const Header: React.FC<HeaderProps> = ({
 
     <div className="Title">
       <h2>
-        Settimana
-        {week || ''}
+        {`Settimana ${week || ''}`}
       </h2>
     </div>
 

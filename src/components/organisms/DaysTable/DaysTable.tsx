@@ -47,33 +47,32 @@ const DaysTable: React.FC<DaysTableProps> = ({ week, tasks, loading }: DaysTable
   return (
     <>
       <div className="DaysTable__Days">
-        {[1, 2, 3, 4, 5].map((index) => (
-          <div key={index}>
+        {!loading ? (
+          [1, 2, 3, 4, 5].map((index) => (
+            <div key={index} className="DaysTable__Day">
 
-            <h2 className="DaysTable__DayTitle">{dayjs().week(week).day(index).format('dddd DD MMMM')}</h2>
+              <h2 className="DaysTable__DayTitle">{dayjs().week(week).day(index).format('dddd DD MMMM')}</h2>
 
-            {!loading && tasks
-              .filter((task) => task.dayIndex === index)
-              .sort((a, b) => (a.length > b.length ? 1 : -1))
-              .map((task) => (
-                <Task
-                  key={task.id}
-                  task={task}
-                  updateSelectedTask={updateSelectedTask}
-                />
-              ))}
+              {tasks.filter((task) => task.dayIndex === index)
+                .sort((a, b) => (a.length > b.length ? 1 : -1))
+                .map((task) => (
+                  <Task
+                    key={task.id}
+                    task={task}
+                    updateSelectedTask={updateSelectedTask}
+                  />
+                ))}
 
-            <div className="DaysTable__AddButton">
-              <Button primary onClick={() => addTask(index)}>
-                <Plus />
-              </Button>
+              <div className="DaysTable__AddButton">
+                <Button primary onClick={() => addTask(index)}>
+                  <Plus />
+                </Button>
+              </div>
+
             </div>
-
-          </div>
-        ))}
+          ))
+        ) : <Loading />}
       </div>
-
-      {loading && <Loading />}
 
       {selectedTask && (
         <UpdateTaskModal

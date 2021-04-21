@@ -1,14 +1,29 @@
+@import "_variables";
+
 .DaysTable__Days {
   display: grid;
-  grid-template-columns: 1fr;
-  column-gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.2rem;
   padding: 0 0.8rem;
+  position: absolute;
+  top: 10rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
 }
 
-@media (min-width: 70rem) {
+@media (min-width: 35rem) {
   .DaysTable__Days {
-    grid-template-columns: repeat(5, 1fr);
+    top: 5rem;
   }
+}
+.DaysTable__Day {
+  background: $dayBackground;
+  border: 2px solid;
+  height: fit-content;
+  border-radius: 20px;
+  padding: 0.2rem;
 }
 
 .DaysTable__DayTitle {
