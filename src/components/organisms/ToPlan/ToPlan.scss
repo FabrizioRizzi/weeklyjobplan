@@ -5,7 +5,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 30px;
+  height: 2rem;
   transition: height 0.5s;
 }
 
@@ -14,21 +14,21 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 350px;
+  height: 20rem;
   transition: height 0.5s;
 }
 
 .ToPlan__Title {
   position: relative;
-  height: 30px;
+  height: 2rem;
   width: fit-content;
-  left: 10px;
+  left: 0.8rem;
   display: flex;
   align-items: center;
   background: $main_dark;
   color: $main_light;
-  padding: 0 20px;
-  border-radius: 5px 5px 0 0;
+  padding: 0 1rem;
+  border-radius: 0.3rem 0.3rem 0 0;
   cursor: pointer;
 }
 
@@ -38,6 +38,31 @@
   height: inherit;
 }
 
+.ToPlan__ItemContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20rem);
+}
+
 .ToPlan__Item {
-  display: flex;
+  display: grid;
+  align-items: center;
+  overflow-wrap: anywhere;
+  grid-template-columns: 1fr 1.5rem 1.5rem;
+}
+
+.ToPlan__Description {
+  position: relative;
+  color: $light_grey;
+}
+
+.ToPlan__Description[data-description]:hover:after {
+  content: attr(data-description);
+  position: absolute;
+  top: 100%;
+  background-color: $main_light;
+  border: 1px solid $main_dark;
+  border-radius: 0.3rem;
+  padding: 0.3rem;
+  z-index: 1;
+  color: $main_dark;
 }

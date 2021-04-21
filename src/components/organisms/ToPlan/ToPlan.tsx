@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { List } from 'react-feather';
 import { getTasksToPlan } from 'firebaseUtils/firebase';
 import { TaskToPlan } from 'sharedInterfaces';
 import Loading from 'components/atoms/Loading/Loading';
@@ -12,8 +13,8 @@ const ToPlan: React.FC = () => {
   useEffect(() => {
     setLoading(true);
     const firebaseSubscription = getTasksToPlan().onSnapshot((querySnap) => {
-      const tasks = querySnap.docs.map((task) => ({ id: task.id, ...task.data() }));
-      setTasksToPlan(tasks as unknown as TaskToPlan[]);
+      const tasks = querySnap.docs.map((task) => ({ id: task.id, ...task.data() })) as TaskToPlan[];
+      setTasksToPlan(tasks);
       setLoading(false);
     });
     return () => firebaseSubscription();
@@ -41,11 +42,16 @@ const ToPlan: React.FC = () => {
           {loading
             ? <Loading />
             : (
-              <div>
-                {tasksToPlan?.map((task) => (
-                  <div key={task.id} className="ToPlan__Item">
-                    <div>{task.name}</div>
-                    <div>{task.priority}</div>
+              <div className="ToPlan__ItemContainer">
+                {tasksToPlan?.map((taskToPlan) => (
+                  <div key={taskToPlan.id} className="ToPlan__Item">
+                    <div>{taskToPlan.name}</div>
+                    <div>{taskToPlan.priority}</div>
+                    {taskToPlan.description && (
+                    <div className="ToPlan__Description" data-description={taskToPlan.description}>
+                      <List />
+                    </div>
+                    )}
                   </div>
                 ))}
               </div>
