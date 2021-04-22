@@ -6,7 +6,7 @@ import Loading from 'components/atoms/Loading/Loading';
 import Button from 'components/atoms/Button/Button';
 import UpdateToPlanModal from 'components/organisms/UpdateToPlanModal/UpdateToPlanModal';
 import './ToPlan.scss';
-import TaskToPlan from '../TaskToPlan/TaskToPlan';
+import TaskToPlan from '../../molecules/TaskToPlan/TaskToPlan';
 
 const ToPlan: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);

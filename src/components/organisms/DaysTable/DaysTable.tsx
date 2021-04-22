@@ -4,7 +4,7 @@ import 'dayjs/locale/it';
 import { Plus } from 'react-feather';
 import { CreateTaskRequest, TaskInterface } from 'sharedInterfaces';
 import Button from 'components/atoms/Button/Button';
-import Task from 'components/organisms/Task/Task';
+import Task from 'components/molecules/Task/Task';
 import UpdateTaskModal from 'components/organisms/UpdateTaskModal/UpdateTaskModal';
 import Loading from 'components/atoms/Loading/Loading';
 import './DaysTable.scss';
