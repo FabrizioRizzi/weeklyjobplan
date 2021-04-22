@@ -5,8 +5,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 2rem;
-  transition: height 0.5s;
+  transform: translateY(calc(100% - 2rem));
+  transition: transform 0.5s;
 }
 
 .ToPlan__ToPlanOpen {
@@ -14,8 +14,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 20rem;
-  transition: height 0.5s;
+  transform: translateY(0);
+  transition: transform 0.5s;
 }
 
 .ToPlan__Title {
@@ -38,6 +38,7 @@
   height: inherit;
   overflow: auto; 
   padding: 0.5rem;
+  max-height: 16rem;
 }
 
 .ToPlan__ItemContainer {
