@@ -7,6 +7,7 @@ import Button from 'components/atoms/Button/Button';
 import Task from 'components/molecules/Task/Task';
 import UpdateTaskModal from 'components/organisms/UpdateTaskModal/UpdateTaskModal';
 import Loading from 'components/atoms/Loading/Loading';
+import TaskLength from 'components/atoms/TaskLength/TaskLength';
 import './DaysTable.scss';
 
 dayjs.locale('it');
@@ -61,8 +62,7 @@ const DaysTable: React.FC<DaysTableProps> = ({ week, tasks, loading }: DaysTable
               <div className="DaysTable__DayTitle">
                 <h2>{dayjs().week(week).day(index).format('dddd DD MMMM')}</h2>
                 <div>
-                  Total
-                  {totalTime[index - 1]}
+                  <TaskLength length={totalTime[index - 1]} day />
                 </div>
               </div>
 
