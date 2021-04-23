@@ -5,12 +5,9 @@ export interface TaskLengthProps {
 }
 
 const Task: React.FC<TaskLengthProps> = ({ length }: TaskLengthProps) => (
-  <div className={
-        `TaskLength__Length
-              ${length <= 30 && 'TaskLength__Length--quarter'}
-              ${(length > 30 && length <= 60) && 'TaskLength__Length--half'}
-              ${(length > 60 && length <= 90) && 'TaskLength__Length--halfandquarter'}`
-              }
+  <div
+    className="TaskLength__Length"
+    style={{ backgroundImage: `linear-gradient(${90 + (360 * (length / 480))}deg, white 50%, transparent 50%), linear-gradient(-90deg, transparent 50%, white 50%` }}
   >
     {length}
   </div>
