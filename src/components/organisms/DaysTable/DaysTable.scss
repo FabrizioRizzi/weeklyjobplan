@@ -4,9 +4,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: 1.2rem;
-  padding: 0 0.8rem;
+  padding: 1rem;
   position: absolute;
-  top: 10rem;
+  top: 9rem;
   bottom: 0;
   left: 0;
   right: 0;
@@ -15,22 +15,23 @@
 
 @media (min-width: 35rem) {
   .DaysTable__Days {
-    top: 5rem;
+    top: 4.2rem;
   }
 }
 .DaysTable__Day {
-  background: $dayBackground;
-  border: 2px solid;
+  background: $dayBackground; 
   height: fit-content;
   border-radius: 20px;
   padding: 0.2rem;
+  box-shadow: 2px 2px 5px $boxShadow;
 }
 
 .DaysTable__DayTitle {
   text-transform: capitalize;
   margin: 1rem 0.5rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .DaysTable__AddButton {
