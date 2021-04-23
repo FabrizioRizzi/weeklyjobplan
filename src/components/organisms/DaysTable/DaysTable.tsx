@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import 'dayjs/locale/it';
 import { Plus } from 'react-feather';
@@ -20,6 +20,13 @@ export interface DaysTableProps {
 const DaysTable: React.FC<DaysTableProps> = ({ week, tasks, loading }: DaysTableProps) => {
   const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
   const [selectedTask, setSelectedTask] = useState<TaskInterface | CreateTaskRequest>();
+  const [totalTime, setTotalTime] = useState<number[]>([]);
+  const daysArray = [1, 2, 3, 4, 5];
+
+  useEffect(() => {
+    // eslint-disable-next-line max-len
+    setTotalTime(daysArray.map((dayIndex) => tasks.filter((task) => task.dayIndex === dayIndex).reduce((a, b) => a + b.length, 0)));
+  }, [tasks]);
 
   const updateSelectedTask = (task: TaskInterface) => {
     setSelectedTask(task);
@@ -48,10 +55,16 @@ const DaysTable: React.FC<DaysTableProps> = ({ week, tasks, loading }: DaysTable
     <>
       <div className="DaysTable__Days">
         {!loading ? (
-          [1, 2, 3, 4, 5].map((index) => (
+          daysArray.map((index) => (
             <div key={index} className="DaysTable__Day">
 
-              <h2 className="DaysTable__DayTitle">{dayjs().week(week).day(index).format('dddd DD MMMM')}</h2>
+              <div className="DaysTable__DayTitle">
+                <h2>{dayjs().week(week).day(index).format('dddd DD MMMM')}</h2>
+                <div>
+                  Total
+                  {totalTime[index - 1]}
+                </div>
+              </div>
 
               {tasks.filter((task) => task.dayIndex === index)
                 .sort((a, b) => (a.length > b.length ? 1 : -1))
