@@ -2,6 +2,7 @@ import { List, SkipForward } from 'react-feather';
 import { updateDoneTask, updateTask } from 'firebaseUtils/firebase';
 import { TaskInterface } from 'sharedInterfaces';
 import Checkbox from 'components/atoms/Checkbox/Checkbox';
+import TaskLength from 'components/atoms/TaskLength/TaskLength';
 import './Task.scss';
 
 export interface TaskProps {
@@ -42,18 +43,7 @@ const Task: React.FC<TaskProps> = ({ task, updateSelectedTask }: TaskProps) => {
           {task.description && (<div className="Task__TaskDescription" data-description={task.description}><List /></div>)}
         </div>
         <div>
-          {task.length !== 0
-            && (
-              <div className={
-                `Task__Length
-              ${task.length <= 30 && 'Task__Length--quarter'}
-              ${(task.length > 30 && task.length <= 60) && 'Task__Length--half'}
-              ${(task.length > 60 && task.length <= 90) && 'Task__Length--halfandquarter'}`
-              }
-              >
-                {task.length}
-              </div>
-            )}
+          {task.length !== 0 && <TaskLength length={task.length} />}
         </div>
         <div>
           <div className="Task__Postpone" onClick={postpone}><SkipForward /></div>
