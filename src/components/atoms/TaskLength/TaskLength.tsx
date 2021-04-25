@@ -9,11 +9,12 @@ export interface TaskLengthProps {
 const Task: React.FC<TaskLengthProps> = ({ length, day }: TaskLengthProps) => {
   const [hours, setHours] = useState<boolean>(false);
   const hoursLength = `${Math.floor(length / 60)}:${length % 60 < 10 ? `0${length % 60}` : length % 60}`;
+  const dayLength = 480;
   const backgroundColor = '#ccc';
   let borderColor;
-  if (day && length <= 480) {
+  if (day && length <= dayLength) {
     borderColor = '#11a811';
-  } else if (day && length > 480) {
+  } else if (day && length > dayLength) {
     borderColor = '#ff0000';
   } else if (length < 60) {
     borderColor = '#999';
@@ -28,7 +29,7 @@ const Task: React.FC<TaskLengthProps> = ({ length, day }: TaskLengthProps) => {
   };
 
   return (
-    length < 240
+    length < dayLength / 2
       ? (
         <div
           onClick={toggleHours}
@@ -36,7 +37,7 @@ const Task: React.FC<TaskLengthProps> = ({ length, day }: TaskLengthProps) => {
           style={{
             borderColor,
             backgroundColor,
-            backgroundImage: `linear-gradient(${90 + (360 * (length / 480))}deg, transparent 50%, white 50%), linear-gradient(90deg, white 50%, transparent 50%)`,
+            backgroundImage: `linear-gradient(${90 + (360 * (length / dayLength))}deg, transparent 50%, white 50%), linear-gradient(90deg, white 50%, transparent 50%)`,
           }}
         >
           {hours ? hoursLength : length}
@@ -49,7 +50,7 @@ const Task: React.FC<TaskLengthProps> = ({ length, day }: TaskLengthProps) => {
           style={{
             borderColor,
             backgroundColor,
-            backgroundImage: `linear-gradient(${(360 * ((length < 480 ? length : 480) / 480)) - 90}deg, transparent 50%, ${backgroundColor} 50%), linear-gradient(90deg, white 50%, transparent 50%)`,
+            backgroundImage: `linear-gradient(${(360 * ((length < dayLength ? length : dayLength) / dayLength)) - 90}deg, transparent 50%, ${backgroundColor} 50%), linear-gradient(90deg, white 50%, transparent 50%)`,
           }}
         >
           {hours ? hoursLength : length}
