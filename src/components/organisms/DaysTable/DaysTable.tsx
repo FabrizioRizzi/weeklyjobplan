@@ -22,11 +22,16 @@ const DaysTable: React.FC<DaysTableProps> = ({ week, tasks, loading }: DaysTable
   const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
   const [selectedTask, setSelectedTask] = useState<TaskInterface | CreateTaskRequest>();
   const [totalTime, setTotalTime] = useState<number[]>([]);
+  const [totalRemainingTime, setTotalRemainingTime] = useState<number[]>([]);
   const daysArray = [1, 2, 3, 4, 5];
 
   useEffect(() => {
-    // eslint-disable-next-line max-len
-    setTotalTime(daysArray.map((dayIndex) => tasks.filter((task) => task.dayIndex === dayIndex).reduce((a, b) => a + b.length, 0)));
+    setTotalTime(daysArray.map((dayIndex) => tasks
+      .filter((task) => task.dayIndex === dayIndex)
+      .reduce((a, b) => a + b.length, 0)));
+    setTotalRemainingTime(daysArray.map((dayIndex) => tasks
+      .filter((task) => task.dayIndex === dayIndex && !task.done)
+      .reduce((a, b) => a + b.length, 0)));
   }, [tasks]);
 
   const updateSelectedTask = (task: TaskInterface) => {
@@ -61,9 +66,8 @@ const DaysTable: React.FC<DaysTableProps> = ({ week, tasks, loading }: DaysTable
 
               <div className="DaysTable__DayTitle">
                 <h2>{dayjs().week(week).day(index).format('dddd DD MMMM')}</h2>
-                <div>
-                  <TaskLength length={totalTime[index - 1]} day />
-                </div>
+                <TaskLength length={totalTime[index - 1]} day />
+                <TaskLength length={totalRemainingTime[index - 1]} day />
               </div>
 
               {tasks.filter((task) => task.dayIndex === index)
