@@ -8,10 +8,21 @@ export default {
   component: Button,
 };
 
-const Template: Story<ButtonProps> = (args) => (<Button {...args} />);
+const Template: Story<ButtonProps> = (args) => (<Button {...args}>Bottone</Button>);
 
-export const Main = Template.bind({});
+export const Primary = Template.bind({});
+export const Secondary = Template.bind({});
+export const Loading = Template.bind({});
 
-Main.args = {
+Primary.args = {
   primary: true,
+};
+
+Secondary.args = {
+  primary: false,
+};
+
+Loading.args = {
+  primary: true,
+  loading: true,
 };

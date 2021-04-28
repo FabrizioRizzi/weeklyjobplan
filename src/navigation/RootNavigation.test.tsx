@@ -3,6 +3,6 @@ import RootNavigation from './RootNavigation';
 
 test('renders home page', () => {
   render(<RootNavigation />);
-  const headerEl = screen.getByText(/ettimana/i);
+  const headerEl = screen.getByText(/eekly/i);
   expect(headerEl).toBeInTheDocument();
 });
