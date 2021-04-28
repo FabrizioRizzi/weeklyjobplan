@@ -29,8 +29,9 @@
 .DaysTable__DayTitle {
   text-transform: capitalize;
   margin: 1rem 0.5rem;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  grid-column-gap: 0.3rem;
   align-items: center;
 }
 
