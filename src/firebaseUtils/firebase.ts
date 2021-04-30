@@ -14,7 +14,11 @@ export const firebaseConfig = {
 };
 
 export const startFirebase = () => {
-  firebase.initializeApp(firebaseConfig);
+  if (!firebase?.apps?.length) {
+    firebase.initializeApp(firebaseConfig);
+  } else {
+    firebase.app(); // if already initialized, use that one
+  }
 };
 
 export type FirebaseUser = firebase.User;

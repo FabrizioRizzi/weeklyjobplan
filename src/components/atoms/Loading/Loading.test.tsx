@@ -4,6 +4,6 @@ import Loading from './Loading';
 describe('Loading', () => {
   test('renders Loading component', () => {
     const { container } = render(<Loading />);
-    expect(container.firstChild).toHaveClass('Loading');
+    expect(container.firstChild).toHaveClass('Loading__Loading');
   });
 });
