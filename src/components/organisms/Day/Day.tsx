@@ -1,22 +1,24 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Plus } from 'react-feather';
 import { CreateTaskRequest, TaskInterface } from 'sharedInterfaces';
 import Button from 'components/atoms/Button/Button';
 import Task from 'components/molecules/Task/Task';
 import TaskLength from 'components/atoms/TaskLength/TaskLength';
 import './Day.scss';
+import UpdateTaskModal from '../UpdateTaskModal/UpdateTaskModal';
 
 export interface DayProps {
   dayName: string;
   dayNumber: number;
   week: number;
   tasks: TaskInterface[];
-  updateTask: (task: TaskInterface | CreateTaskRequest) => void;
 }
 
 const Day: React.FC<DayProps> = ({
-  dayName, dayNumber, week, tasks, updateTask,
+  dayName, dayNumber, week, tasks,
 }: DayProps) => {
+  const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
+  const [selectedTask, setSelectedTask] = useState<TaskInterface | CreateTaskRequest>();
   const [totalTime, setTotalTime] = useState<number>(0);
   const [totalRemainingTime, setTotalRemainingTime] = useState<number>(0);
 
@@ -26,7 +28,8 @@ const Day: React.FC<DayProps> = ({
   }, [tasks]);
 
   const updateSelectedTask = (task: TaskInterface) => {
-    updateTask(task);
+    setSelectedTask(task);
+    setUpdateModalVisible(true);
   };
 
   const addTask = (dayIndex: number) => {
@@ -39,19 +42,24 @@ const Day: React.FC<DayProps> = ({
       year: 2021,
       length: 0,
     };
-    updateTask(emptyTask);
+    setSelectedTask(emptyTask);
+    setUpdateModalVisible(true);
+  };
+
+  const closeUpdateModal = () => {
+    setUpdateModalVisible(false);
   };
 
   return (
-    <div className="Day__Day">
-      <div className="Day__DayTitle">
-        <h2>{dayName}</h2>
-        <TaskLength length={totalTime} day />
-        <TaskLength length={totalRemainingTime} day />
-      </div>
+    <>
+      <div className="Day__Day">
+        <div className="Day__DayTitle">
+          <h2>{dayName}</h2>
+          <TaskLength length={totalTime} day />
+          <TaskLength length={totalRemainingTime} day />
+        </div>
 
-      {tasks.sort((a, b) => (a.length > b.length ? 1 : -1))
-        .map((task) => (
+        {tasks.map((task) => (
           <Task
             key={task.id}
             task={task}
@@ -59,12 +67,21 @@ const Day: React.FC<DayProps> = ({
           />
         ))}
 
-      <div className="Day__AddButton">
-        <Button primary onClick={() => addTask(dayNumber)}>
-          <Plus />
-        </Button>
+        <div className="Day__AddButton">
+          <Button primary onClick={() => addTask(dayNumber)}>
+            <Plus />
+          </Button>
+        </div>
       </div>
-    </div>
+
+      {selectedTask && (
+        <UpdateTaskModal
+          task={selectedTask}
+          isVisible={updateModalVisible}
+          closeModal={closeUpdateModal}
+        />
+      )}
+    </>
   );
 };
 
