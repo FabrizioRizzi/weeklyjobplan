@@ -13,7 +13,7 @@ export interface UpdateToPlanModalProps {
   closeModal: () => void;
 }
 
-const UpdateTaskModal: React.FC<UpdateToPlanModalProps> = ({
+const UpdateToPlanModal: React.FC<UpdateToPlanModalProps> = ({
   isVisible, taskToPlan, closeModal,
 }: UpdateToPlanModalProps) => {
   const [name, setName] = useState<string>(taskToPlan.name);
@@ -121,4 +121,4 @@ const UpdateTaskModal: React.FC<UpdateToPlanModalProps> = ({
   );
 };
 
-export default UpdateTaskModal;
+export default UpdateToPlanModal;
