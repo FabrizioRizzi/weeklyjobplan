@@ -18,25 +18,3 @@
     top: 4.2rem;
   }
 }
-.DaysTable__Day {
-  background: $dayBackground; 
-  height: fit-content;
-  border-radius: 20px;
-  padding: 0.2rem;
-  box-shadow: 2px 2px 5px $boxShadow;
-}
-
-.DaysTable__DayTitle {
-  text-transform: capitalize;
-  margin: 1rem 0.5rem;
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  grid-column-gap: 0.3rem;
-  align-items: center;
-}
-
-.DaysTable__AddButton {
-  margin: 0.8rem auto;
-  display: flex;
-  justify-content: center;
-}
