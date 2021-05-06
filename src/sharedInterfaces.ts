@@ -21,3 +21,12 @@ export interface CreateTaskToPlanRequest {
 export interface TaskToPlanInterface extends CreateTaskToPlanRequest {
   id: string;
 }
+
+export interface Project {
+  id: string;
+  name: string;
+  description: string;
+  technologies: string;
+  deploy: string;
+  notes: string;
+}

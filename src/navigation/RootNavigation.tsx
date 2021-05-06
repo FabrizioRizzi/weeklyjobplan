@@ -2,6 +2,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { auth, FirebaseUser, startFirebase } from 'firebaseUtils/firebase';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
+import Projects from 'pages/Projects';
 import Loading from 'components/atoms/Loading/Loading';
 import React, { useEffect, useState } from 'react';
 
@@ -41,6 +42,7 @@ const RootNavigation = () => {
       : (
         <BrowserRouter>
           <PrivateRoute component={Home} user={user} path="/" />
+          <PrivateRoute component={Projects} user={user} path="/projects" />
         </BrowserRouter>
       ));
 };
