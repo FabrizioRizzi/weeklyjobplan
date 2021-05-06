@@ -22,6 +22,7 @@ const DaysTable: React.FC<DaysTableProps> = ({ week, tasks, loading }: DaysTable
         {!loading ? (
           daysArray.map((index) => (
             <Day
+              key={index}
               dayName={dayjs().week(week).day(index).format('dddd DD MMMM')}
               dayNumber={index}
               week={week}

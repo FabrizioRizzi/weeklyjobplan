@@ -44,3 +44,6 @@ export const addTaskToPlan = async (taskToPlan: CreateTaskToPlanRequest) => fire
 export const updateTaskToPlan = async (id: string, taskToPlan: CreateTaskToPlanRequest) => firebase.firestore().collection('plan').doc(id).update(taskToPlan);
 
 export const deleteTaskToPlan = async (id: string) => firebase.firestore().collection('plan').doc(id).delete();
+
+/** ************ PROJECTS **************** */
+export const getProjects = () => firebase.firestore().collection('projects');
