@@ -1,14 +1,9 @@
 import { ProjectInterface } from 'sharedInterfaces';
 
-interface ProjectProps {
+export interface ProjectProps {
   project: ProjectInterface;
 }
 
-const Project: React.FC<ProjectProps> = ({ project }: ProjectProps) => (
-  <>
-    <div>{project.name}</div>
-    <div>{project.description}</div>
-  </>
-);
+const Project: React.FC<ProjectProps> = ({ project }: ProjectProps) => (<div>{project.name}</div>);
 
 export default Project;
