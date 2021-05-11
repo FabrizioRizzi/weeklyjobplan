@@ -2,3 +2,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+.Projects__Projects {
+  display: grid;
+  grid-template-columns: 1fr;
+}

@@ -38,8 +38,9 @@ const Projects: React.FC = () => {
           <Plus />
         </Button>
       </div>
-      {!loading && projects?.map((project) => (<Project project={project} />))}
-
+      <div className="Projects__Projects">
+        {!loading && projects?.map((project) => (<Project project={project} />))}
+      </div>
     </>
   );
 };
