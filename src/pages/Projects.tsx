@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { ProjectInterface } from 'sharedInterfaces';
-import { useHistory } from 'react-router';
-import { ArrowLeft } from 'react-feather';
+import { ArrowLeft, Plus } from 'react-feather';
+import { useHistory } from 'react-router-dom';
 import Button from 'components/atoms/Button/Button';
-import Loading from 'components/atoms/Loading/Loading';
-import Project from 'components/molecules/Project/Project';
+import Project from '../components/molecules/Project/Project';
 import { getProjects } from '../firebaseUtils/firebase';
+import './Projects.scss';
 
 const Projects: React.FC = () => {
   const [projects, setProjects] = useState<ProjectInterface[]>();
@@ -24,18 +24,22 @@ const Projects: React.FC = () => {
     return () => fbaseSubscription();
   }, []);
 
-  const goBack = () => {
-    history.goBack();
+  const backHome = () => {
+    history.replace('./');
   };
 
   return (
     <>
-      <Button primary onClick={goBack}>
-        <ArrowLeft />
-      </Button>
-      {loading
-        ? <Loading />
-        : projects?.map((project) => <Project project={project} />)}
+      <div className="Projects__Buttons">
+        <Button primary onClick={backHome}>
+          <ArrowLeft />
+        </Button>
+        <Button primary onClick={backHome}>
+          <Plus />
+        </Button>
+      </div>
+      {!loading && projects?.map((project) => (<Project project={project} />))}
+
     </>
   );
 };

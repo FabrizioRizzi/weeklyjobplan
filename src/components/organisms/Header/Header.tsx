@@ -1,7 +1,7 @@
 import {
   ChevronRight, ChevronLeft, Target, LogOut, Activity,
 } from 'react-feather';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { auth } from 'firebaseUtils/firebase';
 import Button from 'components/atoms/Button/Button';
 import './Header.scss';
