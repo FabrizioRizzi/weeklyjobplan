@@ -22,11 +22,15 @@ export interface TaskToPlanInterface extends CreateTaskToPlanRequest {
   id: string;
 }
 
-export interface ProjectInterface {
-  id: string;
+export interface CreateProjectRequest {
   name: string;
   description: string;
   technologies: string;
   deploy: string;
   notes: string;
+  closed: boolean;
+}
+
+export interface ProjectInterface extends CreateProjectRequest {
+  id: string;
 }
