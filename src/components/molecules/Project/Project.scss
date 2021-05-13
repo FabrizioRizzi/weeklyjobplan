@@ -1,3 +1,9 @@
+@import "_variables";
+
 .Project__Project {
-  margin: 0.8rem;
+  background: $dayBackground; 
+  height: fit-content;
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 2px 2px 5px $boxShadow;
 }
