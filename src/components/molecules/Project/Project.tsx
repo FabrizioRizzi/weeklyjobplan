@@ -1,3 +1,4 @@
+import { Award, Edit2 } from 'react-feather';
 import { ProjectInterface } from 'sharedInterfaces';
 import './Project.scss';
 
@@ -13,29 +14,20 @@ const Project: React.FC<ProjectProps> = ({ project, updateSelectedProject }: Pro
 
   return (
     <div className="Project__Project">
-      <div onClick={updateProjectModal}>
-        Name:
+      <div onClick={updateProjectModal} className="Project__Name">
         {project.name}
       </div>
-      <div>
-        Description:
-        {project.description}
-      </div>
-      <div>
-        Technologies:
-        {project.technologies}
-      </div>
-      <div>
-        Deploy:
-        {project.deploy}
-      </div>
-      <div>
-        Notes:
-        {project.notes}
-      </div>
-      <div>
-        Closed:
-        {project.closed}
+      <div className="Project__Fields">
+        <span>Description:</span>
+        <span>{project.description}</span>
+        <span>Technologies:</span>
+        <span>{project.technologies}</span>
+        <span>Deploy:</span>
+        <span>{project.deploy}</span>
+        <span>Notes:</span>
+        <span>{project.notes}</span>
+        <span>Status:</span>
+        {project.closed ? <Award /> : <Edit2 />}
       </div>
     </div>
   );
