@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { CreateTaskRequest, CreateTaskToPlanRequest } from '../sharedInterfaces';
+import { CreateProjectRequest, CreateTaskRequest, CreateTaskToPlanRequest } from '../sharedInterfaces';
 
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
@@ -47,3 +47,9 @@ export const deleteTaskToPlan = async (id: string) => firebase.firestore().colle
 
 /** ************ PROJECTS **************** */
 export const getProjects = () => firebase.firestore().collection('projects');
+
+export const addProject = async (project: CreateProjectRequest) => firebase.firestore().collection('projects').add(project);
+
+export const updateProject = async (id: string, project: CreateProjectRequest) => firebase.firestore().collection('projects').doc(id).update(project);
+
+export const deleteProject = async (id: string) => firebase.firestore().collection('projects').doc(id).delete();
