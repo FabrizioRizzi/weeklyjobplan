@@ -1,9 +1,22 @@
 @import "_variables";
 
 .Project__Project {
-  background: $dayBackground; 
+  background: $dayBackground;
   height: fit-content;
   border-radius: 20px;
   padding: 1rem;
   box-shadow: 2px 2px 5px $boxShadow;
+}
+
+.Project__Name {
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+}
+
+.Project__Fields {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+  align-items: center;
 }

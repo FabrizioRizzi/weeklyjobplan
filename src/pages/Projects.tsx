@@ -69,6 +69,7 @@ const Projects: React.FC = () => {
           ? <Loading />
           : projects?.map((project) => (
             <Project
+              key={project.id}
               project={project}
               updateSelectedProject={updateSelectedProject}
             />
