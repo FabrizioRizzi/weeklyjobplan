@@ -4,8 +4,8 @@ import { CreateTaskRequest, TaskInterface } from 'sharedInterfaces';
 import Button from 'components/atoms/Button/Button';
 import Task from 'components/molecules/Task/Task';
 import TaskLength from 'components/atoms/TaskLength/TaskLength';
+import UpdateTaskModal from 'components/organisms/UpdateTaskModal/UpdateTaskModal';
 import './Day.scss';
-import UpdateTaskModal from '../UpdateTaskModal/UpdateTaskModal';
 
 export interface DayProps {
   dayName: string;
