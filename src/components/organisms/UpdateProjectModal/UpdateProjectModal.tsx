@@ -91,7 +91,12 @@ const UpdateProjectModal: React.FC<UpdateProjectModalProps> = ({
   };
 
   return (
-    <Modal isVisible={isVisible} closeModal={closeModal} title="Aggiungi Project" width={400}>
+    <Modal
+      isVisible={isVisible}
+      closeModal={closeModal}
+      title="Aggiungi Project"
+      width={window.innerWidth < 400 ? window.innerWidth : 400}
+    >
       <form>
         <div className="UpdateProjectModal__Fields">
 

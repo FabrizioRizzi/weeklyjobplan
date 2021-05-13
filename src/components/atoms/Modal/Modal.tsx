@@ -15,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({
 }: PropsWithChildren<ModalProps>) => (
   <>
     {isVisible
-        && (
+      && (
         <>
           <div className="Modal__TransparentLayer" onClick={closeModal} />
           <div className="Modal__Modal" style={{ width, height }}>
@@ -25,12 +25,12 @@ const Modal: React.FC<ModalProps> = ({
                 <X />
               </div>
             </div>
-            <div className="Modal__ModalBody">
+            <div className="Modal__ModalBody" style={{ maxHeight: window.innerHeight - 50 }}>
               {children}
             </div>
           </div>
         </>
-        )}
+      )}
   </>
 );
 
