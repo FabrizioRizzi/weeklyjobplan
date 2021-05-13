@@ -19,8 +19,9 @@ const DaysTable: React.FC<DaysTableProps> = ({ week, tasks, loading }: DaysTable
   return (
     <>
       <div className="DaysTable__Days">
-        {!loading ? (
-          daysArray.map((index) => (
+        {loading
+          ? <Loading />
+          : daysArray.map((index) => (
             <Day
               key={index}
               dayName={dayjs().week(week).day(index).format('dddd DD MMMM')}
@@ -30,8 +31,7 @@ const DaysTable: React.FC<DaysTableProps> = ({ week, tasks, loading }: DaysTable
                 .filter((task) => task.dayIndex === index)
                 .sort((a, b) => (a.length > b.length ? 1 : -1))}
             />
-          ))
-        ) : <Loading />}
+          ))}
       </div>
     </>
   );

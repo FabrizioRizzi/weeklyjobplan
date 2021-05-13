@@ -12,7 +12,7 @@
 }
 
 .Modal__Modal {
-  position: absolute;
+  position: fixed;
   background-color: $main_light;
   top: 50%;
   left: 50%;
@@ -38,4 +38,5 @@
 
 .Modal__ModalBody {
   padding: 0.7rem;
+  overflow: auto;
 }

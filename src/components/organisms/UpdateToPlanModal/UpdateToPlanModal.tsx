@@ -72,7 +72,12 @@ const UpdateToPlanModal: React.FC<UpdateToPlanModalProps> = ({
   };
 
   return (
-    <Modal isVisible={isVisible} closeModal={closeModal} title="Aggiungi Task" width={400}>
+    <Modal
+      isVisible={isVisible}
+      closeModal={closeModal}
+      title="Aggiungi Task"
+      width={window.innerWidth < 400 ? window.innerWidth : 400}
+    >
       <form>
         <div className="UpdateTaskModal__Fields">
 

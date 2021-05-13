@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { CreateProjectRequest, ProjectInterface } from 'sharedInterfaces';
 import { ArrowLeft, Plus } from 'react-feather';
 import { useHistory } from 'react-router-dom';
+import Loading from 'components/atoms/Loading/Loading';
 import Button from 'components/atoms/Button/Button';
 import Project from 'components/molecules/Project/Project';
 import UpdateProjectModal from 'components/organisms/UpdateProjectModal/UpdateProjectModal';
@@ -64,12 +65,14 @@ const Projects: React.FC = () => {
         </Button>
       </div>
       <div className="Projects__Projects">
-        {!loading && projects?.map((project) => (
-          <Project
-            project={project}
-            updateSelectedProject={updateSelectedProject}
-          />
-        ))}
+        {loading
+          ? <Loading />
+          : projects?.map((project) => (
+            <Project
+              project={project}
+              updateSelectedProject={updateSelectedProject}
+            />
+          ))}
       </div>
 
       {selectedProject && (
