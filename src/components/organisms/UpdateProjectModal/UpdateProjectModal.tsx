@@ -23,6 +23,7 @@ const UpdateProjectModal: React.FC<UpdateProjectModalProps> = ({
   const [deploy, setDeploy] = useState<string>(project.deploy);
   const [notes, setNotes] = useState<string>(project.notes);
   const [closed, setClosed] = useState<boolean>(project.closed);
+  const [repository, setRepository] = useState<string>(project.repository);
   const [loadingAddUpdate, setLoadingAddUpdate] = useState<boolean>(false);
   const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
 
@@ -55,6 +56,10 @@ const UpdateProjectModal: React.FC<UpdateProjectModalProps> = ({
     setNotes(event.target.value);
   };
 
+  const changeRepository = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRepository(event.target.value);
+  };
+
   const changeClosed = (checked: boolean) => {
     setClosed(checked);
   };
@@ -62,7 +67,7 @@ const UpdateProjectModal: React.FC<UpdateProjectModalProps> = ({
   const onAddProject = async () => {
     setLoadingAddUpdate(true);
     const request = {
-      name, description, technologies, deploy, notes, closed,
+      name, description, technologies, deploy, notes, closed, repository,
     };
     await addProject(request);
     setLoadingAddUpdate(false);
@@ -73,7 +78,7 @@ const UpdateProjectModal: React.FC<UpdateProjectModalProps> = ({
     if ('id' in project) {
       setLoadingAddUpdate(true);
       const request = {
-        name, description, technologies, deploy, notes, closed,
+        name, description, technologies, deploy, notes, closed, repository,
       };
       await updateProject(project.id, request);
       setLoadingAddUpdate(false);
@@ -114,6 +119,9 @@ const UpdateProjectModal: React.FC<UpdateProjectModalProps> = ({
 
           <div>Notes</div>
           <TextArea onChange={changeNotes} value={notes} />
+
+          <div>Repository</div>
+          <TextInput onChange={changeRepository} value={repository} />
 
           <div>Closed</div>
           <Checkbox checked={closed} onChange={changeClosed} />

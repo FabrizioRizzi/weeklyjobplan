@@ -29,6 +29,7 @@ export interface CreateProjectRequest {
   deploy: string;
   notes: string;
   closed: boolean;
+  repository: string;
 }
 
 export interface ProjectInterface extends CreateProjectRequest {

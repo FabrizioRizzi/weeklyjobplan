@@ -40,6 +40,7 @@ const Projects: React.FC = () => {
       deploy: '',
       notes: '',
       closed: false,
+      repository: '',
     };
     setSelectedProject(emptyProject);
     setUpdateModalVisible(true);
