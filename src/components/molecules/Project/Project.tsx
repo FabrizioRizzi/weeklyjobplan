@@ -1,4 +1,6 @@
-import { Award, Edit2 } from 'react-feather';
+import {
+  Award, Edit2, GitHub, Gitlab,
+} from 'react-feather';
 import { ProjectInterface } from 'sharedInterfaces';
 import './Project.scss';
 
@@ -26,6 +28,10 @@ const Project: React.FC<ProjectProps> = ({ project, updateSelectedProject }: Pro
         <span>{project.deploy}</span>
         <span>Notes:</span>
         <span>{project.notes}</span>
+        <span>Repository:</span>
+        {project.repository === 'GitHub' && <GitHub />}
+        {project.repository === 'GitLab' && <Gitlab />}
+        {project.repository !== 'GitHub' && project.repository !== 'GitLab' && project.repository}
         <span>Status:</span>
         {project.closed ? <Award /> : <Edit2 />}
       </div>
