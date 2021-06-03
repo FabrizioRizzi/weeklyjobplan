@@ -13,7 +13,7 @@ const Button: React.FC<ButtonProps> = ({
   primary, disabled, loading, onClick, children,
 }: PropsWithChildren<ButtonProps>) => {
   const executeAction = () => {
-    if (!disabled) {
+    if (!disabled && !loading) {
       onClick();
     }
   };
