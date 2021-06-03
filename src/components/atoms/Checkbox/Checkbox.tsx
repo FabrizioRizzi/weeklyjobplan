@@ -11,7 +11,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange }: CheckboxProps)
   };
 
   return (
-    <div className="Checkbox__Checkbox" onClick={check}>
+    <div className="Checkbox__Checkbox" role="checkbox" tabIndex={0} aria-checked={checked} onClick={check}>
       {checked && <div className="Checkbox__Checked" />}
     </div>
   );

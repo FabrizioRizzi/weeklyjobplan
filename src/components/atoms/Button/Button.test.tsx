@@ -8,7 +8,12 @@ describe('Button', () => {
     render(<Button primary onClick={mockCallBack}>Bottone</Button>);
     expect(screen.getByText('Bottone')).toBeInTheDocument();
   });
-  test('Execute callback on click', () => {
+  test('execute callback on click', () => {
+    render(<Button primary onClick={mockCallBack}>Bottone</Button>);
+    fireEvent.click(screen.getByText('Bottone'));
+    expect(mockCallBack.mock.calls.length).toEqual(1);
+  });
+  test('don\'t execute callback on click when loading', () => {
     render(<Button primary onClick={mockCallBack}>Bottone</Button>);
     fireEvent.click(screen.getByText('Bottone'));
     expect(mockCallBack.mock.calls.length).toEqual(1);
