@@ -13,6 +13,7 @@ const Template: Story<ButtonProps> = (args) => (<Button {...args}>Bottone</Butto
 export const Primary = Template.bind({});
 export const Secondary = Template.bind({});
 export const Loading = Template.bind({});
+export const Disabled = Template.bind({});
 
 Primary.args = {
   primary: true,
@@ -25,4 +26,9 @@ Secondary.args = {
 Loading.args = {
   primary: true,
   loading: true,
+};
+
+Disabled.args = {
+  primary: true,
+  disabled: true,
 };
