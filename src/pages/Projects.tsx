@@ -22,7 +22,7 @@ const Projects: React.FC = () => {
       const parsedProjects = querySnapshot.docs.map((project) => (
         { id: project.id, ...project.data() }
       )) as ProjectInterface[];
-      setProjects(parsedProjects);
+      setProjects(parsedProjects.sort((a, b) => (a === b ? 1 : -1)));
       setLoading(false);
     });
     return () => fbaseSubscription();
