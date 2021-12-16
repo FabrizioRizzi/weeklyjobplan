@@ -6,6 +6,7 @@ import { TaskInterface } from 'sharedInterfaces';
 import Header from 'components/organisms/Header/Header';
 import DaysTable from 'components/organisms/DaysTable/DaysTable';
 import ToPlan from 'components/organisms/ToPlan/ToPlan';
+import { onSnapshot } from 'firebase/firestore';
 
 dayjs.extend(weekOfYear);
 
@@ -16,14 +17,16 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    const fbaseSubscription = getTasksByWeek(week).onSnapshot((querySnapshot) => {
+
+    const getTasksByWeekSubscription = onSnapshot(getTasksByWeek(week), (querySnapshot) => {
       const parsedTasks = querySnapshot.docs.map((task) => (
         { id: task.id, ...task.data() }
       )) as TaskInterface[];
       setTasks(parsedTasks);
       setLoading(false);
     });
-    return () => fbaseSubscription();
+
+    return () => getTasksByWeekSubscription();
   }, [week]);
 
   const previousWeek = () => {

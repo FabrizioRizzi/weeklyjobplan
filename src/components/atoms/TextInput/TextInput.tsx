@@ -18,6 +18,7 @@ const TextInput: React.FC<TextInputProps> = ({
     onChange={onChange}
     min={minValue}
     max={maxValue}
+    autoComplete="off"
   />
 );
 

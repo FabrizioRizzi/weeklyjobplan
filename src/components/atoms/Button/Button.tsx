@@ -6,27 +6,29 @@ export interface ButtonProps {
   primary: boolean;
   disabled?: boolean;
   loading?: boolean;
-  onClick: () => void;
+  submit?: boolean;
+  onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
-  primary, disabled, loading, onClick, children,
+  primary, disabled, loading, onClick, submit, children,
 }: PropsWithChildren<ButtonProps>) => {
   const executeAction = () => {
-    if (!disabled && !loading) {
+    if (!disabled && !loading && onClick) {
       onClick();
     }
   };
 
   return (
-    <div
+    <button
+      type={submit ? 'submit' : 'button'}
       className={disabled
         ? 'Button__Disabled'
         : `Button__${primary ? 'Button--primary' : 'Button--secondary'}`}
       onClick={executeAction}
     >
       {loading ? <Loading /> : children}
-    </div>
+    </button>
   );
 };
 

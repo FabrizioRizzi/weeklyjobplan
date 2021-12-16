@@ -6,6 +6,7 @@ import Loading from 'components/atoms/Loading/Loading';
 import Button from 'components/atoms/Button/Button';
 import Project from 'components/molecules/Project/Project';
 import UpdateProjectModal from 'components/organisms/UpdateProjectModal/UpdateProjectModal';
+import { onSnapshot } from 'firebase/firestore';
 import { getProjects } from '../firebaseUtils/firebase';
 import './Projects.scss';
 
@@ -18,14 +19,16 @@ const Projects: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    const fbaseSubscription = getProjects().onSnapshot((querySnapshot) => {
+
+    const getProjectsSubscription = onSnapshot(getProjects(), (querySnapshot) => {
       const parsedProjects = querySnapshot.docs.map((project) => (
         { id: project.id, ...project.data() }
       )) as ProjectInterface[];
       setProjects(parsedProjects.sort((a, b) => (a === b ? 1 : -1)));
       setLoading(false);
     });
-    return () => fbaseSubscription();
+
+    return () => getProjectsSubscription();
   }, []);
 
   const backHome = () => {

@@ -6,6 +6,7 @@ import Loading from 'components/atoms/Loading/Loading';
 import Button from 'components/atoms/Button/Button';
 import UpdateToPlanModal from 'components/organisms/UpdateToPlanModal/UpdateToPlanModal';
 import './ToPlan.scss';
+import { onSnapshot } from 'firebase/firestore';
 import TaskToPlan from '../../molecules/TaskToPlan/TaskToPlan';
 
 const ToPlan: React.FC = () => {
@@ -23,14 +24,16 @@ const ToPlan: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    const firebaseSubscription = getTasksToPlan().onSnapshot((querySnap) => {
-      const tasks = querySnap.docs.map((task) => (
+
+    const getTasksToPlanSubscription = onSnapshot(getTasksToPlan(), (querySnapshot) => {
+      const tasks = querySnapshot.docs.map((task) => (
         { id: task.id, ...task.data() }
       )) as TaskToPlanInterface[];
       setTasksToPlan(tasks);
       setLoading(false);
     });
-    return () => firebaseSubscription();
+
+    return () => getTasksToPlanSubscription();
   }, []);
 
   const toggleToPlan = () => {
