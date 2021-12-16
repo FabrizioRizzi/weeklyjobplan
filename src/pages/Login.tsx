@@ -4,6 +4,7 @@ import { auth } from 'firebaseUtils/firebase';
 import Button from 'components/atoms/Button/Button';
 import TextInput from 'components/atoms/TextInput/TextInput';
 import './Login.scss';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login: React.FC = () => {
   const history = useHistory();
@@ -20,9 +21,10 @@ const Login: React.FC = () => {
     setPassword(event.target.value);
   };
 
-  const login = () => {
+  const login = (event: React.SyntheticEvent) => {
     setLoading(true);
-    auth().signInWithEmailAndPassword(username.trim(), password.trim())
+    event.preventDefault();
+    signInWithEmailAndPassword(auth, username.trim(), password.trim())
       .then(() => history.replace('/'))
       .catch((err) => setError(`* ${err.message}`))
       .finally(() => setLoading(false));
@@ -31,7 +33,7 @@ const Login: React.FC = () => {
   return (
     <>
       <h1 className="Login__Title">Weekly Job Plan</h1>
-      <div className="Login__Login">
+      <form className="Login__Login" onSubmit={login}>
         <div>Email</div>
         <TextInput type="email" onChange={changeUsername} />
         <div>Password</div>
@@ -39,7 +41,7 @@ const Login: React.FC = () => {
         <div className="Login__TwoColumns">
           <Button
             primary
-            onClick={login}
+            submit
             disabled={!username || !password}
             loading={loading}
           >
@@ -47,7 +49,7 @@ const Login: React.FC = () => {
           </Button>
         </div>
         <div className="Login__TwoColumns Login__Error">{error}</div>
-      </div>
+      </form>
     </>
   );
 };

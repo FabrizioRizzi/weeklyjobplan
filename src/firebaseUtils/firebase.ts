@@ -1,6 +1,15 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getFirestore,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import { CreateProjectRequest, CreateTaskRequest, CreateTaskToPlanRequest } from '../sharedInterfaces';
 
 export const firebaseConfig = {
@@ -13,43 +22,37 @@ export const firebaseConfig = {
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
-export const startFirebase = () => {
-  if (!firebase?.apps?.length) {
-    firebase.initializeApp(firebaseConfig);
-  } else {
-    firebase.app(); // if already initialized, use that one
-  }
-};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-export type FirebaseUser = firebase.User;
-
-export const { auth } = firebase;
+export const auth = getAuth();
 
 /** ************ TASKS **************** */
-export const getTasksByWeek = (week: number) => firebase.firestore().collection('tasks').where('year', '==', 2021).where('week', '==', week);
 
-export const addTask = async (task: CreateTaskRequest) => firebase.firestore().collection('tasks').add(task);
+export const getTasksByWeek = (week: number) => query(collection(db, 'tasks'), where('year', '==', 2021), where('week', '==', week));
 
-export const updateTask = async (id: string, task: CreateTaskRequest) => firebase.firestore().collection('tasks').doc(id).update(task);
+export const addTask = (task: CreateTaskRequest) => addDoc(collection(db, 'tasks'), task);
 
-export const updateDoneTask = async (id: string, done: boolean) => firebase.firestore().collection('tasks').doc(id).update({ done });
+export const updateTask = (id: string, task: CreateTaskRequest) => updateDoc(doc(db, 'tasks', id), { ...task });
 
-export const deleteTask = async (id: string) => firebase.firestore().collection('tasks').doc(id).delete();
+export const updateDoneTask = (id: string, done: boolean) => updateDoc(doc(db, 'tasks', id), { done });
+
+export const deleteTask = (id: string) => deleteDoc(doc(db, 'tasks', id));
 
 /** ************ TASKS TO PLAN **************** */
-export const getTasksToPlan = () => firebase.firestore().collection('plan');
+export const getTasksToPlan = () => query(collection(db, 'plan'));
 
-export const addTaskToPlan = async (taskToPlan: CreateTaskToPlanRequest) => firebase.firestore().collection('plan').add(taskToPlan);
+export const addTaskToPlan = async (taskToPlan: CreateTaskToPlanRequest) => addDoc(collection(db, 'plan'), taskToPlan);
 
-export const updateTaskToPlan = async (id: string, taskToPlan: CreateTaskToPlanRequest) => firebase.firestore().collection('plan').doc(id).update(taskToPlan);
+export const updateTaskToPlan = async (id: string, taskToPlan: CreateTaskToPlanRequest) => updateDoc(doc(db, 'plan', id), { ...taskToPlan });
 
-export const deleteTaskToPlan = async (id: string) => firebase.firestore().collection('plan').doc(id).delete();
+export const deleteTaskToPlan = async (id: string) => deleteDoc(doc(db, 'plan', id));
 
 /** ************ PROJECTS **************** */
-export const getProjects = () => firebase.firestore().collection('projects');
+export const getProjects = () => query(collection(db, 'projects'));
 
-export const addProject = async (project: CreateProjectRequest) => firebase.firestore().collection('projects').add(project);
+export const addProject = async (project: CreateProjectRequest) => addDoc(collection(db, 'projects'), project);
 
-export const updateProject = async (id: string, project: CreateProjectRequest) => firebase.firestore().collection('projects').doc(id).update(project);
+export const updateProject = async (id: string, project: CreateProjectRequest) => updateDoc(doc(db, 'projects', id), { ...project });
 
-export const deleteProject = async (id: string) => firebase.firestore().collection('projects').doc(id).delete();
+export const deleteProject = async (id: string) => deleteDoc(doc(db, 'projects', id));

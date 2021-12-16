@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { auth } from 'firebaseUtils/firebase';
 import Button from 'components/atoms/Button/Button';
 import './Header.scss';
+import { signOut } from 'firebase/auth';
 
 export interface HeaderProps {
   week: number;
@@ -19,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({
   const history = useHistory();
 
   const logout = () => {
-    auth().signOut();
+    signOut(auth);
   };
 
   const openProjects = () => {

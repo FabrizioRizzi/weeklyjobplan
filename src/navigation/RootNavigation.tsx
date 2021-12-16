@@ -1,14 +1,15 @@
 import { BrowserRouter, Route } from 'react-router-dom';
-import { auth, FirebaseUser, startFirebase } from 'firebaseUtils/firebase';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
 import Projects from 'pages/Projects';
 import Loading from 'components/atoms/Loading/Loading';
 import React, { useEffect, useState } from 'react';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { auth } from 'firebaseUtils/firebase';
 
 export interface PrivateRouteProps {
   component: React.FC;
-  user: FirebaseUser | null;
+  user: User | null;
   path: string;
 }
 
@@ -20,16 +21,15 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
 };
 
 const RootNavigation = () => {
-  const [user, setUser] = useState<FirebaseUser | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    startFirebase();
-    const fbaseAuthSubscription = auth().onAuthStateChanged((firebaseUser: FirebaseUser | null) => {
-      setUser(firebaseUser || null);
+    const authStateChangeSubscription = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser);
       setLoading(false);
     });
-    return () => fbaseAuthSubscription();
+    return () => authStateChangeSubscription();
   }, []);
 
   return (
