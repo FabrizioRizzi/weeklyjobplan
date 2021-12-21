@@ -1,21 +1,31 @@
+import React, { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   ChevronRight, ChevronLeft, Target, LogOut, Activity,
 } from 'react-feather';
-import { useHistory } from 'react-router-dom';
+import Select, { StylesConfig } from 'react-select';
+import { signOut } from 'firebase/auth';
 import { auth } from 'firebaseUtils/firebase';
 import Button from 'components/atoms/Button/Button';
 import './Header.scss';
-import { signOut } from 'firebase/auth';
+
+type OptionType = {
+  label: number;
+  value: number;
+};
 
 export interface HeaderProps {
+  year: number;
   week: number;
+  changeYear: (newYear: number) => void;
+  changeWeek: (newWeek: number) => void;
   previousWeek: () => void;
   nextWeek: () => void;
-  resetWeek: () => void;
+  reset: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
-  week, previousWeek, nextWeek, resetWeek,
+  year, week, changeYear, changeWeek, previousWeek, nextWeek, reset,
 }: HeaderProps) => {
   const history = useHistory();
 
@@ -27,25 +37,50 @@ const Header: React.FC<HeaderProps> = ({
     history.push('/projects');
   };
 
+  const yearOptions = [2021, 2022].map((years) => ({ label: years, value: years }));
+  const weekOptions = [...Array(52)].map((el, index) => ({ label: index + 1, value: index + 1 }));
+  const onChangeYear = useCallback((newYear) => changeYear(newYear.value), []);
+  const onChangeWeek = useCallback((newWeek) => changeWeek(newWeek.value), []);
+
+  const customStyles: StylesConfig<OptionType, false> = {
+    option: (styles, { isFocused, isSelected }) => ({
+      ...styles,
+      color: isSelected ? '#eeebdd;' : '#1b1717',
+      // eslint-disable-next-line no-nested-ternary
+      backgroundColor: isSelected ? '#1b1717' : isFocused ? '#eeebdd' : '#fffef8',
+    }),
+  };
+
   return (
     <div className="Header__Header">
 
-      <div className="Header__Buttons Header__Buttons--Left">
+      <div className="Header__Buttons Header__Buttons--left">
         <Button primary onClick={previousWeek}>
           <ChevronLeft />
         </Button>
         <Button primary onClick={nextWeek}>
           <ChevronRight />
         </Button>
-        <Button primary onClick={resetWeek}>
+        <Button primary onClick={reset}>
           <Target />
         </Button>
       </div>
 
-      <div className="Title">
-        <h2>
-          {`Settimana ${week || ''}`}
-        </h2>
+      <div className="Header__Title">
+        <h2 className="Header__Title--label">Anno</h2>
+        <Select
+          value={{ label: year, value: year }}
+          options={yearOptions}
+          onChange={onChangeYear}
+          styles={customStyles}
+        />
+        <h2 className="Header__Title--label">Settimana</h2>
+        <Select
+          value={{ label: week, value: week }}
+          options={weekOptions}
+          onChange={onChangeWeek}
+          styles={customStyles}
+        />
       </div>
 
       <div className="Header__Buttons Header__Buttons--right">
@@ -60,4 +95,4 @@ const Header: React.FC<HeaderProps> = ({
   );
 };
 
-export default Header;
+export default React.memo(Header);

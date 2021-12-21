@@ -8,12 +8,15 @@ import './DaysTable.scss';
 dayjs.locale('it');
 
 export interface DaysTableProps {
+  year: number;
   week: number;
   tasks: TaskInterface[];
   loading: boolean;
 }
 
-const DaysTable: React.FC<DaysTableProps> = ({ week, tasks, loading }: DaysTableProps) => {
+const DaysTable: React.FC<DaysTableProps> = ({
+  year, week, tasks, loading,
+}: DaysTableProps) => {
   const daysArray = [1, 2, 3, 4, 5];
 
   return (
@@ -24,8 +27,10 @@ const DaysTable: React.FC<DaysTableProps> = ({ week, tasks, loading }: DaysTable
           : daysArray.map((index) => (
             <Day
               key={index}
-              dayName={dayjs().week(week).day(index).format('dddd DD MMMM')}
+              dayName={dayjs().year(year).week(week).day(index)
+                .format('dddd DD MMMM')}
               dayNumber={index}
+              year={year}
               week={week}
               tasks={tasks
                 .filter((task) => task.dayIndex === index)

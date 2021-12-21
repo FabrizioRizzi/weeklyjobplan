@@ -29,7 +29,7 @@ export const auth = getAuth();
 
 /** ************ TASKS **************** */
 
-export const getTasksByWeek = (week: number) => query(collection(db, 'tasks'), where('year', '==', 2021), where('week', '==', week));
+export const getTasksByWeekAndYear = (year: number, week: number) => query(collection(db, 'tasks'), where('year', '==', year), where('week', '==', week));
 
 export const addTask = (task: CreateTaskRequest) => addDoc(collection(db, 'tasks'), task);
 

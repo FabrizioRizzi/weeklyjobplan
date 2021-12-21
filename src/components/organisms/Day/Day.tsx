@@ -10,12 +10,13 @@ import './Day.scss';
 export interface DayProps {
   dayName: string;
   dayNumber: number;
+  year: number;
   week: number;
   tasks: TaskInterface[];
 }
 
 const Day: React.FC<DayProps> = ({
-  dayName, dayNumber, week, tasks,
+  dayName, dayNumber, year, week, tasks,
 }: DayProps) => {
   const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
   const [selectedTask, setSelectedTask] = useState<TaskInterface | CreateTaskRequest>();
@@ -38,8 +39,8 @@ const Day: React.FC<DayProps> = ({
       description: '',
       dayIndex,
       done: false,
+      year,
       week,
-      year: 2021,
       length: 0,
     };
     setSelectedTask(emptyTask);
