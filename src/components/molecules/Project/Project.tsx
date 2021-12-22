@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Award, Edit2, GitHub, Gitlab,
 } from 'react-feather';
@@ -39,4 +40,4 @@ const Project: React.FC<ProjectProps> = ({ project, updateSelectedProject }: Pro
   );
 };
 
-export default Project;
+export default React.memo(Project);

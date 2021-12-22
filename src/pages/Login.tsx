@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { auth } from 'firebaseUtils/firebase';
 import Button from 'components/atoms/Button/Button';
@@ -13,13 +13,13 @@ const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const changeUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeUsername = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
-  };
+  }, []);
 
-  const changePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changePassword = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
-  };
+  }, []);
 
   const login = (event: React.SyntheticEvent) => {
     setLoading(true);

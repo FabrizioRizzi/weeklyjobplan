@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Plus } from 'react-feather';
 import { CreateTaskRequest, TaskInterface } from 'sharedInterfaces';
 import Button from 'components/atoms/Button/Button';
@@ -6,9 +6,12 @@ import Task from 'components/molecules/Task/Task';
 import TaskLength from 'components/atoms/TaskLength/TaskLength';
 import UpdateTaskModal from 'components/organisms/UpdateTaskModal/UpdateTaskModal';
 import './Day.scss';
+import dayjs from 'dayjs';
+import 'dayjs/locale/it';
+
+dayjs.locale('it');
 
 export interface DayProps {
-  dayName: string;
   dayNumber: number;
   year: number;
   week: number;
@@ -16,24 +19,27 @@ export interface DayProps {
 }
 
 const Day: React.FC<DayProps> = ({
-  dayName, dayNumber, year, week, tasks,
+  dayNumber, year, week, tasks,
 }: DayProps) => {
   const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
   const [selectedTask, setSelectedTask] = useState<TaskInterface | CreateTaskRequest>();
   const [totalTime, setTotalTime] = useState<number>(0);
   const [totalRemainingTime, setTotalRemainingTime] = useState<number>(0);
+  const [dayName, setDayName] = useState<string>('');
 
   useEffect(() => {
+    setDayName(dayjs().year(year).week(week).day(dayNumber)
+      .format('dddd DD MMMM'));
     setTotalTime(tasks.reduce((a, b) => a + b.length, 0));
     setTotalRemainingTime(tasks.filter((task) => !task.done).reduce((a, b) => a + b.length, 0));
   }, [tasks]);
 
-  const updateSelectedTask = (task: TaskInterface) => {
+  const updateSelectedTask = useCallback((task: TaskInterface) => {
     setSelectedTask(task);
     setUpdateModalVisible(true);
-  };
+  }, []);
 
-  const addTask = (dayIndex: number) => {
+  const addTask = useCallback((dayIndex: number) => {
     const emptyTask = {
       name: '',
       description: '',
@@ -45,11 +51,11 @@ const Day: React.FC<DayProps> = ({
     };
     setSelectedTask(emptyTask);
     setUpdateModalVisible(true);
-  };
+  }, []);
 
-  const closeUpdateModal = () => {
+  const closeUpdateModal = useCallback(() => {
     setUpdateModalVisible(false);
-  };
+  }, []);
 
   return (
     <>
@@ -86,4 +92,4 @@ const Day: React.FC<DayProps> = ({
   );
 };
 
-export default Day;
+export default React.memo(Day);

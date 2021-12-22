@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { addTask, deleteTask, updateTask } from 'firebaseUtils/firebase';
 import { CreateTaskRequest, TaskInterface } from 'sharedInterfaces';
 import Modal from 'components/atoms/Modal/Modal';
@@ -36,25 +36,29 @@ const UpdateTaskModal: React.FC<UpdateTaskModalProps> = ({
     setLength(task.length || 0);
   }, [task]);
 
-  const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeName = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
-  };
+  }, []);
 
-  const changeDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const changeDescription = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(event.target.value);
-  };
+  }, []);
 
-  const changeDay = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeDay = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setDayIndex(Number(event.target.value));
-  };
+  }, []);
 
-  const changeWeek = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeWeek = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setWeek(Number(event.target.value));
-  };
+  }, []);
 
-  const changeLength = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeYear = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setYear(Number(event.target.value));
+  }, []);
+
+  const changeLength = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setLength(Number(event.target.value));
-  };
+  }, []);
 
   const onAddTask = async () => {
     setLoadingAddUpdate(true);
@@ -109,6 +113,9 @@ const UpdateTaskModal: React.FC<UpdateTaskModalProps> = ({
           <div>Week</div>
           <TextInput onChange={changeWeek} value={week} type="number" />
 
+          <div>Year</div>
+          <TextInput onChange={changeYear} value={year} type="number" />
+
           <div>Length</div>
           <TextInput onChange={changeLength} value={length} type="number" />
         </div>
@@ -155,4 +162,4 @@ const UpdateTaskModal: React.FC<UpdateTaskModalProps> = ({
   );
 };
 
-export default UpdateTaskModal;
+export default React.memo(UpdateTaskModal);

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import { getTasksByWeekAndYear } from 'firebaseUtils/firebase';
@@ -15,6 +15,8 @@ const Home: React.FC = () => {
   const [week, setWeek] = useState<number>(dayjs().week());
   const [loading, setLoading] = useState<boolean>(false);
   const [tasks, setTasks] = useState<TaskInterface[]>([]);
+
+  const maxWeekNum = 52;
 
   useEffect(() => {
     setLoading(true);
@@ -35,12 +37,22 @@ const Home: React.FC = () => {
   const changeWeek = useCallback((newWeek: number) => setWeek(newWeek), []);
 
   const previousWeek = useCallback(() => {
-    setWeek(week > 1 ? week - 1 : week);
-  }, [week]);
+    if (week > 1) {
+      setWeek(week - 1);
+    } else {
+      setWeek(maxWeekNum);
+      setYear(year - 1);
+    }
+  }, [year, week, maxWeekNum]);
 
   const nextWeek = useCallback(() => {
-    setWeek(week < 52 ? week + 1 : week);
-  }, [week]);
+    if (week < maxWeekNum) {
+      setWeek(week + 1);
+    } else {
+      setWeek(1);
+      setYear(year + 1);
+    }
+  }, [year, week, maxWeekNum]);
 
   const reset = useCallback(() => {
     setYear(dayjs().year());
@@ -71,4 +83,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default React.memo(Home);

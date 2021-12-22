@@ -1,3 +1,4 @@
+import React, { useCallback } from 'react';
 import { List, SkipForward } from 'react-feather';
 import { updateDoneTask, updateTask } from 'firebaseUtils/firebase';
 import { TaskInterface } from 'sharedInterfaces';
@@ -11,9 +12,9 @@ export interface TaskProps {
 }
 
 const Task: React.FC<TaskProps> = ({ task, updateSelectedTask }: TaskProps) => {
-  const check = (checked: boolean) => {
+  const check = useCallback((checked: boolean) => {
     updateDoneTask(task.id, checked);
-  };
+  }, [task.id]);
 
   const updateTaskModal = () => {
     updateSelectedTask(task);
@@ -53,4 +54,4 @@ const Task: React.FC<TaskProps> = ({ task, updateSelectedTask }: TaskProps) => {
   );
 };
 
-export default Task;
+export default React.memo(Task);

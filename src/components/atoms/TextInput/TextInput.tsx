@@ -1,3 +1,4 @@
+import React from 'react';
 import './TextInput.scss';
 
 export interface TextInputProps {
@@ -22,4 +23,4 @@ const TextInput: React.FC<TextInputProps> = ({
   />
 );
 
-export default TextInput;
+export default React.memo(TextInput);

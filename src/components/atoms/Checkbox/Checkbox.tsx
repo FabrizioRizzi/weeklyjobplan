@@ -1,3 +1,4 @@
+import React from 'react';
 import './Checkbox.scss';
 
 export interface CheckboxProps {
@@ -6,15 +7,19 @@ export interface CheckboxProps {
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange }: CheckboxProps) => {
-  const check = () => {
-    onChange(!checked);
-  };
+  const check = () => onChange(!checked);
 
   return (
-    <div className="Checkbox__Checkbox" role="checkbox" tabIndex={0} aria-checked={checked} onClick={check}>
+    <div
+      className="Checkbox__Checkbox"
+      role="checkbox"
+      tabIndex={0}
+      aria-checked={checked}
+      onClick={check}
+    >
       {checked && <div className="Checkbox__Checked" />}
     </div>
   );
 };
 
-export default Checkbox;
+export default React.memo(Checkbox);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CreateProjectRequest, ProjectInterface } from 'sharedInterfaces';
 import { ArrowLeft, Plus } from 'react-feather';
 import { useHistory } from 'react-router-dom';
@@ -91,4 +91,4 @@ const Projects: React.FC = () => {
   );
 };
 
-export default Projects;
+export default React.memo(Projects);

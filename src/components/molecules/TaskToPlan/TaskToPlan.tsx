@@ -1,4 +1,5 @@
 /* eslint-disable no-nested-ternary */
+import React from 'react';
 import { AlertOctagon } from 'react-feather';
 import { TaskToPlanInterface } from 'sharedInterfaces';
 import './TaskToPlan.scss';
@@ -28,4 +29,4 @@ const TaskToPlan: React.FC<TaskToPlanProps> = ({
   );
 };
 
-export default TaskToPlan;
+export default React.memo(TaskToPlan);

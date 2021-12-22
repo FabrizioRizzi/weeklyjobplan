@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { addTaskToPlan, deleteTaskToPlan, updateTaskToPlan } from 'firebaseUtils/firebase';
 import { CreateTaskToPlanRequest, TaskToPlanInterface } from 'sharedInterfaces';
 import Modal from 'components/atoms/Modal/Modal';
@@ -28,17 +28,17 @@ const UpdateToPlanModal: React.FC<UpdateToPlanModalProps> = ({
     setPriority(taskToPlan.priority || 0);
   }, [taskToPlan]);
 
-  const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeName = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
-  };
+  }, []);
 
-  const changeDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const changeDescription = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(event.target.value);
-  };
+  }, []);
 
-  const changePriority = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changePriority = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setPriority(Number(event.target.value) as 0 | 1 | 2);
-  };
+  }, []);
 
   const onAddTaskToPlan = async () => {
     setLoadingAddUpdate(true);
@@ -126,4 +126,4 @@ const UpdateToPlanModal: React.FC<UpdateToPlanModalProps> = ({
   );
 };
 
-export default UpdateToPlanModal;
+export default React.memo(UpdateToPlanModal);

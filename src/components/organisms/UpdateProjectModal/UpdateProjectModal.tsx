@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { addProject, deleteProject, updateProject } from 'firebaseUtils/firebase';
 import { CreateProjectRequest, ProjectInterface } from 'sharedInterfaces';
 import Modal from 'components/atoms/Modal/Modal';
@@ -36,33 +36,33 @@ const UpdateProjectModal: React.FC<UpdateProjectModalProps> = ({
     setClosed(project.closed);
   }, [project]);
 
-  const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeName = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
-  };
+  }, []);
 
-  const changeDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const changeDescription = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(event.target.value);
-  };
+  }, []);
 
-  const changeTechnologies = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const changeTechnologies = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTechnologies(event.target.value);
-  };
+  }, []);
 
-  const changeDeploy = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const changeDeploy = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDeploy(event.target.value);
-  };
+  }, []);
 
-  const changeNotes = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const changeNotes = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNotes(event.target.value);
-  };
+  }, []);
 
-  const changeRepository = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeRepository = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setRepository(event.target.value);
-  };
+  }, []);
 
-  const changeClosed = (checked: boolean) => {
+  const changeClosed = useCallback((checked: boolean) => {
     setClosed(checked);
-  };
+  }, []);
 
   const onAddProject = async () => {
     setLoadingAddUpdate(true);
@@ -169,4 +169,4 @@ const UpdateProjectModal: React.FC<UpdateProjectModalProps> = ({
   );
 };
 
-export default UpdateProjectModal;
+export default React.memo(UpdateProjectModal);

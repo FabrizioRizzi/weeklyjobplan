@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './TaskLength.scss';
 
 export interface TaskLengthProps {
@@ -8,21 +8,24 @@ export interface TaskLengthProps {
 
 const Task: React.FC<TaskLengthProps> = ({ length, day }: TaskLengthProps) => {
   const [hours, setHours] = useState<boolean>(false);
-  const hoursLength = `${Math.floor(length / 60)}:${length % 60 < 10 ? `0${length % 60}` : length % 60}`;
+  const [borderColor, setBorderColor] = useState<string>('');
+  const hoursLength = useMemo(() => `${Math.floor(length / 60)}:${length % 60 < 10 ? `0${length % 60}` : length % 60}`, [length]);
   const dayLength = 480;
   const backgroundColor = '#ccc';
-  let borderColor;
-  if (day && length <= dayLength) {
-    borderColor = '#11a811';
-  } else if (day && length > dayLength) {
-    borderColor = '#ff0000';
-  } else if (length < 60) {
-    borderColor = '#999';
-  } else if (length < 120) {
-    borderColor = '#ffb100';
-  } else {
-    borderColor = '#ff0000';
-  }
+
+  useEffect(() => {
+    if (day && length <= dayLength) {
+      setBorderColor('#11a811');
+    } else if (day && length > dayLength) {
+      setBorderColor('#ff0000');
+    } else if (length < 60) {
+      setBorderColor('#999');
+    } else if (length < 120) {
+      setBorderColor('#ffb100');
+    } else {
+      setBorderColor('#ff0000');
+    }
+  }, [day, length, dayLength]);
 
   const toggleHours = () => {
     setHours(!hours);
@@ -58,4 +61,4 @@ const Task: React.FC<TaskLengthProps> = ({ length, day }: TaskLengthProps) => {
       ));
 };
 
-export default Task;
+export default React.memo(Task);
