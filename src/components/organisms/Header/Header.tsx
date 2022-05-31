@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
-  ChevronRight, ChevronLeft, Target, LogOut, Activity,
+  ChevronRight, ChevronLeft, Target, LogOut, Activity, Briefcase,
 } from 'react-feather';
 import Select, { StylesConfig } from 'react-select';
 import { signOut } from 'firebase/auth';
@@ -35,6 +35,10 @@ const Header: React.FC<HeaderProps> = ({
 
   const openProjects = () => {
     history.push('/projects');
+  };
+
+  const openSorint = () => {
+    history.push('/sorint');
   };
 
   const yearOptions = [2021, 2022].map((years) => ({ label: years, value: years }));
@@ -84,6 +88,9 @@ const Header: React.FC<HeaderProps> = ({
       </div>
 
       <div className="Header__Buttons Header__Buttons--right">
+        <Button primary onClick={openSorint}>
+          <Briefcase />
+        </Button>
         <Button primary onClick={openProjects}>
           <Activity />
         </Button>
