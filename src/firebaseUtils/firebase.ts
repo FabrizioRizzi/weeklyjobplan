@@ -11,7 +11,10 @@ import {
   where,
 } from 'firebase/firestore';
 import {
-  CreateProjectRequest, CreateSircleLeaderIdeaRequest, CreateTaskRequest, CreateTaskToPlanRequest,
+  CreateIdeaRequest,
+  CreateProjectRequest,
+  CreateTaskRequest,
+  CreateTaskToPlanRequest,
 } from '../sharedInterfaces';
 
 export const firebaseConfig = {
@@ -62,8 +65,17 @@ export const deleteProject = async (id: string) => deleteDoc(doc(db, 'projects',
 /** ************ SIRCLE LEADER IDEAS **************** */
 export const getSircleLeaderIdeas = () => query(collection(db, 'sircleLeaderIdeas'));
 
-export const addSircleLeaderIdeas = async (sircleLeaderIdea: CreateSircleLeaderIdeaRequest) => addDoc(collection(db, 'sircleLeaderIdeas'), sircleLeaderIdea);
+export const addSircleLeaderIdeas = async (sircleLeaderIdea: CreateIdeaRequest) => addDoc(collection(db, 'sircleLeaderIdeas'), sircleLeaderIdea);
 
-export const updateSircleLeaderIdeas = async (id: string, sircleLeaderIdea: CreateSircleLeaderIdeaRequest) => updateDoc(doc(db, 'sircleLeaderIdeas', id), { ...sircleLeaderIdea });
+export const updateSircleLeaderIdeas = async (id: string, sircleLeaderIdea: CreateIdeaRequest) => updateDoc(doc(db, 'sircleLeaderIdeas', id), { ...sircleLeaderIdea });
 
 export const deleteSircleLeaderIdeas = async (id: string) => deleteDoc(doc(db, 'sircleLeaderIdeas', id));
+
+/** ************ TALENT HANDLER IDEAS **************** */
+export const getTalentHandlerIdeas = () => query(collection(db, 'talentHandlerIdeas'));
+
+export const addTalentHandlerIdeas = async (talentHandlerIdea: CreateIdeaRequest) => addDoc(collection(db, 'talentHandlerIdeas'), talentHandlerIdea);
+
+export const updateTalentHandlerIdeas = async (id: string, talentHandlerIdea: CreateIdeaRequest) => updateDoc(doc(db, 'talentHandlerIdeas', id), { ...talentHandlerIdea });
+
+export const deleteTalentHandlerIdeas = async (id: string) => deleteDoc(doc(db, 'talentHandlerIdeas', id));

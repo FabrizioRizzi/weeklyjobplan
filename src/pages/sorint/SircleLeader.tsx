@@ -2,10 +2,10 @@ import Loading from 'components/atoms/Loading/Loading';
 import { onSnapshot } from 'firebase/firestore';
 import { getSircleLeaderIdeas } from 'firebaseUtils/firebase';
 import { useEffect, useState } from 'react';
-import { SircleLeaderIdea } from 'sharedInterfaces';
+import { Idea } from 'sharedInterfaces';
 
 const SircleLeader = () => {
-  const [sircleLeaderIdeas, setSircleLeaderIdeas] = useState<SircleLeaderIdea[]>([]);
+  const [sircleLeaderIdeas, setSircleLeaderIdeas] = useState<Idea[]>([]);
   const [loading, setLoading] = useState<boolean>();
 
   useEffect(() => {
@@ -14,8 +14,8 @@ const SircleLeader = () => {
     const getSircleLeaderIdeasSubscription = onSnapshot(getSircleLeaderIdeas(), (querySnapshot) => {
       const parsedSircleLeaderIdea = querySnapshot.docs.map((sircleLeaderIdea) => (
         { id: sircleLeaderIdea.id, ...sircleLeaderIdea.data() }
-      )) as SircleLeaderIdea[];
-      const sortedIdeas = parsedSircleLeaderIdea.sort((a, b) => (a.priority > b.priority ? 1 : -1));
+      )) as Idea[];
+      const sortedIdeas = parsedSircleLeaderIdea.sort((a, b) => (a.priority < b.priority ? 1 : -1));
       setSircleLeaderIdeas(sortedIdeas);
       setLoading(false);
     });

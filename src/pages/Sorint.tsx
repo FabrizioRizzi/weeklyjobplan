@@ -1,13 +1,19 @@
 import Button from 'components/atoms/Button/Button';
 import { ArrowLeft } from 'react-feather';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SorintNavigation from 'navigation/SorintNavigation';
+import './Sorint.scss';
 
 const Sorint: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const goToSircleLeader = () => {
     navigate('sircleleader');
+  };
+
+  const goToTalentHandler = () => {
+    navigate('talentHandler');
   };
 
   const backHome = () => {
@@ -16,10 +22,13 @@ const Sorint: React.FC = () => {
 
   return (
     <>
-      <Button primary onClick={backHome}>
-        <ArrowLeft />
-      </Button>
-      <Button primary={false} onClick={goToSircleLeader}>Sircle Leader</Button>
+      <div className="Sorint__Buttons">
+        <Button primary onClick={backHome}>
+          <ArrowLeft />
+        </Button>
+        <Button primary={location.pathname === '/sorint/sircleleader'} onClick={goToSircleLeader}>Sircle Leader</Button>
+        <Button primary={location.pathname === '/sorint/talentHandler'} onClick={goToTalentHandler}>Talent Handler</Button>
+      </div>
       <SorintNavigation />
     </>
   );

@@ -36,12 +36,12 @@ export interface ProjectInterface extends CreateProjectRequest {
   id: string;
 }
 
-export interface CreateSircleLeaderIdeaRequest {
+export interface CreateIdeaRequest {
   title: string;
   description: string;
   priority: 0 | 1 | 2;
 }
 
-export interface SircleLeaderIdea extends CreateSircleLeaderIdeaRequest {
+export interface Idea extends CreateIdeaRequest {
   id: string;
 }
