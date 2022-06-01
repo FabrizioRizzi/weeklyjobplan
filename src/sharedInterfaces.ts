@@ -35,3 +35,13 @@ export interface CreateProjectRequest {
 export interface ProjectInterface extends CreateProjectRequest {
   id: string;
 }
+
+export interface CreateSircleLeaderIdeaRequest {
+  title: string;
+  description: string;
+  priority: 0 | 1 | 2;
+}
+
+export interface SircleLeaderIdea extends CreateSircleLeaderIdeaRequest {
+  id: string;
+}

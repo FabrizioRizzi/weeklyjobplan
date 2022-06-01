@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { auth } from 'firebaseUtils/firebase';
 import Button from 'components/atoms/Button/Button';
 import TextInput from 'components/atoms/TextInput/TextInput';
@@ -7,7 +7,7 @@ import './Login.scss';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login: React.FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ const Login: React.FC = () => {
     setLoading(true);
     event.preventDefault();
     signInWithEmailAndPassword(auth, username.trim(), password.trim())
-      .then(() => history.replace('/'))
+      .then(() => navigate('/'))
       .catch((err) => setError(`* ${err.message}`))
       .finally(() => setLoading(false));
   };

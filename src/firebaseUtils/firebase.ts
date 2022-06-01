@@ -10,7 +10,9 @@ import {
   updateDoc,
   where,
 } from 'firebase/firestore';
-import { CreateProjectRequest, CreateTaskRequest, CreateTaskToPlanRequest } from '../sharedInterfaces';
+import {
+  CreateProjectRequest, CreateSircleLeaderIdeaRequest, CreateTaskRequest, CreateTaskToPlanRequest,
+} from '../sharedInterfaces';
 
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
@@ -56,3 +58,12 @@ export const addProject = async (project: CreateProjectRequest) => addDoc(collec
 export const updateProject = async (id: string, project: CreateProjectRequest) => updateDoc(doc(db, 'projects', id), { ...project });
 
 export const deleteProject = async (id: string) => deleteDoc(doc(db, 'projects', id));
+
+/** ************ SIRCLE LEADER IDEAS **************** */
+export const getSircleLeaderIdeas = () => query(collection(db, 'sircleLeaderIdeas'));
+
+export const addSircleLeaderIdeas = async (sircleLeaderIdea: CreateSircleLeaderIdeaRequest) => addDoc(collection(db, 'sircleLeaderIdeas'), sircleLeaderIdea);
+
+export const updateSircleLeaderIdeas = async (id: string, sircleLeaderIdea: CreateSircleLeaderIdeaRequest) => updateDoc(doc(db, 'sircleLeaderIdeas', id), { ...sircleLeaderIdea });
+
+export const deleteSircleLeaderIdeas = async (id: string) => deleteDoc(doc(db, 'sircleLeaderIdeas', id));

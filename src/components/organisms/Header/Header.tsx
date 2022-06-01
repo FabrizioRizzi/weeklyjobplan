@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   ChevronRight, ChevronLeft, Target, LogOut, Activity, Briefcase,
 } from 'react-feather';
@@ -27,18 +27,18 @@ export interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({
   year, week, changeYear, changeWeek, previousWeek, nextWeek, reset,
 }: HeaderProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const logout = () => {
     signOut(auth);
   };
 
   const openProjects = () => {
-    history.push('/projects');
+    navigate('/projects');
   };
 
   const openSorint = () => {
-    history.push('/sorint');
+    navigate('/sorint');
   };
 
   const yearOptions = [2021, 2022].map((years) => ({ label: years, value: years }));

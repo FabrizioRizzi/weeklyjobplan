@@ -1,16 +1,27 @@
 import Button from 'components/atoms/Button/Button';
 import { ArrowLeft } from 'react-feather';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+import SorintNavigation from 'navigation/SorintNavigation';
 
 const Sorint: React.FC = () => {
-  const history = useHistory();
-  const backHome = () => {
-    history.replace('./');
+  const navigate = useNavigate();
+
+  const goToSircleLeader = () => {
+    navigate('sircleleader');
   };
+
+  const backHome = () => {
+    navigate('/');
+  };
+
   return (
-    <Button primary onClick={backHome}>
-      <ArrowLeft />
-    </Button>
+    <>
+      <Button primary onClick={backHome}>
+        <ArrowLeft />
+      </Button>
+      <Button primary={false} onClick={goToSircleLeader}>Sircle Leader</Button>
+      <SorintNavigation />
+    </>
   );
 };
 
