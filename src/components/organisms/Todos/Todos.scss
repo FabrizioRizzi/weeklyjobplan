@@ -1,0 +1,17 @@
+@import "_variables";
+
+.Todos__Container {
+  height: fit-content;
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 2px 2px 5px $boxShadow;
+}
+
+.Todos__Title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-bottom: 2px solid;
+  margin-bottom: 1rem;
+}

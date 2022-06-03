@@ -1,30 +1,50 @@
 import Loading from 'components/atoms/Loading/Loading';
+import Ideas from 'components/organisms/Ideas/Ideas';
+import Todos from 'components/organisms/Todos/Todos';
 import { onSnapshot } from 'firebase/firestore';
-import { getSircleLeaderIdeas } from 'firebaseUtils/firebase';
-import { useEffect, useState } from 'react';
-import { Idea } from 'sharedInterfaces';
+import { getSircleLeaderIdeas, getSircleLeaderTodos } from 'firebaseUtils/firebase';
+import React, { useEffect, useState } from 'react';
+import { Idea, Todo } from 'sharedInterfaces';
+import './SircleLeader.scss';
 
 const SircleLeader = () => {
   const [sircleLeaderIdeas, setSircleLeaderIdeas] = useState<Idea[]>([]);
-  const [loading, setLoading] = useState<boolean>();
+  const [sircleLeaderTodos, setSircleLeaderTodos] = useState<Todo[]>([]);
+  const [loadingIdeas, setLoadingIdeas] = useState<boolean>(true);
+  const [loadingTodos, setLoadingTodos] = useState<boolean>(true);
 
   useEffect(() => {
-    setLoading(true);
-
     const getSircleLeaderIdeasSubscription = onSnapshot(getSircleLeaderIdeas(), (querySnapshot) => {
       const parsedSircleLeaderIdea = querySnapshot.docs.map((sircleLeaderIdea) => (
         { id: sircleLeaderIdea.id, ...sircleLeaderIdea.data() }
       )) as Idea[];
       const sortedIdeas = parsedSircleLeaderIdea.sort((a, b) => (a.priority < b.priority ? 1 : -1));
       setSircleLeaderIdeas(sortedIdeas);
-      setLoading(false);
+      setLoadingIdeas(false);
     });
     return () => getSircleLeaderIdeasSubscription();
   }, []);
 
-  return loading
+  useEffect(() => {
+    const getSircleLeaderTodosSubscription = onSnapshot(getSircleLeaderTodos(), (querySnapshot) => {
+      const parsedSircleLeaderIdea = querySnapshot.docs.map((sircleLeaderIdea) => (
+        { id: sircleLeaderIdea.id, ...sircleLeaderIdea.data() }
+      )) as Todo[];
+      const sortedTodos = parsedSircleLeaderIdea.sort((a, b) => (a.priority < b.priority ? 1 : -1));
+      setSircleLeaderTodos(sortedTodos);
+      setLoadingTodos(false);
+    });
+    return () => getSircleLeaderTodosSubscription();
+  }, []);
+
+  return loadingIdeas || loadingTodos
     ? <Loading />
-    : <div>{sircleLeaderIdeas.map((idea) => <div key={idea.id}>{idea.title}</div>)}</div>;
+    : (
+      <div className="SircleLeader__Container">
+        <Ideas ideas={sircleLeaderIdeas} />
+        <Todos todos={sircleLeaderTodos} />
+      </div>
+    );
 };
 
-export default SircleLeader;
+export default React.memo(SircleLeader);

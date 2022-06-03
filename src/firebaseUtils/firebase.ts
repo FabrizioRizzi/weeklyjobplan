@@ -71,6 +71,15 @@ export const updateSircleLeaderIdeas = async (id: string, sircleLeaderIdea: Crea
 
 export const deleteSircleLeaderIdeas = async (id: string) => deleteDoc(doc(db, 'sircleLeaderIdeas', id));
 
+/** ************ SIRCLE LEADER TODOS **************** */
+export const getSircleLeaderTodos = () => query(collection(db, 'sircleLeaderTodos'));
+
+export const addSircleLeaderTodos = async (sircleLeaderTodo: CreateIdeaRequest) => addDoc(collection(db, 'sircleLeaderTodos'), sircleLeaderTodo);
+
+export const updateSircleLeaderTodos = async (id: string, sircleLeaderTodo: CreateIdeaRequest) => updateDoc(doc(db, 'sircleLeaderTodos', id), { ...sircleLeaderTodo });
+
+export const deleteSircleLeaderTodos = async (id: string) => deleteDoc(doc(db, 'sircleLeaderTodos', id));
+
 /** ************ TALENT HANDLER IDEAS **************** */
 export const getTalentHandlerIdeas = () => query(collection(db, 'talentHandlerIdeas'));
 

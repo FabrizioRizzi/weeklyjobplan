@@ -1,8 +1,10 @@
 import Loading from 'components/atoms/Loading/Loading';
+import Ideas from 'components/organisms/Ideas/Ideas';
 import { onSnapshot } from 'firebase/firestore';
 import { getTalentHandlerIdeas } from 'firebaseUtils/firebase';
 import { useEffect, useState } from 'react';
 import { Idea } from 'sharedInterfaces';
+import './TalentHandler.scss';
 
 const TalentHandler = () => {
   const [talentHandlerIdeas, setTalentHandlerIdeas] = useState<Idea[]>([]);
@@ -24,7 +26,11 @@ const TalentHandler = () => {
 
   return loading
     ? <Loading />
-    : <div>{talentHandlerIdeas.map((idea) => <div key={idea.id}>{idea.title}</div>)}</div>;
+    : (
+      <div className="TalentHandler__Container">
+        <Ideas ideas={talentHandlerIdeas} />
+      </div>
+    );
 };
 
 export default TalentHandler;

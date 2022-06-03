@@ -45,3 +45,14 @@ export interface CreateIdeaRequest {
 export interface Idea extends CreateIdeaRequest {
   id: string;
 }
+
+export interface CreateTodoRequest {
+  title: string;
+  description: string;
+  priority: 0 | 1 | 2;
+  onHold: boolean;
+}
+
+export interface Todo extends CreateTodoRequest {
+  id: string;
+}
