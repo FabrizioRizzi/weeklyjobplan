@@ -1,3 +1,4 @@
+import IdeaRow from 'components/molecules/IdeaRow/IdeaRow';
 import React from 'react';
 import { PenTool } from 'react-feather';
 import { Idea } from 'sharedInterfaces';
@@ -15,9 +16,7 @@ const Ideas: React.FC<IdeasProps> = ({ ideas }: IdeasProps) => (
       </div>
       <div>Ideas</div>
     </div>
-    {ideas.map((idea) => (
-      <div key={idea.id}>{idea.title}</div>
-    ))}
+    {ideas.map((idea) => <IdeaRow key={idea.id} idea={idea} />)}
   </div>
 );
 

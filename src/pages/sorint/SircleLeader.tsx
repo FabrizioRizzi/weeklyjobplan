@@ -31,6 +31,7 @@ const SircleLeader = () => {
         { id: sircleLeaderIdea.id, ...sircleLeaderIdea.data() }
       )) as Todo[];
       const sortedTodos = parsedSircleLeaderIdea.sort((a, b) => (a.priority < b.priority ? 1 : -1));
+      console.log(sortedTodos);
       setSircleLeaderTodos(sortedTodos);
       setLoadingTodos(false);
     });
