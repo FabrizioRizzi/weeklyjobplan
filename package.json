@@ -27,22 +27,15 @@
     "workbox-strategies": "^5.1.4",
     "workbox-streams": "^5.1.4",
     "@testing-library/jest-dom": "^5.11.4",
-    "eslint": "^7.24.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-airbnb-typescript": "^12.3.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.23.2",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
     "@storybook/addon-actions": "^6.2.1",
     "@storybook/addon-essentials": "^6.2.1",
     "@storybook/addon-links": "^6.2.1",
     "@storybook/client-api": "^6.4.19",
     "@storybook/node-logger": "^6.2.1",
     "@storybook/preset-create-react-app": "^3.1.7",
-    "@storybook/react": "^6.2.1"
+    "@storybook/react": "^6.2.1",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -83,13 +76,20 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.37",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-router-dom": "^5.1.7",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0"
   },
   "resolutions": {
     "babel-loader": "8.1.0"
