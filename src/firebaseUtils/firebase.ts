@@ -75,10 +75,10 @@ export const deleteIdea = async (coll: string, id: string) => deleteDoc(doc(db, 
 /** ************ TODOS **************** */
 export const getTodos = (coll: string) => query(collection(db, coll));
 
-export const getTodosSteps = (coll: string, id: string) => query(collection(db, coll, id, 'steps'));
+export const getTodoSteps = (coll: string, id: string) => query(collection(db, coll, id, 'steps'));
 
-export const addTodos = async (coll: string, todo: CreateIdeaRequest) => addDoc(collection(db, coll), todo);
+export const addTodo = async (coll: string, todo: CreateIdeaRequest) => addDoc(collection(db, coll), todo);
 
-export const updateTodos = async (coll: string, id: string, todo: CreateIdeaRequest) => updateDoc(doc(db, coll, id), { ...todo });
+export const updateTodo = async (coll: string, id: string, todo: CreateIdeaRequest) => updateDoc(doc(db, coll, id), { ...todo });
 
-export const deleteTodos = async (coll: string, id: string) => deleteDoc(doc(db, coll, id));
+export const deleteTodo = async (coll: string, id: string) => deleteDoc(doc(db, coll, id));

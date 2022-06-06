@@ -1,32 +1,48 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { addIdea, deleteIdea, updateIdea } from 'firebaseUtils/firebase';
-import { CreateIdeaRequest, Idea } from 'sharedInterfaces';
+import {
+  addTodo, deleteTodo, getTodoSteps, updateTodo,
+} from 'firebaseUtils/firebase';
+import { CreateTodoRequest, Todo } from 'sharedInterfaces';
 import Modal from 'components/atoms/Modal/Modal';
 import TextInput from 'components/atoms/TextInput/TextInput';
 import TextArea from 'components/atoms/TextArea/TextArea';
 import Button from 'components/atoms/Button/Button';
+import { getDocs } from 'firebase/firestore';
 
-export interface UpdateIdeaModalProps {
+export interface UpdateTodoModalProps {
   isVisible: boolean;
   coll: string;
-  idea: Idea | CreateIdeaRequest;
+  todo: Todo | CreateTodoRequest;
   closeModal: () => void;
 }
 
-const UpdateIdeaModal: React.FC<UpdateIdeaModalProps> = ({
-  isVisible, coll, idea, closeModal,
-}: UpdateIdeaModalProps) => {
-  const [title, setTitle] = useState<string>(idea.title);
-  const [description, setDescription] = useState<string>(idea.description || '');
-  const [priority, setPriority] = useState<0 | 1 | 2>(idea.priority);
+const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
+  isVisible, coll, todo, closeModal,
+}: UpdateTodoModalProps) => {
+  const [title, setTitle] = useState<string>(todo.title);
+  const [description, setDescription] = useState<string>(todo.description || '');
+  const [priority, setPriority] = useState<0 | 1 | 2>(todo.priority);
   const [loadingAddUpdate, setLoadingAddUpdate] = useState<boolean>(false);
   const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
 
   useEffect(() => {
-    setTitle(idea.title || '');
-    setDescription(idea.description || '');
-    setPriority(idea.priority || 0);
-  }, [idea]);
+    setTitle(todo.title || '');
+    setDescription(todo.description || '');
+    setPriority(todo.priority || 0);
+  }, [todo]);
+
+  useEffect(() => {
+    if ('id' in todo) {
+      const loadSteps = async () => {
+        const querySnapshot = await getDocs(getTodoSteps(coll, todo.id));
+        const parsedSteps = querySnapshot.docs.map((steps) => (
+          { id: steps.id, ...steps.data() }
+        ));
+        console.log(parsedSteps);
+      };
+      loadSteps();
+    }
+  }, [todo]);
 
   const changeTitle = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
@@ -40,32 +56,32 @@ const UpdateIdeaModal: React.FC<UpdateIdeaModalProps> = ({
     setPriority(Number(event.target.value) as 0 | 1 | 2);
   }, []);
 
-  const onAddIdea = async () => {
+  const onAddTodo = async () => {
     setLoadingAddUpdate(true);
     const request = {
       title, description, priority,
     };
-    await addIdea(coll, request);
+    await addTodo(coll, request);
     setLoadingAddUpdate(false);
     closeModal();
   };
 
-  const onUpdateIdea = async () => {
-    if ('id' in idea) {
+  const onUpdateTodo = async () => {
+    if ('id' in todo) {
       setLoadingAddUpdate(true);
       const request = {
         title, description, priority,
       };
-      await updateIdea(coll, idea.id, request);
+      await updateTodo(coll, todo.id, request);
       setLoadingAddUpdate(false);
       closeModal();
     }
   };
 
-  const deleteSelectedIdea = async () => {
-    if ('id' in idea) {
+  const deleteSelectedTodo = async () => {
+    if ('id' in todo) {
       setLoadingDelete(true);
-      await deleteIdea(coll, idea.id);
+      await deleteTodo(coll, todo.id);
       setLoadingDelete(false);
       closeModal();
     }
@@ -75,7 +91,7 @@ const UpdateIdeaModal: React.FC<UpdateIdeaModalProps> = ({
     <Modal
       isVisible={isVisible}
       closeModal={closeModal}
-      title="Aggiungi Idea"
+      title="Aggiungi Todo"
       width={window.innerWidth < 400 ? window.innerWidth : 400}
     >
       <form>
@@ -92,19 +108,19 @@ const UpdateIdeaModal: React.FC<UpdateIdeaModalProps> = ({
 
         </div>
 
-        {'id' in idea
+        {'id' in todo
           ? (
             <div className="Modal__Buttons">
               <Button
                 primary={false}
-                onClick={deleteSelectedIdea}
+                onClick={deleteSelectedTodo}
                 loading={loadingDelete}
               >
                 Cancella
               </Button>
               <Button
                 primary
-                onClick={onUpdateIdea}
+                onClick={onUpdateTodo}
                 loading={loadingAddUpdate}
               >
                 Aggiorna
@@ -115,7 +131,7 @@ const UpdateIdeaModal: React.FC<UpdateIdeaModalProps> = ({
             <div className="Modal__Add">
               <Button
                 primary
-                onClick={onAddIdea}
+                onClick={onAddTodo}
                 loading={loadingAddUpdate}
               >
                 Aggiungi
@@ -127,4 +143,4 @@ const UpdateIdeaModal: React.FC<UpdateIdeaModalProps> = ({
   );
 };
 
-export default React.memo(UpdateIdeaModal);
+export default React.memo(UpdateTodoModal);
