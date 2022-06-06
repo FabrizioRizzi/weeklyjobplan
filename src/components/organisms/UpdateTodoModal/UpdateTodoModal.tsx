@@ -24,6 +24,7 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
   const [priority, setPriority] = useState<0 | 1 | 2>(todo.priority);
   const [loadingAddUpdate, setLoadingAddUpdate] = useState<boolean>(false);
   const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
+  const [steps, setSteps] = useState<any>([]);
 
   useEffect(() => {
     setTitle(todo.title || '');
@@ -35,10 +36,10 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
     if ('id' in todo) {
       const loadSteps = async () => {
         const querySnapshot = await getDocs(getTodoSteps(coll, todo.id));
-        const parsedSteps = querySnapshot.docs.map((steps) => (
-          { id: steps.id, ...steps.data() }
+        const parsedSteps = querySnapshot.docs.map((rawSteps) => (
+          { id: rawSteps.id, ...rawSteps.data() }
         ));
-        console.log(parsedSteps);
+        setSteps(parsedSteps);
       };
       loadSteps();
     }
@@ -106,6 +107,7 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
           <div>Priority</div>
           <TextInput type="number" minValue={0} maxValue={2} onChange={changePriority} value={priority} />
 
+          {JSON.stringify(steps)}
         </div>
 
         {'id' in todo
