@@ -1,34 +1,35 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { addTaskToPlan, deleteTaskToPlan, updateTaskToPlan } from 'firebaseUtils/firebase';
-import { CreateTaskToPlanRequest, TaskToPlanInterface } from 'sharedInterfaces';
+import { addIdea, deleteIdea, updateIdea } from 'firebaseUtils/firebase';
+import { CreateIdeaRequest, Idea } from 'sharedInterfaces';
 import Modal from 'components/atoms/Modal/Modal';
 import TextInput from 'components/atoms/TextInput/TextInput';
 import TextArea from 'components/atoms/TextArea/TextArea';
 import Button from 'components/atoms/Button/Button';
 
-export interface UpdateToPlanModalProps {
+export interface UpdateIdeaModalProps {
   isVisible: boolean;
-  taskToPlan: TaskToPlanInterface | CreateTaskToPlanRequest;
+  coll: string;
+  idea: Idea | CreateIdeaRequest;
   closeModal: () => void;
 }
 
-const UpdateToPlanModal: React.FC<UpdateToPlanModalProps> = ({
-  isVisible, taskToPlan, closeModal,
-}: UpdateToPlanModalProps) => {
-  const [name, setName] = useState<string>(taskToPlan.name);
-  const [description, setDescription] = useState<string>(taskToPlan.description);
-  const [priority, setPriority] = useState<0 | 1 | 2>(taskToPlan.priority);
+const UpdateIdeaModal: React.FC<UpdateIdeaModalProps> = ({
+  isVisible, coll, idea, closeModal,
+}: UpdateIdeaModalProps) => {
+  const [title, setTitle] = useState<string>(idea.title);
+  const [description, setDescription] = useState<string>(idea.description || '');
+  const [priority, setPriority] = useState<0 | 1 | 2>(idea.priority);
   const [loadingAddUpdate, setLoadingAddUpdate] = useState<boolean>(false);
   const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
 
   useEffect(() => {
-    setName(taskToPlan.name);
-    setDescription(taskToPlan.description || '');
-    setPriority(taskToPlan.priority || 0);
-  }, [taskToPlan]);
+    setTitle(idea.title || '');
+    setDescription(idea.description || '');
+    setPriority(idea.priority || 0);
+  }, [idea]);
 
-  const changeName = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+  const changeTitle = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(event.target.value);
   }, []);
 
   const changeDescription = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -39,32 +40,32 @@ const UpdateToPlanModal: React.FC<UpdateToPlanModalProps> = ({
     setPriority(Number(event.target.value) as 0 | 1 | 2);
   }, []);
 
-  const onAddTaskToPlan = async () => {
+  const onAddIdea = async () => {
     setLoadingAddUpdate(true);
     const request = {
-      name, description, priority,
+      title, description, priority,
     };
-    await addTaskToPlan(request);
+    await addIdea(coll, request);
     setLoadingAddUpdate(false);
     closeModal();
   };
 
-  const onUpdateTaskToPlan = async () => {
-    if ('id' in taskToPlan) {
+  const onUpdateIdea = async () => {
+    if ('id' in idea) {
       setLoadingAddUpdate(true);
       const request = {
-        name, description, priority,
+        title, description, priority,
       };
-      await updateTaskToPlan(taskToPlan.id, request);
+      await updateIdea(coll, idea.id, request);
       setLoadingAddUpdate(false);
       closeModal();
     }
   };
 
-  const deleteSelectedTask = async () => {
-    if ('id' in taskToPlan) {
+  const deleteSelectedIdea = async () => {
+    if ('id' in idea) {
       setLoadingDelete(true);
-      await deleteTaskToPlan(taskToPlan.id);
+      await deleteIdea(coll, idea.id);
       setLoadingDelete(false);
       closeModal();
     }
@@ -74,35 +75,43 @@ const UpdateToPlanModal: React.FC<UpdateToPlanModalProps> = ({
     <Modal
       isVisible={isVisible}
       closeModal={closeModal}
-      title="Aggiungi Task"
+      title="Aggiungi Idea"
       width={window.innerWidth < 400 ? window.innerWidth : 400}
     >
       <form>
         <div className="Modal__Fields">
 
-          <div>Name</div>
-          <TextInput onChange={changeName} value={name} />
+          <div>Title</div>
+          <TextInput onChange={changeTitle} value={title} />
 
           <div>Description</div>
           <TextArea onChange={changeDescription} value={description} />
 
           <div>Priority</div>
-          <TextInput onChange={changePriority} value={priority} minValue={0} maxValue={2} type="number" />
+          <TextInput type="number" minValue={0} maxValue={2} onChange={changePriority} value={priority} />
+
         </div>
 
-        {'id' in taskToPlan
+        {'id' in idea
           ? (
             <div className="Modal__Buttons">
               <Button
                 primary={false}
-                onClick={deleteSelectedTask}
+                onClick={deleteSelectedIdea}
                 loading={loadingDelete}
               >
                 Cancella
               </Button>
               <Button
                 primary
-                onClick={onUpdateTaskToPlan}
+                onClick={onAddIdea}
+                loading={loadingAddUpdate}
+              >
+                Duplica
+              </Button>
+              <Button
+                primary
+                onClick={onUpdateIdea}
                 loading={loadingAddUpdate}
               >
                 Aggiorna
@@ -113,7 +122,7 @@ const UpdateToPlanModal: React.FC<UpdateToPlanModalProps> = ({
             <div className="Modal__Add">
               <Button
                 primary
-                onClick={onAddTaskToPlan}
+                onClick={onAddIdea}
                 loading={loadingAddUpdate}
               >
                 Aggiungi
@@ -125,4 +134,4 @@ const UpdateToPlanModal: React.FC<UpdateToPlanModalProps> = ({
   );
 };
 
-export default React.memo(UpdateToPlanModal);
+export default React.memo(UpdateIdeaModal);

@@ -5,7 +5,6 @@ import Modal from 'components/atoms/Modal/Modal';
 import TextInput from 'components/atoms/TextInput/TextInput';
 import TextArea from 'components/atoms/TextArea/TextArea';
 import Button from 'components/atoms/Button/Button';
-import './UpdateTaskModal.scss';
 
 export interface UpdateTaskModalProps {
   isVisible: boolean;
@@ -99,7 +98,7 @@ const UpdateTaskModal: React.FC<UpdateTaskModalProps> = ({
       width={window.innerWidth < 400 ? window.innerWidth : 400}
     >
       <form>
-        <div className="UpdateTaskModal__Fields">
+        <div className="Modal__Fields">
 
           <div>Name</div>
           <TextInput onChange={changeName} value={name} />
@@ -122,7 +121,7 @@ const UpdateTaskModal: React.FC<UpdateTaskModalProps> = ({
 
         {'id' in task
           ? (
-            <div className="UpdateTaskModal__Buttons">
+            <div className="Modal__Buttons">
               <Button
                 primary={false}
                 onClick={deleteSelectedTask}
@@ -147,7 +146,7 @@ const UpdateTaskModal: React.FC<UpdateTaskModalProps> = ({
             </div>
           )
           : (
-            <div className="UpdateTaskModal__Add">
+            <div className="Modal__Add">
               <Button
                 primary
                 onClick={onAddTask}

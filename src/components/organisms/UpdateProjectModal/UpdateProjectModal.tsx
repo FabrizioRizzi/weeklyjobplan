@@ -6,7 +6,6 @@ import TextInput from 'components/atoms/TextInput/TextInput';
 import TextArea from 'components/atoms/TextArea/TextArea';
 import Button from 'components/atoms/Button/Button';
 import Checkbox from 'components/atoms/Checkbox/Checkbox';
-import './UpdateProjectModal.scss';
 
 export interface UpdateProjectModalProps {
   isVisible: boolean;
@@ -103,7 +102,7 @@ const UpdateProjectModal: React.FC<UpdateProjectModalProps> = ({
       width={window.innerWidth < 400 ? window.innerWidth : 400}
     >
       <form>
-        <div className="UpdateProjectModal__Fields">
+        <div className="Modal__Fields">
 
           <div>Name</div>
           <TextInput onChange={changeName} value={name} />
@@ -129,7 +128,7 @@ const UpdateProjectModal: React.FC<UpdateProjectModalProps> = ({
 
         {'id' in project
           ? (
-            <div className="UpdateProjectModal__Buttons">
+            <div className="Modal__Buttons">
               <Button
                 primary={false}
                 onClick={deleteSelectedProject}
@@ -154,7 +153,7 @@ const UpdateProjectModal: React.FC<UpdateProjectModalProps> = ({
             </div>
           )
           : (
-            <div className="UpdateProjectModal__Add">
+            <div className="Modal__Add">
               <Button
                 primary
                 onClick={onAddProject}

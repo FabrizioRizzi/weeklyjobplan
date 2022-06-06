@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import {
@@ -62,29 +63,22 @@ export const updateProject = async (id: string, project: CreateProjectRequest) =
 
 export const deleteProject = async (id: string) => deleteDoc(doc(db, 'projects', id));
 
-/** ************ SIRCLE LEADER IDEAS **************** */
-export const getSircleLeaderIdeas = () => query(collection(db, 'sircleLeaderIdeas'));
+/** ************ IDEAS **************** */
+export const getIdeas = (coll: string) => query(collection(db, coll));
 
-export const addSircleLeaderIdeas = async (sircleLeaderIdea: CreateIdeaRequest) => addDoc(collection(db, 'sircleLeaderIdeas'), sircleLeaderIdea);
+export const addIdea = async (coll: string, idea: CreateIdeaRequest) => addDoc(collection(db, coll), idea);
 
-export const updateSircleLeaderIdeas = async (id: string, sircleLeaderIdea: CreateIdeaRequest) => updateDoc(doc(db, 'sircleLeaderIdeas', id), { ...sircleLeaderIdea });
+export const updateIdea = async (coll: string, id: string, idea: CreateIdeaRequest) => updateDoc(doc(db, coll, id), { ...idea });
 
-export const deleteSircleLeaderIdeas = async (id: string) => deleteDoc(doc(db, 'sircleLeaderIdeas', id));
+export const deleteIdea = async (coll: string, id: string) => deleteDoc(doc(db, coll, id));
 
-/** ************ SIRCLE LEADER TODOS **************** */
-export const getSircleLeaderTodos = () => query(collection(db, 'sircleLeaderTodos'));
+/** ************ TODOS **************** */
+export const getTodos = (coll: string) => query(collection(db, coll));
 
-export const addSircleLeaderTodos = async (sircleLeaderTodo: CreateIdeaRequest) => addDoc(collection(db, 'sircleLeaderTodos'), sircleLeaderTodo);
+export const getTodosSteps = (coll: string, id: string) => query(collection(db, coll, id, 'steps'));
 
-export const updateSircleLeaderTodos = async (id: string, sircleLeaderTodo: CreateIdeaRequest) => updateDoc(doc(db, 'sircleLeaderTodos', id), { ...sircleLeaderTodo });
+export const addTodos = async (coll: string, todo: CreateIdeaRequest) => addDoc(collection(db, coll), todo);
 
-export const deleteSircleLeaderTodos = async (id: string) => deleteDoc(doc(db, 'sircleLeaderTodos', id));
+export const updateTodos = async (coll: string, id: string, todo: CreateIdeaRequest) => updateDoc(doc(db, coll, id), { ...todo });
 
-/** ************ TALENT HANDLER IDEAS **************** */
-export const getTalentHandlerIdeas = () => query(collection(db, 'talentHandlerIdeas'));
-
-export const addTalentHandlerIdeas = async (talentHandlerIdea: CreateIdeaRequest) => addDoc(collection(db, 'talentHandlerIdeas'), talentHandlerIdea);
-
-export const updateTalentHandlerIdeas = async (id: string, talentHandlerIdea: CreateIdeaRequest) => updateDoc(doc(db, 'talentHandlerIdeas', id), { ...talentHandlerIdea });
-
-export const deleteTalentHandlerIdeas = async (id: string) => deleteDoc(doc(db, 'talentHandlerIdeas', id));
+export const deleteTodos = async (coll: string, id: string) => deleteDoc(doc(db, coll, id));
