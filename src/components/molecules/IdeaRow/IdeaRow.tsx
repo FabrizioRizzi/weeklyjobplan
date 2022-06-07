@@ -13,7 +13,9 @@ const IdeaRow = ({ idea, updateIdea }: IdeaProps) => {
   return (
     <div className="IdeaRow__Container">
       <div onClick={onUpdateIdea} className="IdeaRow__Title">{idea.title}</div>
-      <Stars priority={idea.priority} />
+      <div className="IdeaRow__Stars">
+        <Stars priority={idea.priority} />
+      </div>
     </div>
   );
 };

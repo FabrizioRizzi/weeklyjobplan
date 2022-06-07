@@ -27,9 +27,11 @@ const SircleLeader = () => {
 
   useEffect(() => {
     const getSircleLeaderTodosSubscription = onSnapshot(getTodos('sircleLeaderTodos'), (querySnapshot) => {
-      const parsedTodos = querySnapshot.docs.map((sircleLeaderIdea) => (
-        { id: sircleLeaderIdea.id, ...sircleLeaderIdea.data() }
-      )) as Todo[];
+      const parsedTodos = querySnapshot.docs.map((sircleLeaderIdea) => ({
+        id: sircleLeaderIdea.id,
+        ...sircleLeaderIdea.data(),
+        lastUpdate: sircleLeaderIdea.data().lastUpdate.toDate(),
+      })) as Todo[];
       const sortedTodos = parsedTodos.sort((a, b) => (a.priority < b.priority ? 1 : -1));
       setSircleLeaderTodos(sortedTodos);
       setLoadingTodos(false);

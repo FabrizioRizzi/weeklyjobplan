@@ -1,5 +1,7 @@
+import Button from 'components/atoms/Button/Button';
+import TodoRow from 'components/molecules/TodoRow/TodoRow';
 import React, { useCallback, useState } from 'react';
-import { Edit } from 'react-feather';
+import { Edit, Plus } from 'react-feather';
 import { CreateTodoRequest, Todo } from 'sharedInterfaces';
 import UpdateTodoModal from '../UpdateTodoModal/UpdateTodoModal';
 import './Todos.scss';
@@ -28,6 +30,11 @@ const Todos: React.FC<TodosProps> = ({ coll, todos }: TodosProps) => {
     setShowAddUpdateModal(true);
   }, []);
 
+  const addTodo = useCallback(() => {
+    setSelectedTodo(emptyTodo);
+    setShowAddUpdateModal(true);
+  }, []);
+
   return (
     <div className="Todos__Container">
       <div className="Todos__Title">
@@ -35,10 +42,9 @@ const Todos: React.FC<TodosProps> = ({ coll, todos }: TodosProps) => {
           <Edit />
         </div>
         <div>Todos</div>
+        <Button primary onClick={addTodo}><Plus /></Button>
       </div>
-      {todos.map((todo) => (
-        <div key={todo.id} onClick={() => updateSelectedTodo(todo)}>{todo.title}</div>
-      ))}
+      {todos.map((todo) => <TodoRow key={todo.id} todo={todo} updateTodo={updateSelectedTodo} />)}
       <UpdateTodoModal
         isVisible={showAddUpdateModal}
         closeModal={closeModal}
