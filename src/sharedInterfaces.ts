@@ -57,3 +57,12 @@ export interface CreateTodoRequest {
 export interface Todo extends CreateTodoRequest {
   id: string;
 }
+
+export interface CreateStepRequest {
+  description: string;
+  done: boolean;
+}
+
+export interface Step extends CreateStepRequest {
+  id: string;
+}

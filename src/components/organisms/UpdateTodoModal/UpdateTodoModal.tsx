@@ -2,7 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import {
   addTodo, deleteTodo, getTodoSteps, updateTodo,
 } from 'firebaseUtils/firebase';
-import { CreateTodoRequest, Todo } from 'sharedInterfaces';
+import {
+  CreateStepRequest, CreateTodoRequest, Step, Todo,
+} from 'sharedInterfaces';
 import Modal from 'components/atoms/Modal/Modal';
 import TextInput from 'components/atoms/TextInput/TextInput';
 import TextArea from 'components/atoms/TextArea/TextArea';
@@ -10,6 +12,7 @@ import Button from 'components/atoms/Button/Button';
 import { getDocs } from 'firebase/firestore';
 import Checkbox from 'components/atoms/Checkbox/Checkbox';
 import dayjs from 'dayjs';
+import './UpdateTodoModal.scss';
 
 export interface UpdateTodoModalProps {
   isVisible: boolean;
@@ -27,13 +30,14 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
   const [onHold, setOnHold] = useState<boolean>(todo.onHold);
   const [loadingAddUpdate, setLoadingAddUpdate] = useState<boolean>(false);
   const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
-  // const [steps, setSteps] = useState<any>([]);
+  const [steps, setSteps] = useState<(Step | CreateStepRequest)[]>([]);
 
   useEffect(() => {
     setTitle(todo.title || '');
     setDescription(todo.description || '');
     setPriority(todo.priority || 0);
     setOnHold(todo.onHold || false);
+    setSteps([]);
   }, [todo]);
 
   useEffect(() => {
@@ -43,8 +47,7 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
         const parsedSteps = querySnapshot.docs.map((rawSteps) => (
           { id: rawSteps.id, ...rawSteps.data() }
         ));
-        console.log(parsedSteps);
-        // setSteps(parsedSteps);
+        setSteps(parsedSteps as Step[]);
       };
       loadSteps();
     }
@@ -126,6 +129,13 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
           </>
           )}
         </div>
+
+        {steps.length ? (
+          <>
+            <h2 className="UpdateTodoModal__StepsTitle">Steps</h2>
+            {steps.map((step) => <div>{step.description}</div>)}
+          </>
+        ) : <div>No steps</div>}
 
         {'id' in todo
           ? (
