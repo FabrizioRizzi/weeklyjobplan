@@ -1,4 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  useCallback, useContext, useEffect, useState,
+} from 'react';
 import {
   addTodo, deleteTodo, getTodoSteps, updateTodo,
 } from 'firebaseUtils/firebase';
@@ -13,16 +15,18 @@ import { getDocs } from 'firebase/firestore';
 import Checkbox from 'components/atoms/Checkbox/Checkbox';
 import dayjs from 'dayjs';
 import './UpdateTodoModal.scss';
+import StepRow from 'components/molecules/StepRow/StepRow';
+import { Plus } from 'react-feather';
+import { SircleLeaderTodosContext } from 'pages/sorint/SircleLeader';
 
 export interface UpdateTodoModalProps {
   isVisible: boolean;
-  coll: string;
   todo: Todo | CreateTodoRequest;
   closeModal: () => void;
 }
 
 const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
-  isVisible, coll, todo, closeModal,
+  isVisible, todo, closeModal,
 }: UpdateTodoModalProps) => {
   const [title, setTitle] = useState<string>(todo.title);
   const [description, setDescription] = useState<string>(todo.description || '');
@@ -31,6 +35,7 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
   const [loadingAddUpdate, setLoadingAddUpdate] = useState<boolean>(false);
   const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
   const [steps, setSteps] = useState<(Step | CreateStepRequest)[]>([]);
+  const coll = useContext(SircleLeaderTodosContext);
 
   useEffect(() => {
     setTitle(todo.title || '');
@@ -68,6 +73,10 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
   const changeOnHold = useCallback((checked: boolean) => {
     setOnHold(checked);
   }, []);
+
+  const addStep = () => {
+    setSteps((stepsa) => [...stepsa, { description: '', done: false }]);
+  };
 
   const onAddTodo = async () => {
     setLoadingAddUpdate(true);
@@ -130,13 +139,15 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
           )}
         </div>
 
-        {steps.length ? (
-          <>
-            <h2 className="UpdateTodoModal__StepsTitle">Steps</h2>
-            {steps.map((step) => <div>{step.description}</div>)}
-          </>
-        ) : <div>No steps</div>}
-
+        <div className="UpdateTodoModal__Steps">
+          {steps.length ? (
+            <>
+              <h2>Steps</h2>
+              {steps.map((step) => <StepRow step={step} />)}
+            </>
+          ) : null}
+          <Button primary onClick={addStep}><Plus /></Button>
+        </div>
         {'id' in todo
           ? (
             <div className="Modal__Buttons">

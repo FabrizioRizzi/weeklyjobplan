@@ -3,9 +3,12 @@ import Ideas from 'components/organisms/Ideas/Ideas';
 import Todos from 'components/organisms/Todos/Todos';
 import { onSnapshot } from 'firebase/firestore';
 import { getIdeas, getTodos } from 'firebaseUtils/firebase';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Idea, Todo } from 'sharedInterfaces';
 import './TalentHandler.scss';
+
+export const TalentHandlerIdeasContext = React.createContext('talentHandlerIdeas');
+export const TalentHandlerTodosContext = React.createContext('talentHandlerTodos');
 
 const TalentHandler = () => {
   const [talentHandlerIdeas, setTalentHandlerIdeas] = useState<Idea[]>([]);
@@ -40,10 +43,14 @@ const TalentHandler = () => {
     ? <Loading />
     : (
       <div className="TalentHandler__Container">
-        <Ideas coll="talentHandlerIdeas" ideas={talentHandlerIdeas} />
-        <Todos coll="talentHandlerTodos" todos={talentHandlerTodos} />
+        <TalentHandlerIdeasContext.Provider value="talentHandlerIdeas">
+          <Ideas ideas={talentHandlerIdeas} />
+        </TalentHandlerIdeasContext.Provider>
+        <TalentHandlerTodosContext.Provider value="talentHandlerTodos">
+          <Todos todos={talentHandlerTodos} />
+        </TalentHandlerTodosContext.Provider>
       </div>
     );
 };
 
-export default TalentHandler;
+export default React.memo(TalentHandler);

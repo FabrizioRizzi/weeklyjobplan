@@ -1,26 +1,29 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  useCallback, useContext, useEffect, useState,
+} from 'react';
 import { addIdea, deleteIdea, updateIdea } from 'firebaseUtils/firebase';
 import { CreateIdeaRequest, Idea } from 'sharedInterfaces';
 import Modal from 'components/atoms/Modal/Modal';
 import TextInput from 'components/atoms/TextInput/TextInput';
 import TextArea from 'components/atoms/TextArea/TextArea';
 import Button from 'components/atoms/Button/Button';
+import { SircleLeaderIdeasContext } from 'pages/sorint/SircleLeader';
 
 export interface UpdateIdeaModalProps {
   isVisible: boolean;
-  coll: string;
   idea: Idea | CreateIdeaRequest;
   closeModal: () => void;
 }
 
 const UpdateIdeaModal: React.FC<UpdateIdeaModalProps> = ({
-  isVisible, coll, idea, closeModal,
+  isVisible, idea, closeModal,
 }: UpdateIdeaModalProps) => {
   const [title, setTitle] = useState<string>(idea.title);
   const [description, setDescription] = useState<string>(idea.description || '');
   const [priority, setPriority] = useState<0 | 1 | 2>(idea.priority);
   const [loadingAddUpdate, setLoadingAddUpdate] = useState<boolean>(false);
   const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
+  const coll = useContext(SircleLeaderIdeasContext);
 
   useEffect(() => {
     setTitle(idea.title || '');

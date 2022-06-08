@@ -7,6 +7,9 @@ import React, { useEffect, useState } from 'react';
 import { Idea, Todo } from 'sharedInterfaces';
 import './SircleLeader.scss';
 
+export const SircleLeaderIdeasContext = React.createContext('sircleLeaderIdeas');
+export const SircleLeaderTodosContext = React.createContext('sircleLeaderTodos');
+
 const SircleLeader = () => {
   const [sircleLeaderIdeas, setSircleLeaderIdeas] = useState<Idea[]>([]);
   const [sircleLeaderTodos, setSircleLeaderTodos] = useState<Todo[]>([]);
@@ -42,12 +45,14 @@ const SircleLeader = () => {
   return loadingIdeas || loadingTodos
     ? <Loading />
     : (
-      <>
-        <div className="SircleLeader__Container">
-          <Ideas coll="sircleLeaderIdeas" ideas={sircleLeaderIdeas} />
-          <Todos coll="sircleLeaderTodos" todos={sircleLeaderTodos} />
-        </div>
-      </>
+      <div className="SircleLeader__Container">
+        <SircleLeaderIdeasContext.Provider value="sircleLeaderIdeas">
+          <Ideas ideas={sircleLeaderIdeas} />
+        </SircleLeaderIdeasContext.Provider>
+        <SircleLeaderTodosContext.Provider value="sircleLeaderTodos">
+          <Todos todos={sircleLeaderTodos} />
+        </SircleLeaderTodosContext.Provider>
+      </div>
     );
 };
 

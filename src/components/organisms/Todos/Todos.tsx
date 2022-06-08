@@ -7,7 +7,6 @@ import UpdateTodoModal from '../UpdateTodoModal/UpdateTodoModal';
 import './Todos.scss';
 
 export interface TodosProps {
-  coll: string;
   todos: Todo[];
 }
 
@@ -19,7 +18,7 @@ const emptyTodo = {
   lastUpdate: new Date(),
 };
 
-const Todos: React.FC<TodosProps> = ({ coll, todos }: TodosProps) => {
+const Todos: React.FC<TodosProps> = ({ todos }: TodosProps) => {
   const [showAddUpdateModal, setShowAddUpdateModal] = useState<boolean>(false);
   const [selectedTodo, setSelectedTodo] = useState<Todo | CreateTodoRequest>(emptyTodo);
 
@@ -48,7 +47,6 @@ const Todos: React.FC<TodosProps> = ({ coll, todos }: TodosProps) => {
       <UpdateTodoModal
         isVisible={showAddUpdateModal}
         closeModal={closeModal}
-        coll={coll}
         todo={selectedTodo}
       />
     </div>

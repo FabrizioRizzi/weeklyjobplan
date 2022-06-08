@@ -8,12 +8,11 @@ import './Ideas.scss';
 
 export interface IdeasProps {
   ideas: Idea[];
-  coll: string;
 }
 
 const emptyIdea = { title: '', description: '', priority: 0 as 0 | 1 | 2 };
 
-const Ideas: React.FC<IdeasProps> = ({ ideas, coll }: IdeasProps) => {
+const Ideas: React.FC<IdeasProps> = ({ ideas }: IdeasProps) => {
   const [showAddUpdateModal, setShowAddUpdateModal] = useState<boolean>(false);
   const [selectedIdea, setSelectedIdea] = useState<Idea | CreateIdeaRequest>(emptyIdea);
 
@@ -43,7 +42,6 @@ const Ideas: React.FC<IdeasProps> = ({ ideas, coll }: IdeasProps) => {
       <UpdateIdeaModal
         isVisible={showAddUpdateModal}
         closeModal={closeModal}
-        coll={coll}
         idea={selectedIdea}
       />
     </div>
