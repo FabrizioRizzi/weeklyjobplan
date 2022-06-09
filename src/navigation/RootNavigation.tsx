@@ -52,17 +52,21 @@ const RootNavigation = () => {
             <Route
               path="/projects"
               element={(
-                <PrivateRoute user={user}>
-                  <Projects />
-                </PrivateRoute>
+                <React.Suspense fallback={<>Loading...</>}>
+                  <PrivateRoute user={user}>
+                    <Projects />
+                  </PrivateRoute>
+                </React.Suspense>
             )}
             />
             <Route
               path="/sorint/*"
               element={(
-                <PrivateRoute user={user}>
-                  <Sorint />
-                </PrivateRoute>
+                <React.Suspense fallback={<>Loading...</>}>
+                  <PrivateRoute user={user}>
+                    <Sorint />
+                  </PrivateRoute>
+                </React.Suspense>
             )}
             />
             <Route
