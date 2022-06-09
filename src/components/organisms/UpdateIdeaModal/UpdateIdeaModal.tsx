@@ -7,7 +7,7 @@ import Modal from 'components/atoms/Modal/Modal';
 import TextInput from 'components/atoms/TextInput/TextInput';
 import TextArea from 'components/atoms/TextArea/TextArea';
 import Button from 'components/atoms/Button/Button';
-import { SircleLeaderIdeasContext } from 'pages/sorint/SircleLeader';
+import { IdeasContext } from 'pages/Sorint';
 
 export interface UpdateIdeaModalProps {
   isVisible: boolean;
@@ -23,8 +23,8 @@ const UpdateIdeaModal: React.FC<UpdateIdeaModalProps> = ({
   const [priority, setPriority] = useState<0 | 1 | 2>(idea.priority);
   const [loadingAddUpdate, setLoadingAddUpdate] = useState<boolean>(false);
   const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
-  const coll = useContext(SircleLeaderIdeasContext);
-
+  const coll = useContext(IdeasContext);
+  console.log(coll);
   useEffect(() => {
     setTitle(idea.title || '');
     setDescription(idea.description || '');

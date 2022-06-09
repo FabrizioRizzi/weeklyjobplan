@@ -3,12 +3,10 @@ import Ideas from 'components/organisms/Ideas/Ideas';
 import Todos from 'components/organisms/Todos/Todos';
 import { onSnapshot } from 'firebase/firestore';
 import { getIdeas, getTodos } from 'firebaseUtils/firebase';
+import { IdeasContext, TodosContext } from 'pages/Sorint';
 import React, { useEffect, useState } from 'react';
 import { Idea, Todo } from 'sharedInterfaces';
 import './SircleLeader.scss';
-
-export const SircleLeaderIdeasContext = React.createContext('sircleLeaderIdeas');
-export const SircleLeaderTodosContext = React.createContext('sircleLeaderTodos');
 
 const SircleLeader = () => {
   const [sircleLeaderIdeas, setSircleLeaderIdeas] = useState<Idea[]>([]);
@@ -46,12 +44,12 @@ const SircleLeader = () => {
     ? <Loading />
     : (
       <div className="SircleLeader__Container">
-        <SircleLeaderIdeasContext.Provider value="sircleLeaderIdeas">
+        <IdeasContext.Provider value="sircleLeaderIdeas">
           <Ideas ideas={sircleLeaderIdeas} />
-        </SircleLeaderIdeasContext.Provider>
-        <SircleLeaderTodosContext.Provider value="sircleLeaderTodos">
+        </IdeasContext.Provider>
+        <TodosContext.Provider value="sircleLeaderTodos">
           <Todos todos={sircleLeaderTodos} />
-        </SircleLeaderTodosContext.Provider>
+        </TodosContext.Provider>
       </div>
     );
 };

@@ -1,23 +1,16 @@
 import React, {
   useCallback, useContext, useEffect, useState,
 } from 'react';
-import {
-  addTodo, deleteTodo, getTodoSteps, updateTodo,
-} from 'firebaseUtils/firebase';
-import {
-  CreateStepRequest, CreateTodoRequest, Step, Todo,
-} from 'sharedInterfaces';
+import { addTodo, deleteTodo, updateTodo } from 'firebaseUtils/firebase';
+import { CreateTodoRequest, Todo } from 'sharedInterfaces';
 import Modal from 'components/atoms/Modal/Modal';
 import TextInput from 'components/atoms/TextInput/TextInput';
 import TextArea from 'components/atoms/TextArea/TextArea';
 import Button from 'components/atoms/Button/Button';
-import { getDocs } from 'firebase/firestore';
 import Checkbox from 'components/atoms/Checkbox/Checkbox';
 import dayjs from 'dayjs';
-import './UpdateTodoModal.scss';
-import StepRow from 'components/molecules/StepRow/StepRow';
-import { Plus } from 'react-feather';
-import { SircleLeaderTodosContext } from 'pages/sorint/SircleLeader';
+import { TodosContext } from 'pages/Sorint';
+import Steps from '../Steps/Steps';
 
 export interface UpdateTodoModalProps {
   isVisible: boolean;
@@ -34,28 +27,13 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
   const [onHold, setOnHold] = useState<boolean>(todo.onHold);
   const [loadingAddUpdate, setLoadingAddUpdate] = useState<boolean>(false);
   const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
-  const [steps, setSteps] = useState<(Step | CreateStepRequest)[]>([]);
-  const coll = useContext(SircleLeaderTodosContext);
+  const coll = useContext(TodosContext);
 
   useEffect(() => {
     setTitle(todo.title || '');
     setDescription(todo.description || '');
     setPriority(todo.priority || 0);
     setOnHold(todo.onHold || false);
-    setSteps([]);
-  }, [todo]);
-
-  useEffect(() => {
-    if ('id' in todo) {
-      const loadSteps = async () => {
-        const querySnapshot = await getDocs(getTodoSteps(coll, todo.id));
-        const parsedSteps = querySnapshot.docs.map((rawSteps) => (
-          { id: rawSteps.id, ...rawSteps.data() }
-        ));
-        setSteps(parsedSteps as Step[]);
-      };
-      loadSteps();
-    }
   }, [todo]);
 
   const changeTitle = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,10 +51,6 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
   const changeOnHold = useCallback((checked: boolean) => {
     setOnHold(checked);
   }, []);
-
-  const addStep = () => {
-    setSteps((stepsa) => [...stepsa, { description: '', done: false }]);
-  };
 
   const onAddTodo = async () => {
     setLoadingAddUpdate(true);
@@ -139,17 +113,8 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
           )}
         </div>
 
-        <div className="UpdateTodoModal__Steps">
-          {steps.length ? (
-            <>
-              <h2>Steps</h2>
-              {steps.map((step) => <StepRow step={step} />)}
-            </>
-          ) : null}
-          <Button primary onClick={addStep}><Plus /></Button>
-        </div>
-        {'id' in todo
-          ? (
+        {'id' in todo ? (
+          <>
             <div className="Modal__Buttons">
               <Button
                 primary={false}
@@ -166,18 +131,19 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
                 Aggiorna
               </Button>
             </div>
-          )
-          : (
-            <div className="Modal__Add">
-              <Button
-                primary
-                onClick={onAddTodo}
-                loading={loadingAddUpdate}
-              >
-                Aggiungi
-              </Button>
-            </div>
-          )}
+            <Steps todoId={todo.id} />
+          </>
+        ) : (
+          <div className="Modal__Add">
+            <Button
+              primary
+              onClick={onAddTodo}
+              loading={loadingAddUpdate}
+            >
+              Aggiungi
+            </Button>
+          </div>
+        )}
       </form>
     </Modal>
   );

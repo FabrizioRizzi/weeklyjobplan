@@ -5,6 +5,9 @@ import SorintNavigation from 'navigation/SorintNavigation';
 import './Sorint.scss';
 import React, { useCallback } from 'react';
 
+export const IdeasContext = React.createContext('sircleLeaderIdeas');
+export const TodosContext = React.createContext('sircleLeaderTodos');
+
 const Sorint: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();

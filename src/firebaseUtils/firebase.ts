@@ -14,8 +14,10 @@ import {
 import {
   CreateIdeaRequest,
   CreateProjectRequest,
+  CreateStepRequest,
   CreateTaskRequest,
   CreateTaskToPlanRequest,
+  Step,
 } from '../sharedInterfaces';
 
 export const firebaseConfig = {
@@ -79,16 +81,16 @@ export const addTodo = async (coll: string, todo: CreateIdeaRequest) => addDoc(c
 
 export const updateTodo = async (coll: string, id: string, todo: CreateIdeaRequest) => updateDoc(doc(db, coll, id), { ...todo });
 
+export const updateLastUpdateTodo = (coll: string, id: string, lastUpdate: Date) => updateDoc(doc(db, coll, id), { lastUpdate });
+
 export const deleteTodo = async (coll: string, id: string) => deleteDoc(doc(db, coll, id));
 
 /** ************ STEPS **************** */
 
 export const getTodoSteps = (coll: string, id: string) => query(collection(db, coll, id, 'steps'));
 
-export const updateDoneStep = (coll: string, id: string, done: boolean) => updateDoc(doc(db, coll, id, 'steps'), { done });
+export const addStep = async (coll: string, todoId: string, step: CreateStepRequest) => addDoc(collection(db, coll, todoId, 'steps'), step);
 
-// export const addTodo = async (coll: string, todo: CreateIdeaRequest) => addDoc(collection(db, coll), todo);
+export const updateStep = async (coll: string, todoId: string, step: Step) => updateDoc(doc(db, coll, todoId, 'steps', step.id), { ...step });
 
-// export const updateTodo = async (coll: string, id: string, todo: CreateIdeaRequest) => updateDoc(doc(db, coll, id), { ...todo });
-
-// export const deleteTodo = async (coll: string, id: string) => deleteDoc(doc(db, coll, id));
+export const deleteStep = async (coll: string, todoId: string, stepId: string) => deleteDoc(doc(db, coll, todoId, 'steps', stepId));

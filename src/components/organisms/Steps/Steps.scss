@@ -1,0 +1,19 @@
+.Steps__Title {
+  margin: 1rem 0;
+}
+
+.Steps__NewStep {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 2rem 2rem;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+.Steps__NewStep--add {
+  cursor: pointer;
+}
+
+.Steps__NewStep--add:hover {
+  color: green;
+}
