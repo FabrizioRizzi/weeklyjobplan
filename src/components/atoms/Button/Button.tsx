@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, ReactElement } from 'react';
 import Loading from '../Loading/Loading';
 import './Button.scss';
 
@@ -8,6 +8,7 @@ export interface ButtonProps {
   loading?: boolean;
   submit?: boolean;
   onClick?: () => void;
+  children: string | ReactElement;
 }
 
 const Button: React.FC<ButtonProps> = ({

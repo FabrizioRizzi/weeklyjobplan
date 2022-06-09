@@ -43,8 +43,8 @@ const Header: React.FC<HeaderProps> = ({
 
   const yearOptions = [2021, 2022].map((years) => ({ label: years, value: years }));
   const weekOptions = [...Array(52)].map((el, index) => ({ label: index + 1, value: index + 1 }));
-  const onChangeYear = useCallback((newYear) => changeYear(newYear.value), []);
-  const onChangeWeek = useCallback((newWeek) => changeWeek(newWeek.value), []);
+  const onChangeYear = useCallback((newYear: any) => changeYear(newYear.value), []);
+  const onChangeWeek = useCallback((newWeek: any) => changeWeek(newWeek.value), []);
 
   const customStyles: StylesConfig<OptionType, false> = {
     option: (styles, { isFocused, isSelected }) => ({

@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, ReactElement } from 'react';
 import { X } from 'react-feather';
 import './Modal.scss';
 
@@ -8,6 +8,7 @@ export interface ModalProps {
   width?: number;
   height?: number;
   closeModal: () => void;
+  children: ReactElement;
 }
 
 const Modal: React.FC<ModalProps> = ({
