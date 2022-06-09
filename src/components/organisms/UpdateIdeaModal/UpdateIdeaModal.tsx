@@ -24,7 +24,7 @@ const UpdateIdeaModal: React.FC<UpdateIdeaModalProps> = ({
   const [loadingAddUpdate, setLoadingAddUpdate] = useState<boolean>(false);
   const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
   const coll = useContext(IdeasContext);
-  console.log(coll);
+
   useEffect(() => {
     setTitle(idea.title || '');
     setDescription(idea.description || '');
