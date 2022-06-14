@@ -15,6 +15,7 @@ const emptyTodo = {
   description: '',
   priority: 0 as 0 | 1 | 2,
   onHold: false,
+  done: false,
   lastUpdate: new Date(),
 };
 

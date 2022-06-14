@@ -1,6 +1,6 @@
 import Stars from 'components/atoms/Stars/Stars';
 import React from 'react';
-import { Clock } from 'react-feather';
+import { Check, Clock } from 'react-feather';
 import { Todo } from 'sharedInterfaces';
 import './TodoRow.scss';
 
@@ -14,7 +14,10 @@ const TodoRow = ({ todo, updateTodo }: IdeaProps) => {
   return (
     <div className="TodoRow__Container">
       <div onClick={onUpdateIdea} className="TodoRow__Title">{todo.title}</div>
-      <div>{todo.onHold && <Clock />}</div>
+      <div>
+        {todo.onHold && <Clock />}
+        {todo.done && <Check />}
+      </div>
       <div className="TodoRow__Stars">
         <Stars priority={todo.priority} />
       </div>

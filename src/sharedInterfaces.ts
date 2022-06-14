@@ -51,6 +51,7 @@ export interface CreateTodoRequest {
   description: string;
   priority: 0 | 1 | 2;
   onHold: boolean;
+  done: boolean;
   lastUpdate: Date;
 }
 

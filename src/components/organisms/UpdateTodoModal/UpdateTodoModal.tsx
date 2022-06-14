@@ -27,6 +27,7 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
   const [onHold, setOnHold] = useState<boolean>(todo.onHold);
   const [loadingAddUpdate, setLoadingAddUpdate] = useState<boolean>(false);
   const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
+  const [done, setDone] = useState<boolean>(false);
   const coll = useContext(TodosContext);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
     setDescription(todo.description || '');
     setPriority(todo.priority || 0);
     setOnHold(todo.onHold || false);
+    setDone(todo.done || false);
   }, [todo]);
 
   const changeTitle = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,10 +54,14 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
     setOnHold(checked);
   }, []);
 
+  const changeDone = useCallback((checked: boolean) => {
+    setDone(checked);
+  }, []);
+
   const onAddTodo = async () => {
     setLoadingAddUpdate(true);
     const request = {
-      title, description, priority, lastUpdate: new Date(),
+      title, description, priority, onHold, done, lastUpdate: new Date(),
     };
     await addTodo(coll, request);
     setLoadingAddUpdate(false);
@@ -66,7 +72,7 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
     if ('id' in todo) {
       setLoadingAddUpdate(true);
       const request = {
-        title, description, priority, onHold, lastUpdate: new Date(),
+        title, description, priority, onHold, done, lastUpdate: new Date(),
       };
       await updateTodo(coll, todo.id, request);
       setLoadingAddUpdate(false);
@@ -104,6 +110,9 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({
 
           <div>On Hold</div>
           <Checkbox onChange={changeOnHold} checked={onHold} />
+
+          <div>Done</div>
+          <Checkbox onChange={changeDone} checked={done} />
 
           {'id' in todo && (
           <>
