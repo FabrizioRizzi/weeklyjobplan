@@ -1,11 +1,11 @@
-import Checkbox from 'components/atoms/Checkbox/Checkbox';
-import Loading from 'components/atoms/Loading/Loading';
-import TextArea from 'components/atoms/TextArea/TextArea';
-import { deleteStep, updateLastUpdateTodo, updateStep } from 'firebaseUtils/firebase';
-import { TodosContext } from 'pages/Sorint';
+import Checkbox from '@components/atoms/Checkbox/Checkbox';
+import Loading from '@components/atoms/Loading/Loading';
+import TextArea from '@components/atoms/TextArea/TextArea';
+import { deleteStep, updateLastUpdateTodo, updateStep } from '@firebaseUtils/firebase';
+import { TodosContext } from '@pages/Sorint';
 import React, { useCallback, useContext, useState } from 'react';
 import { Check, Trash2 } from 'react-feather';
-import { Step } from 'sharedInterfaces';
+import { Step } from '@/sharedInterfaces';
 import './StepRow.scss';
 
 interface IdeaProps {

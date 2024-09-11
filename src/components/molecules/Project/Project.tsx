@@ -1,8 +1,6 @@
 import React from 'react';
-import {
-  Award, Edit2, GitHub, Gitlab,
-} from 'react-feather';
-import { ProjectInterface } from 'sharedInterfaces';
+import { Award, Edit2, GitHub, Gitlab } from 'react-feather';
+import { ProjectInterface } from '@/sharedInterfaces';
 import './Project.scss';
 
 export interface ProjectProps {

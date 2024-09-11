@@ -1,16 +1,16 @@
 import React, {
   useCallback, useContext, useEffect, useState,
 } from 'react';
-import { addTodo, deleteTodo, updateTodo } from 'firebaseUtils/firebase';
-import { CreateTodoRequest, Todo } from 'sharedInterfaces';
-import Modal from 'components/atoms/Modal/Modal';
-import TextInput from 'components/atoms/TextInput/TextInput';
-import TextArea from 'components/atoms/TextArea/TextArea';
-import Button from 'components/atoms/Button/Button';
-import Checkbox from 'components/atoms/Checkbox/Checkbox';
+import { addTodo, deleteTodo, updateTodo } from '@firebaseUtils/firebase';
+import { CreateTodoRequest, Todo } from '@/sharedInterfaces';
+import Modal from '@components/atoms/Modal/Modal';
+import TextInput from '@components/atoms/TextInput/TextInput';
+import TextArea from '@components/atoms/TextArea/TextArea';
+import Button from '@components/atoms/Button/Button';
+import Checkbox from '@components/atoms/Checkbox/Checkbox';
 import dayjs from 'dayjs';
-import { TodosContext } from 'pages/Sorint';
-import Steps from '../Steps/Steps';
+import { TodosContext } from '@pages/Sorint';
+import Steps from '@components/organisms/Steps/Steps';
 
 export interface UpdateTodoModalProps {
   isVisible: boolean;

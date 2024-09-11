@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { List, SkipForward } from 'react-feather';
-import { updateDoneTask, updateTask } from 'firebaseUtils/firebase';
-import { TaskInterface } from 'sharedInterfaces';
-import Checkbox from 'components/atoms/Checkbox/Checkbox';
-import TaskLength from 'components/atoms/TaskLength/TaskLength';
+import { updateDoneTask, updateTask } from '@firebaseUtils/firebase';
+import { TaskInterface } from '@/sharedInterfaces';
+import Checkbox from '@components/atoms/Checkbox/Checkbox';
+import TaskLength from '@components/atoms/TaskLength/TaskLength';
 import './Task.scss';
 
 export interface TaskProps {

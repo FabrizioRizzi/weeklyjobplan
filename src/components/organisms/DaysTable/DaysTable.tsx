@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import 'dayjs/locale/it';
-import { TaskInterface } from 'sharedInterfaces';
-import Loading from 'components/atoms/Loading/Loading';
-import Day from 'components/organisms/Day/Day';
+import { TaskInterface } from '@/sharedInterfaces';
+import Loading from '@components/atoms/Loading/Loading';
+import Day from '@components/organisms/Day/Day';
 import './DaysTable.scss';
 
 export interface DaysTableProps {

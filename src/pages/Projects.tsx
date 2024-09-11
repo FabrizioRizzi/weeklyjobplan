@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { CreateProjectRequest, ProjectInterface } from 'sharedInterfaces';
+import { CreateProjectRequest, ProjectInterface } from '@/sharedInterfaces';
 import { ArrowLeft, Plus } from 'react-feather';
 import { useNavigate } from 'react-router-dom';
-import Loading from 'components/atoms/Loading/Loading';
-import Button from 'components/atoms/Button/Button';
-import Project from 'components/molecules/Project/Project';
-import UpdateProjectModal from 'components/organisms/UpdateProjectModal/UpdateProjectModal';
+import Loading from '@components/atoms/Loading/Loading';
+import Button from '@components/atoms/Button/Button';
+import Project from '@components/molecules/Project/Project';
+import UpdateProjectModal from '@components/organisms/UpdateProjectModal/UpdateProjectModal';
 import { onSnapshot } from 'firebase/firestore';
-import { getProjects } from '../firebaseUtils/firebase';
+import { getProjects } from '@firebaseUtils/firebase';
 import './Projects.scss';
 
 const Projects: React.FC = () => {

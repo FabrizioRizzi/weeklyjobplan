@@ -1,4 +1,4 @@
-@import "_variables";
+@import "@/styles/_variables";
 
 .Task__Task {
   display: grid;
@@ -10,6 +10,8 @@
 .Task__TaskName {
   cursor: pointer;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .Task__TaskDescription {

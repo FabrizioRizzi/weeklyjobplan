@@ -1,8 +1,8 @@
-import Button from 'components/atoms/Button/Button';
-import IdeaRow from 'components/molecules/IdeaRow/IdeaRow';
+import Button from '@components/atoms/Button/Button';
+import IdeaRow from '@components/molecules/IdeaRow/IdeaRow';
 import React, { useCallback, useState } from 'react';
 import { PenTool, Plus } from 'react-feather';
-import { CreateIdeaRequest, Idea } from 'sharedInterfaces';
+import { CreateIdeaRequest, Idea } from '@/sharedInterfaces';
 import UpdateIdeaModal from '../UpdateIdeaModal/UpdateIdeaModal';
 import './Ideas.scss';
 

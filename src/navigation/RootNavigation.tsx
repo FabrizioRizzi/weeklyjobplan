@@ -1,14 +1,14 @@
 import {
   BrowserRouter, Navigate, Route, Routes, useLocation,
 } from 'react-router-dom';
-import Home from 'pages/Home';
-import Loading from 'components/atoms/Loading/Loading';
+import Loading from '@components/atoms/Loading/Loading';
 import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { auth } from 'firebaseUtils/firebase';
-import Login from 'pages/Login';
-import Projects from 'pages/Projects';
-import Sorint from 'pages/Sorint';
+import { auth } from '@firebaseUtils/firebase';
+import Login from '@pages/Login';
+import Projects from '@pages/Projects';
+import Sorint from '@pages/Sorint';
+import Home from '@pages/Home';
 
 const PrivateRoute = ({ children, user }: { children: JSX.Element, user: User | null }) => {
   const location = useLocation();

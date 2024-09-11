@@ -1,19 +1,23 @@
-import { PropsWithChildren, ReactElement } from 'react';
-import Loading from '../Loading/Loading';
-import './Button.scss';
+import { PropsWithChildren } from "react";
+import Loading from "../Loading/Loading";
+import "./Button.scss";
 
-export interface ButtonProps {
+export interface ButtonProps extends PropsWithChildren {
   primary: boolean;
   disabled?: boolean;
   loading?: boolean;
   submit?: boolean;
   onClick?: () => void;
-  children: string | ReactElement;
 }
 
 const Button: React.FC<ButtonProps> = ({
-  primary, disabled, loading, onClick, submit, children,
-}: PropsWithChildren<ButtonProps>) => {
+  primary,
+  disabled,
+  loading,
+  onClick,
+  submit,
+  children,
+}: ButtonProps) => {
   const executeAction = () => {
     if (!disabled && !loading && onClick) {
       onClick();
@@ -22,10 +26,13 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      type={submit ? 'submit' : 'button'}
-      className={disabled
-        ? 'Button__Disabled'
-        : `Button__${primary ? 'Button--primary' : 'Button--secondary'}`}
+      data-testid="button"
+      type={submit ? "submit" : "button"}
+      className={
+        disabled
+          ? "Button__Disabled"
+          : `Button__${primary ? "Button--primary" : "Button--secondary"}`
+      }
       onClick={executeAction}
     >
       {loading ? <Loading /> : children}

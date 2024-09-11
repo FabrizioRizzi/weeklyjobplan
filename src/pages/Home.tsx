@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
-import { getTasksByWeekAndYear } from 'firebaseUtils/firebase';
-import { TaskInterface } from 'sharedInterfaces';
-import Header from 'components/organisms/Header/Header';
-import DaysTable from 'components/organisms/DaysTable/DaysTable';
-import ToPlan from 'components/organisms/ToPlan/ToPlan';
+import { getTasksByWeekAndYear } from '@firebaseUtils/firebase';
+import { TaskInterface } from '@/sharedInterfaces';
+import Header from '@components/organisms/Header/Header';
+import DaysTable from '@components/organisms/DaysTable/DaysTable';
+import ToPlan from '@components/organisms/ToPlan/ToPlan';
 import { onSnapshot } from 'firebase/firestore';
 
 dayjs.extend(weekOfYear);

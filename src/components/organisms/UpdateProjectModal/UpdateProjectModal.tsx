@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { addProject, deleteProject, updateProject } from 'firebaseUtils/firebase';
-import { CreateProjectRequest, ProjectInterface } from 'sharedInterfaces';
-import Modal from 'components/atoms/Modal/Modal';
-import TextInput from 'components/atoms/TextInput/TextInput';
-import TextArea from 'components/atoms/TextArea/TextArea';
-import Button from 'components/atoms/Button/Button';
-import Checkbox from 'components/atoms/Checkbox/Checkbox';
+import { addProject, deleteProject, updateProject } from '@firebaseUtils/firebase';
+import { CreateProjectRequest, ProjectInterface } from '@/sharedInterfaces';
+import Modal from '@components/atoms/Modal/Modal';
+import TextInput from '@components/atoms/TextInput/TextInput';
+import TextArea from '@components/atoms/TextArea/TextArea';
+import Button from '@components/atoms/Button/Button';
+import Checkbox from '@components/atoms/Checkbox/Checkbox';
 
 export interface UpdateProjectModalProps {
   isVisible: boolean;

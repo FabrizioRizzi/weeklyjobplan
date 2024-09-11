@@ -1,16 +1,16 @@
-import Button from 'components/atoms/Button/Button';
-import Checkbox from 'components/atoms/Checkbox/Checkbox';
-import Loading from 'components/atoms/Loading/Loading';
-import TextArea from 'components/atoms/TextArea/TextArea';
-import StepRow from 'components/molecules/StepRow/StepRow';
+import Button from '@components/atoms/Button/Button';
+import Checkbox from '@components/atoms/Checkbox/Checkbox';
+import Loading from '@components/atoms/Loading/Loading';
+import TextArea from '@components/atoms/TextArea/TextArea';
+import StepRow from '@components/molecules/StepRow/StepRow';
 import { onSnapshot } from 'firebase/firestore';
-import { addStep, getTodoSteps, updateLastUpdateTodo } from 'firebaseUtils/firebase';
-import { TodosContext } from 'pages/Sorint';
+import { addStep, getTodoSteps, updateLastUpdateTodo } from '@firebaseUtils/firebase';
+import { TodosContext } from '@pages/Sorint';
 import React, {
   useCallback, useContext, useEffect, useState,
 } from 'react';
 import { Check, Plus } from 'react-feather';
-import { Step } from 'sharedInterfaces';
+import { Step } from '@/sharedInterfaces';
 import './Steps.scss';
 
 export interface StepsProps {

@@ -1,6 +1,6 @@
-import Stars from 'components/atoms/Stars/Stars';
+import Stars from '@components/atoms/Stars/Stars';
 import React from 'react';
-import { Idea } from 'sharedInterfaces';
+import { Idea } from '@/sharedInterfaces';
 import './IdeaRow.scss';
 
 interface IdeaProps {

@@ -1,7 +1,7 @@
-import Button from 'components/atoms/Button/Button';
+import Button from '@components/atoms/Button/Button';
 import { ArrowLeft } from 'react-feather';
 import { useLocation, useNavigate } from 'react-router-dom';
-import SorintNavigation from 'navigation/SorintNavigation';
+import SorintNavigation from '@navigation/SorintNavigation';
 import './Sorint.scss';
 import React, { useCallback } from 'react';
 

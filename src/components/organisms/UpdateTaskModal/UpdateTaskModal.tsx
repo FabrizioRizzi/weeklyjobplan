@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { addTask, deleteTask, updateTask } from 'firebaseUtils/firebase';
-import { CreateTaskRequest, TaskInterface } from 'sharedInterfaces';
-import Modal from 'components/atoms/Modal/Modal';
-import TextInput from 'components/atoms/TextInput/TextInput';
-import TextArea from 'components/atoms/TextArea/TextArea';
-import Button from 'components/atoms/Button/Button';
+import { addTask, deleteTask, updateTask } from '@firebaseUtils/firebase';
+import { CreateTaskRequest, TaskInterface } from '@/sharedInterfaces';
+import Modal from '@components/atoms/Modal/Modal';
+import TextInput from '@components/atoms/TextInput/TextInput';
+import TextArea from '@components/atoms/TextArea/TextArea';
+import Button from '@components/atoms/Button/Button';
 
 export interface UpdateTaskModalProps {
   isVisible: boolean;

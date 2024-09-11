@@ -1,7 +1,7 @@
-import Stars from 'components/atoms/Stars/Stars';
+import Stars from '@components/atoms/Stars/Stars';
 import React from 'react';
 import { Check, Clock } from 'react-feather';
-import { Todo } from 'sharedInterfaces';
+import { Todo } from '@/sharedInterfaces';
 import './TodoRow.scss';
 
 interface IdeaProps {

@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { addTaskToPlan, deleteTaskToPlan, updateTaskToPlan } from 'firebaseUtils/firebase';
-import { CreateTaskToPlanRequest, TaskToPlanInterface } from 'sharedInterfaces';
-import Modal from 'components/atoms/Modal/Modal';
-import TextInput from 'components/atoms/TextInput/TextInput';
-import TextArea from 'components/atoms/TextArea/TextArea';
-import Button from 'components/atoms/Button/Button';
+import { addTaskToPlan, deleteTaskToPlan, updateTaskToPlan } from '@firebaseUtils/firebase';
+import { CreateTaskToPlanRequest, TaskToPlanInterface } from '@/sharedInterfaces';
+import Modal from '@components/atoms/Modal/Modal';
+import TextInput from '@components/atoms/TextInput/TextInput';
+import TextArea from '@components/atoms/TextArea/TextArea';
+import Button from '@components/atoms/Button/Button';
 
 export interface UpdateToPlanModalProps {
   isVisible: boolean;

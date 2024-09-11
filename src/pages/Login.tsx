@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from 'firebaseUtils/firebase';
-import Button from 'components/atoms/Button/Button';
-import TextInput from 'components/atoms/TextInput/TextInput';
+import { auth } from '@firebaseUtils/firebase';
+import Button from '@components/atoms/Button/Button';
+import TextInput from '@components/atoms/TextInput/TextInput';
 import './Login.scss';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 

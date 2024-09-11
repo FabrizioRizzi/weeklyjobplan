@@ -1,7 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import Checkbox from './Checkbox';
+import { describe, test, expect, vi } from 'vitest';
 
-const mockCallBack = jest.fn();
+const mockCallBack = vi.fn();
 
 describe('Checkbox', () => {
   test('renders Button component', () => {

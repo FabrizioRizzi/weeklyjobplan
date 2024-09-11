@@ -1,19 +1,18 @@
-import { PropsWithChildren, ReactElement } from 'react';
+import { PropsWithChildren } from 'react';
 import { X } from 'react-feather';
 import './Modal.scss';
 
-export interface ModalProps {
+export interface ModalProps extends PropsWithChildren {
   isVisible: boolean;
   title: string;
   width?: number;
   height?: number;
   closeModal: () => void;
-  children: ReactElement;
 }
 
 const Modal: React.FC<ModalProps> = ({
   isVisible, title, width, height, closeModal, children,
-}: PropsWithChildren<ModalProps>) => (
+}: ModalProps) => (
   <>
     {isVisible
       && (

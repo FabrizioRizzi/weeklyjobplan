@@ -1,13 +1,13 @@
 import React, {
   useCallback, useContext, useEffect, useState,
 } from 'react';
-import { addIdea, deleteIdea, updateIdea } from 'firebaseUtils/firebase';
-import { CreateIdeaRequest, Idea } from 'sharedInterfaces';
-import Modal from 'components/atoms/Modal/Modal';
-import TextInput from 'components/atoms/TextInput/TextInput';
-import TextArea from 'components/atoms/TextArea/TextArea';
-import Button from 'components/atoms/Button/Button';
-import { IdeasContext } from 'pages/Sorint';
+import { addIdea, deleteIdea, updateIdea } from '@firebaseUtils/firebase';
+import { CreateIdeaRequest, Idea } from '@/sharedInterfaces';
+import Modal from '@components/atoms/Modal/Modal';
+import TextInput from '@components/atoms/TextInput/TextInput';
+import TextArea from '@components/atoms/TextArea/TextArea';
+import Button from '@components/atoms/Button/Button';
+import { IdeasContext } from '@pages/Sorint';
 
 export interface UpdateIdeaModalProps {
   isVisible: boolean;

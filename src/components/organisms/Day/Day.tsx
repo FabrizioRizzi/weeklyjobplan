@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Plus } from 'react-feather';
-import { CreateTaskRequest, TaskInterface } from 'sharedInterfaces';
-import Button from 'components/atoms/Button/Button';
-import Task from 'components/molecules/Task/Task';
-import TaskLength from 'components/atoms/TaskLength/TaskLength';
-import UpdateTaskModal from 'components/organisms/UpdateTaskModal/UpdateTaskModal';
+import { CreateTaskRequest, TaskInterface } from '@/sharedInterfaces';
+import Button from '@components/atoms/Button/Button';
+import Task from '@components/molecules/Task/Task';
+import TaskLength from '@components/atoms/TaskLength/TaskLength';
+import UpdateTaskModal from '@components/organisms/UpdateTaskModal/UpdateTaskModal';
 import './Day.scss';
 import dayjs from 'dayjs';
 import 'dayjs/locale/it';

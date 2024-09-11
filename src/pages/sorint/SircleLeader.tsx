@@ -1,11 +1,11 @@
-import Loading from 'components/atoms/Loading/Loading';
-import Ideas from 'components/organisms/Ideas/Ideas';
-import Todos from 'components/organisms/Todos/Todos';
-import { onSnapshot } from 'firebase/firestore';
-import { getIdeas, getTodos } from 'firebaseUtils/firebase';
-import { IdeasContext, TodosContext } from 'pages/Sorint';
 import React, { useEffect, useState } from 'react';
-import { Idea, Todo } from 'sharedInterfaces';
+import Loading from '@components/atoms/Loading/Loading';
+import Ideas from '@components/organisms/Ideas/Ideas';
+import Todos from '@components/organisms/Todos/Todos';
+import { onSnapshot } from 'firebase/firestore';
+import { getIdeas, getTodos } from '@firebaseUtils/firebase';
+import { IdeasContext, TodosContext } from '@pages/Sorint';
+import { Idea, Todo } from '@/sharedInterfaces';
 import './SircleLeader.scss';
 
 const SircleLeader = () => {

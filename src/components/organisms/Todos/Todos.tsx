@@ -1,8 +1,8 @@
-import Button from 'components/atoms/Button/Button';
-import TodoRow from 'components/molecules/TodoRow/TodoRow';
+import Button from '@components/atoms/Button/Button';
+import TodoRow from '@components/molecules/TodoRow/TodoRow';
 import React, { useCallback, useState } from 'react';
 import { Edit, Plus } from 'react-feather';
-import { CreateTodoRequest, Todo } from 'sharedInterfaces';
+import { CreateTodoRequest, Todo } from '@/sharedInterfaces';
 import UpdateTodoModal from '../UpdateTodoModal/UpdateTodoModal';
 import './Todos.scss';
 

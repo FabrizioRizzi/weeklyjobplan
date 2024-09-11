@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Plus } from 'react-feather';
-import { getTasksToPlan } from 'firebaseUtils/firebase';
-import { CreateTaskToPlanRequest, TaskToPlanInterface } from 'sharedInterfaces';
-import Loading from 'components/atoms/Loading/Loading';
-import Button from 'components/atoms/Button/Button';
-import UpdateToPlanModal from 'components/organisms/UpdateToPlanModal/UpdateToPlanModal';
+import { getTasksToPlan } from '@firebaseUtils/firebase';
+import { CreateTaskToPlanRequest, TaskToPlanInterface } from '@/sharedInterfaces';
+import Loading from '@components/atoms/Loading/Loading';
+import Button from '@components/atoms/Button/Button';
+import UpdateToPlanModal from '@components/organisms/UpdateToPlanModal/UpdateToPlanModal';
 import './ToPlan.scss';
 import { onSnapshot } from 'firebase/firestore';
 import TaskToPlan from '../../molecules/TaskToPlan/TaskToPlan';

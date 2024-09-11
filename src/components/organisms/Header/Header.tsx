@@ -5,8 +5,8 @@ import {
 } from 'react-feather';
 import Select, { StylesConfig } from 'react-select';
 import { signOut } from 'firebase/auth';
-import { auth } from 'firebaseUtils/firebase';
-import Button from 'components/atoms/Button/Button';
+import { auth } from '@firebaseUtils/firebase';
+import Button from '@components/atoms/Button/Button';
 import './Header.scss';
 
 type OptionType = {
@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   const yearOptions = [2021, 2022].map((years) => ({ label: years, value: years }));
-  const weekOptions = [...Array(52)].map((el, index) => ({ label: index + 1, value: index + 1 }));
+  const weekOptions = [...Array(52)].map((_, index) => ({ label: index + 1, value: index + 1 }));
   const onChangeYear = useCallback((newYear: any) => changeYear(newYear.value), []);
   const onChangeWeek = useCallback((newWeek: any) => changeWeek(newWeek.value), []);
 
