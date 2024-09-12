@@ -1,13 +1,18 @@
-import React, { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  ChevronRight, ChevronLeft, Target, LogOut, Activity, Briefcase,
-} from 'react-feather';
-import Select, { StylesConfig } from 'react-select';
-import { signOut } from 'firebase/auth';
-import { auth } from '@firebaseUtils/firebase';
-import Button from '@components/atoms/Button/Button';
-import './Header.scss';
+  ChevronRight,
+  ChevronLeft,
+  Target,
+  LogOut,
+  Activity,
+  Briefcase,
+} from "react-feather";
+import Select, { OnChangeValue, StylesConfig } from "react-select";
+import { signOut } from "firebase/auth";
+import { auth } from "@firebaseUtils/firebase";
+import Button from "@components/atoms/Button/Button";
+import "./Header.scss";
 
 type OptionType = {
   label: number;
@@ -25,7 +30,13 @@ export interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({
-  year, week, changeYear, changeWeek, previousWeek, nextWeek, reset,
+  year,
+  week,
+  changeYear,
+  changeWeek,
+  previousWeek,
+  nextWeek,
+  reset,
 }: HeaderProps) => {
   const navigate = useNavigate();
 
@@ -34,30 +45,46 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   const openProjects = () => {
-    navigate('/projects');
+    navigate("/projects");
   };
 
   const openSorint = () => {
-    navigate('/sorint');
+    navigate("/sorint");
   };
 
-  const yearOptions = [2021, 2022].map((years) => ({ label: years, value: years }));
-  const weekOptions = [...Array(52)].map((_, index) => ({ label: index + 1, value: index + 1 }));
-  const onChangeYear = useCallback((newYear: any) => changeYear(newYear.value), []);
-  const onChangeWeek = useCallback((newWeek: any) => changeWeek(newWeek.value), []);
+  const yearOptions = [2021, 2022].map((years) => ({
+    label: years,
+    value: years,
+  }));
+  const weekOptions = [...Array(52)].map((_, index) => ({
+    label: index + 1,
+    value: index + 1,
+  }));
+  const onChangeYear = useCallback(
+    (newYear: OnChangeValue<{ value: number; label: number }, false>) =>
+      changeYear(newYear?.value || 0),
+    []
+  );
+  const onChangeWeek = useCallback(
+    (newWeek: OnChangeValue<{ value: number; label: number }, false>) =>
+      changeWeek(newWeek?.value || 0),
+    []
+  );
 
   const customStyles: StylesConfig<OptionType, false> = {
     option: (styles, { isFocused, isSelected }) => ({
       ...styles,
-      color: isSelected ? '#eeebdd;' : '#1b1717',
-      // eslint-disable-next-line no-nested-ternary
-      backgroundColor: isSelected ? '#1b1717' : isFocused ? '#eeebdd' : '#fffef8',
+      color: isSelected ? "#eeebdd;" : "#1b1717",
+      backgroundColor: isSelected
+        ? "#1b1717"
+        : isFocused
+        ? "#eeebdd"
+        : "#fffef8",
     }),
   };
 
   return (
     <div className="Header__Header">
-
       <div className="Header__Buttons Header__Buttons--left">
         <Button primary onClick={previousWeek}>
           <ChevronLeft />

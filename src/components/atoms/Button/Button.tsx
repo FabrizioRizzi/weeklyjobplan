@@ -1,3 +1,4 @@
+import React from "react";
 import { PropsWithChildren } from "react";
 import Loading from "../Loading/Loading";
 import "./Button.scss";

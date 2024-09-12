@@ -1,10 +1,9 @@
-import SircleLeader from '@pages/sorint/SircleLeader';
-import TalentHandler from '@pages/sorint/TalentHandler';
-import {
-  Outlet, Routes, Route, Navigate,
-} from 'react-router-dom';
+import React from "react";
+import SircleLeader from "@pages/sorint/SircleLeader";
+import TalentHandler from "@pages/sorint/TalentHandler";
+import { Outlet, Routes, Route, Navigate } from "react-router-dom";
 
-const SorintNavigation = () => (
+const SorintNavigation: React.FC = () => (
   <>
     <Routes>
       <Route path="/" element={<Navigate to="sircleleader" replace />} />
